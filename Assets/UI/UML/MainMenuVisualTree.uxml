@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/CommonStyleSheet.uss?fileID=7433441132597879392&amp;guid=3357dc58da7ee4adc9b3d7ff50e60e6d&amp;type=3#CommonStyleSheet" />
+    <ui:VisualElement name="main-screen" style="flex-grow: 1;">
+        <ui:VisualElement name="spacer" style="flex-grow: 1; max-height: 75px;" />
+        <ui:Label text="Label" name="title" class="header" />
+        <ui:VisualElement name="buttons" style="flex-grow: 0; min-width: 25%; min-height: 30%; align-self: center; justify-content: center; align-content: center; flex-shrink: 0;">
+            <ui:Button text="Button" name="play-button" />
+            <ui:Button text="Button" name="settings-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

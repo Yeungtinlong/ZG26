@@ -1,0 +1,1474 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: LibrarySO
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:Danny.Editor.Fixers.GuidLibrary:LibraryScriptableObject
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Plugins
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Danny.Editor.Fixers.GuidLibrary.Plugin,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 12
+    - Name: 
+      Entry: 7
+      Data: 1|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: TMP
+    - Name: Items
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 13
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TextMeshPro_UGUI
+    - Name: $v
+      Entry: 7
+      Data: 4|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: f4688fdb7df04437aeb418b961361dc5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TextMeshPro
+    - Name: $v
+      Entry: 7
+      Data: 5|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 9541d86e2fd84c1d9990edf0852d74ab
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Liberation Sans SDF
+    - Name: $v
+      Entry: 7
+      Data: 6|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 8f586378b4e144a9851e7b34d9b748ee
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TextContainer
+    - Name: $v
+      Entry: 7
+      Data: 7|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 32d40088a6124c578ad6b428df586e2e
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TMP_FontAsset
+    - Name: $v
+      Entry: 7
+      Data: 8|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 71c1514a6bd24e1e882cebbe1904ce04
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TMP_SubMeshUI
+    - Name: $v
+      Entry: 7
+      Data: 9|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 058cba836c1846c3aa1c5fd2e28aea77
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TMP_SubMesh
+    - Name: $v
+      Entry: 7
+      Data: 10|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 07994bfe8b0e4adb97d706de5dea48d5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TMP_InputField
+    - Name: $v
+      Entry: 7
+      Data: 11|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 2da0c512f12947e489f739169773d7ca
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TMP_Dropdown
+    - Name: $v
+      Entry: 7
+      Data: 12|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 7b743370ac3e4ec2a1668f5455a8ef8a
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TMP_ColorGradient
+    - Name: $v
+      Entry: 7
+      Data: 13|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 54d21f6ece3b46479f0c328f8c6007e0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TMP_Settings
+    - Name: $v
+      Entry: 7
+      Data: 14|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 2705215ac5b84b70bacc50632be6e391
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TMP_SpriteAsset(EmojiOne)
+    - Name: $v
+      Entry: 7
+      Data: 15|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 84a92b25f83d49b9bc132d206b370281
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TMP_StyleSheet(DefaultStyleSheet)
+    - Name: $v
+      Entry: 7
+      Data: 16|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: ab2114bdc8544297b417dfefe9f1e410
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 17|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: I2
+    - Name: Items
+      Entry: 7
+      Data: 18|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: LanguageSource
+    - Name: $v
+      Entry: 7
+      Data: 19|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 488051eaa73ba421e8fe4868f2e0f364
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: LanguageSourceAsset
+    - Name: $v
+      Entry: 7
+      Data: 20|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 2f0b0c553be8edd4682e9180fdd13e37
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Localize
+    - Name: $v
+      Entry: 7
+      Data: 21|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 344445a89b4f74a0e9a0a766903df87e
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 22|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: Localization
+    - Name: Items
+      Entry: 7
+      Data: 23|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: LocalizationSettings
+    - Name: $v
+      Entry: 7
+      Data: 24|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: a07b5cd0b1b829245bc8c4b6978793e8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: SharedTableData
+    - Name: $v
+      Entry: 7
+      Data: 25|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 5b11a58205ec3474ca216360e9fa74a8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: StringTable
+    - Name: $v
+      Entry: 7
+      Data: 26|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: e9620f8c34305754d8cc9a7e49e852d9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Locale
+    - Name: $v
+      Entry: 7
+      Data: 27|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 1bb1838fe8befb0429646b938e757ff3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: GameObjectLocalizer
+    - Name: $v
+      Entry: 7
+      Data: 28|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 69beb381e244f92449b8c4cf954630e9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 29|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: URP
+    - Name: Items
+      Entry: 7
+      Data: 30|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UniversalRenderPipelineGlobalSettings
+    - Name: $v
+      Entry: 7
+      Data: 31|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 2ec995e51a6e251468d2a3fd8a686257
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Renderer2D
+    - Name: $v
+      Entry: 7
+      Data: 32|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 11145981673336645838492a2d98e247
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UniversalRenderPipelineAsset
+    - Name: $v
+      Entry: 7
+      Data: 33|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: bf2edee5c58d82540a51f03df9d42094
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Light2D
+    - Name: $v
+      Entry: 7
+      Data: 34|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 073797afb82c5a1438f328866b10b3f0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 35|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: 2dxFx
+    - Name: Items
+      Entry: 7
+      Data: 36|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: _2dxFX_Fire
+    - Name: $v
+      Entry: 7
+      Data: 37|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 8d493b63150be1c429f3d01d00318de0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: _2dxFX_Ice
+    - Name: $v
+      Entry: 7
+      Data: 38|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: c7585dfddd17572428897a840f789957
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 39|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: Doozy
+    - Name: Items
+      Entry: 7
+      Data: 40|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 9
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UIElement
+    - Name: $v
+      Entry: 7
+      Data: 41|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: abb5c4702c7d6e344b9832a97ae1264d
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UICanvas
+    - Name: $v
+      Entry: 7
+      Data: 42|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: bc27f5b7e4fa9984a9e78d87451c04ae
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UIButton
+    - Name: $v
+      Entry: 7
+      Data: 43|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 682849f091f20484485c3a8e6c1e0b1f
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Soundy
+    - Name: $v
+      Entry: 7
+      Data: 44|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 490c78ed3279eba42a5f8a5fe316e81a
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UINotificationManager
+    - Name: $v
+      Entry: 7
+      Data: 45|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 96124914bff0e8c4a860edd2b48124e7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UIManager
+    - Name: $v
+      Entry: 7
+      Data: 46|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 416d1b88f605d1346b10fa8fc191de1f
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UIToggle
+    - Name: $v
+      Entry: 7
+      Data: 47|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: f23d88283c8b1b14e988f5822e048050
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UITrigger
+    - Name: $v
+      Entry: 7
+      Data: 48|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 2d64875b7d7a1344a9c05ab2b4b732b4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UISound
+    - Name: $v
+      Entry: 7
+      Data: 49|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 5d125cd551938f4469cac385543adf35
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 50|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: Energy
+    - Name: Items
+      Entry: 7
+      Data: 51|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Image2
+    - Name: $v
+      Entry: 7
+      Data: 52|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: cca294cb88bcef846ad69aa7e26a17f8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: EnergyBar
+    - Name: $v
+      Entry: 7
+      Data: 53|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: f2bfc393ba3e9ba4886cecff90d9a611
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: RepeatRendererUGUI
+    - Name: $v
+      Entry: 7
+      Data: 54|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 23ac753efbc9df84081fd8995871d255
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 55|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: AmplifyColorEffect
+    - Name: Items
+      Entry: 7
+      Data: 56|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: AmplifyColorEffect
+    - Name: $v
+      Entry: 7
+      Data: 57|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 6b9e31fdf962e3e4ca3b62ec3ecc2f4e
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: FilledRendererUGUI
+    - Name: $v
+      Entry: 7
+      Data: 58|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 6808a0d129d198c459c70be6483acfd9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 59|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: SuperTextMesh
+    - Name: Items
+      Entry: 7
+      Data: 60|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: SuperTextMesh
+    - Name: $v
+      Entry: 7
+      Data: 61|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 0ffcfb6d0266347848bf69a03919f483
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 62|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: TranslucentImageSource
+    - Name: Items
+      Entry: 7
+      Data: 63|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TranslucentImage
+    - Name: $v
+      Entry: 7
+      Data: 64|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 196bb08d6c2d3c9499c04e1281fd4ad3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: TranslucentImageSource
+    - Name: $v
+      Entry: 7
+      Data: 65|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 4ee01e66702087b4798e633ca34c7956
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 66|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: AStarPathFinding
+    - Name: Items
+      Entry: 7
+      Data: 67|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Seeker
+    - Name: $v
+      Entry: 7
+      Data: 68|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 373b52eb9bf8c40f785bb6947a1aee66
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: AIPath
+    - Name: $v
+      Entry: 7
+      Data: 69|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: f6eb1402c17e84a9282a7f0f62eb584f
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: AIDestinationSetter
+    - Name: $v
+      Entry: 7
+      Data: 70|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: c9679e68a0f1144e79c664d9a11ca121
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: SimpleSmoothModifier
+    - Name: $v
+      Entry: 7
+      Data: 71|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: cb6a34d769a1e4ac7b0b30e433aa443c
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: AstarPath(PathFinder)
+    - Name: $v
+      Entry: 7
+      Data: 72|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 78396926cbbfc4ac3b48fc5fc34a87d1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: UnityReferenceHelper
+    - Name: $v
+      Entry: 7
+      Data: 73|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: 632ae7eb1d4ce49d38a1e38ee7efe7c5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 74|Danny.Editor.Fixers.GuidLibrary.Plugin, Assembly-CSharp-Editor
+    - Name: PluginName
+      Entry: 1
+      Data: Spine
+    - Name: Items
+      Entry: 7
+      Data: 75|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Danny.Editor.Fixers.GuidLibrary.PluginItem,
+        Assembly-CSharp-Editor]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: SpineAtlasAsset
+    - Name: $v
+      Entry: 7
+      Data: 76|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: a6b194f808b1af6499c93410e504af42
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: SkeletonDataAsset
+    - Name: $v
+      Entry: 7
+      Data: 77|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: f1b3b4b945939a54ea0b23d3396115fb
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: SkeletonAnimation
+    - Name: $v
+      Entry: 7
+      Data: 78|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: d247ba06193faa74d9335f5481b2b56c
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: SkeletonGraphic
+    - Name: $v
+      Entry: 7
+      Data: 79|Danny.Editor.Fixers.GuidLibrary.PluginItem, Assembly-CSharp-Editor
+    - Name: TypeName
+      Entry: 6
+      Data: 
+    - Name: Guid
+      Entry: 1
+      Data: d85b887af7e6c3f45a2e2d2920d641bc
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
