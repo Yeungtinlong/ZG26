@@ -1,3 +1,4 @@
+using System;
 using TheGame.GM;
 using TheGame.ResourceManagement;
 using TMPro;
@@ -11,6 +12,16 @@ namespace TheGame.UI
         [SerializeField] private TMP_Text _levelText;
         [SerializeField] private Button _startGameButton;
         [SerializeField] private Button _exitButton;
+
+        private void OnEnable()
+        {
+            SubscribeToEvents();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromEvents();
+        }
 
         private void SubscribeToEvents()
         {

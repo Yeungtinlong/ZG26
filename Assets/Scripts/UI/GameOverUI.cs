@@ -9,12 +9,12 @@ namespace TheGame.UI
         [SerializeField] private Button _exitButton;
         [SerializeField] private Button _nextButton;
 
-        private void Awake()
+        private void OnEnable()
         {
             SubscribeToEvents();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             UnsubscribeFromEvents();
         }
