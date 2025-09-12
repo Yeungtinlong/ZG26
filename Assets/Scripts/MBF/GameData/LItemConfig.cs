@@ -11,6 +11,7 @@ namespace TheGame
         GameAsset = 4,
         Material = 5,
         Trap = 6,
+        Role = 7,
     }
     
     [XLua.CSharpCallLua]

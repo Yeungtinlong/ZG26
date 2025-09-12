@@ -17,6 +17,7 @@ namespace TheGame.GM
         public static Dictionary<string, LProductConfig> ShopTable;
         public static Dictionary<string, LSummonConfig> SummonTable;
         public static Dictionary<string, LItemConfig> ItemTable;
+        public static Dictionary<int, DailyModel> DailyTable;
         public static string StoryText;
 
         private static void Print(string msg)
@@ -54,6 +55,9 @@ namespace TheGame.GM
 
             SkillTable = _luaEnv.Global.GetInPath<Dictionary<string, SkillModel>>("Game.Designer.Skill");
             Print($"[LuaConfigToCsInit] SkillTable {SkillTable.Count} success");
+
+            DailyTable = _luaEnv.Global.GetInPath<List<DailyModel>>("Game.Designer.Daily").ToDictionary(k => k.day, v => v);
+            Print($"[LuaConfigToCsInit] DailyTable {DailyTable.Count} success");
             
             DesignerFormula.Init();
         }

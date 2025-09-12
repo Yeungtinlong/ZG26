@@ -22,13 +22,14 @@ local item = {
     { "item_currency_crystal", "水晶", ItemType.Currency, "高级货币，用于购买高级商品。" },
 
     -- Equipment 1 --
-    { "item_equipment_雷神之杖", "雷神之杖", ItemType.Equipment, "" },
-    { "item_equipment_奇幻军刀", "奇幻军刀", ItemType.Equipment, "" },
-    { "item_equipment_奇幻战甲", "奇幻战甲", ItemType.Equipment, "" },
-    { "item_equipment_奇幻战盔", "奇幻战盔", ItemType.Equipment, "" },
-    { "item_equipment_奇幻战靴", "奇幻战靴", ItemType.Equipment, "" },
-    { "item_equipment_奇幻之心", "奇幻之心", ItemType.Equipment, "" },
-    { "item_equipment_高能电池", "高能电池", ItemType.Equipment, "" },
+    { "item_equipment_七星刀", "七星刀", ItemType.Equipment, "" },
+    { "item_equipment_古锭刀", "古锭刀", ItemType.Equipment, "" },
+    { "item_equipment_传国玉玺", "传国玉玺", ItemType.Equipment, "" },
+    { "item_equipment_炎龙战盔", "炎龙战盔", ItemType.Equipment, "" },
+    { "item_equipment_炎龙战袍", "炎龙战袍", ItemType.Equipment, "" },
+    { "item_equipment_白羽扇", "白羽扇", ItemType.Equipment, "" },
+    { "item_equipment_赤兔", "赤兔", ItemType.Equipment, "" },
+    { "item_equipment_绝影", "绝影", ItemType.Equipment, "" },
 
     -- Trap Materials 5 --
     { "item_material_screw", "螺丝", ItemType.Material, "" },
@@ -38,6 +39,26 @@ local item = {
     -- Trap 6 --
     { "item_trap_spike", "尖刺陷阱", ItemType.Trap, "" },
     { "item_trap_mine", "地雷", ItemType.Trap, "" },
+
+    -- Role 7 --
+
+    { "item_cha_liubei", "刘备", ItemType.Role, "" },
+    { "item_cha_guanyu", "关羽", ItemType.Role, "" },
+    { "item_cha_zhangfei", "张飞", ItemType.Role, "" },
+    { "item_cha_zhaoyun", "赵云", ItemType.Role, "" },
+    { "item_cha_zhugeliang", "诸葛亮", ItemType.Role, "" },
+    { "item_cha_pangtong", "庞统", ItemType.Role, "" },
+    { "item_cha_sunquan", "孙权", ItemType.Role, "" },
+    { "item_cha_zhouyu", "周瑜", ItemType.Role, "" },
+    { "item_cha_xiahoudun", "夏侯惇", ItemType.Role, "" },
+    { "item_cha_lvbu", "吕布", ItemType.Role, "" },
+    { "item_cha_bubing", "步兵", ItemType.Role, "" },
+    { "item_cha_qishou", "旗手", ItemType.Role, "" },
+    { "item_cha_gongbing", "弓兵", ItemType.Role, "" },
+    { "item_cha_gushou", "鼓手", ItemType.Role, "" },
+    { "item_cha_shuibing", "水兵", ItemType.Role, "" },
+    { "item_cha_huwei", "护卫", ItemType.Role, "" },
+    { "item_cha_qibing", "骑兵", ItemType.Role, "" },
 
     --{ "item_equipment_雷霆战盔", ItemType.Equipment, "雷霆战盔", "" },
     --{ "item_equipment_雷霆战甲", ItemType.Equipment, "雷霆战甲", "" },

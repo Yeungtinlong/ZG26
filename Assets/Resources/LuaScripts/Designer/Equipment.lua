@@ -10,15 +10,13 @@ local ChaProp = MBF.ChaProp;
 
 local equipment = {};
 -- id, tags, slot, propMod, addBuffs
-equipment["item_equipment_雷神之杖"] = { id = "item_equipment_雷神之杖", name = "雷神之杖", tags = nil, description = "", slot = EquipmentSlot.Weapon, propMod = { ChaProp(0, 50, 10, 20, 0), ChaProp.zero }, addBuffs = nil };
-equipment["item_equipment_奇幻军刀"] = { id = "item_equipment_奇幻军刀", name = "奇幻军刀", tags = nil, description = "", slot = EquipmentSlot.Weapon, propMod = { ChaProp(0, 100, 0, 0, 0), ChaProp.zero }, addBuffs = nil };
-equipment["item_equipment_奇幻战甲"] = { id = "item_equipment_奇幻战甲", name = "奇幻战甲", tags = nil, description = "", slot = EquipmentSlot.Armor, propMod = { ChaProp(100, 20, 0, 0, 0), ChaProp.zero }, addBuffs = nil };
-equipment["item_equipment_奇幻战盔"] = { id = "item_equipment_奇幻战盔", name = "奇幻战盔", tags = nil, description = "", slot = EquipmentSlot.Helmet, propMod = { ChaProp(100, 20, 0, 0, 0), ChaProp.zero }, addBuffs = nil };
-equipment["item_equipment_奇幻战靴"] = { id = "item_equipment_奇幻战靴", name = "奇幻战靴", tags = nil, description = "", slot = EquipmentSlot.Shoe, propMod = { ChaProp(100, 20, 0, 0, 0), ChaProp.zero }, addBuffs = nil };
-equipment["item_equipment_奇幻之心"] = { id = "item_equipment_奇幻之心", name = "奇幻之心", tags = nil, description = "", slot = EquipmentSlot.Relic, propMod = { ChaProp(0, 0, 100, 200, 0), ChaProp.zero }, addBuffs = nil };
-equipment["item_equipment_高能电池"] = { id = "item_equipment_高能电池", name = "高能电池", tags = nil, description = "", slot = EquipmentSlot.Relic, propMod = { ChaProp(0, 0, 200, 100, 0), ChaProp.zero }, addBuffs = nil };
---{ id = "item_equipment_雷霆战盔", name = "雷霆战盔", tags = nil, description = "", slot = EquipmentSlot.Helmet, propMod = { ChaProp(100, 20, 0, 0, 0), ChaProp.zero }, addBuffs = nil },
---{ id = "item_equipment_雷霆战甲", name = "雷霆战甲", tags = nil, description = "", slot = EquipmentSlot.Armor, propMod = { ChaProp(100, 20, 0, 0, 0), ChaProp.zero }, addBuffs = nil },
---{ id = "item_equipment_雷霆战靴", name = "雷霆战靴", tags = nil, description = "", slot = EquipmentSlot.Shoe, propMod = { ChaProp(100, 20, 0, 0, 0), ChaProp.zero }, addBuffs = nil },
+equipment["item_equipment_七星刀"] = { id = "item_equipment_七星刀", name = "七星刀", tags = nil, description = "", slot = EquipmentSlot.Weapon, propMod = { ChaProp(0, 50, 10, 20, 0), ChaProp.zero }, addBuffs = nil };
+equipment["item_equipment_古锭刀"] = { id = "item_equipment_古锭刀", name = "古锭刀", tags = nil, description = "", slot = EquipmentSlot.Weapon, propMod = { ChaProp(0, 100, 0, 0, 0), ChaProp.zero }, addBuffs = nil };
+equipment["item_equipment_传国玉玺"] = { id = "item_equipment_传国玉玺", name = "传国玉玺", tags = nil, description = "", slot = EquipmentSlot.Armor, propMod = { ChaProp(100, 20, 0, 0, 0), ChaProp.zero }, addBuffs = nil };
+equipment["item_equipment_炎龙战盔"] = { id = "item_equipment_炎龙战盔", name = "炎龙战盔", tags = nil, description = "", slot = EquipmentSlot.Helmet, propMod = { ChaProp(100, 20, 0, 0, 0), ChaProp.zero }, addBuffs = nil };
+equipment["item_equipment_炎龙战袍"] = { id = "item_equipment_炎龙战袍", name = "炎龙战袍", tags = nil, description = "", slot = EquipmentSlot.Shoe, propMod = { ChaProp(100, 20, 0, 0, 0), ChaProp.zero }, addBuffs = nil };
+equipment["item_equipment_白羽扇"] = { id = "item_equipment_白羽扇", name = "白羽扇", tags = nil, description = "", slot = EquipmentSlot.Relic, propMod = { ChaProp(0, 0, 100, 200, 0), ChaProp.zero }, addBuffs = nil };
+equipment["item_equipment_赤兔"] = { id = "item_equipment_赤兔", name = "赤兔", tags = nil, description = "", slot = EquipmentSlot.Relic, propMod = { ChaProp(0, 0, 200, 100, 0), ChaProp.zero }, addBuffs = nil };
+equipment["item_equipment_绝影"] = { id = "item_equipment_绝影", name = "绝影", tags = nil, description = "", slot = EquipmentSlot.Relic, propMod = { ChaProp(0, 0, 200, 100, 0), ChaProp.zero }, addBuffs = nil };
 
 return equipment;

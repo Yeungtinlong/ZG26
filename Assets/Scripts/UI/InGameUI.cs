@@ -1,4 +1,3 @@
-using System;
 using TheGame.GM;
 using TheGame.ResourceManagement;
 using TMPro;
@@ -25,14 +24,14 @@ namespace TheGame.UI
 
         private void SubscribeToEvents()
         {
-            _exitButton.onClick.AddListener(ExitGame);
-            _startGameButton.onClick.AddListener(StartGame);
+            _startGameButton.onClick.AddListener(StartGame_OnClick);
+            _exitButton.onClick.AddListener(ExitGame_OnClick);
         }
 
         private void UnsubscribeFromEvents()
         {
-            _exitButton.onClick.RemoveListener(ExitGame);
-            _startGameButton.onClick.RemoveListener(StartGame);
+            _startGameButton.onClick.RemoveListener(StartGame_OnClick);
+            _exitButton.onClick.RemoveListener(ExitGame_OnClick);
         }
         
         public void SetLevelText()
@@ -41,13 +40,13 @@ namespace TheGame.UI
             _levelText.text = $"LEVEL: {GameRuntimeData.Instance.SelectedLevel}";
         }
         
-        private void StartGame()
+        private void StartGame_OnClick()
         {
             GameLuaInterface.game.StartGame();
             SetLevelText();
         }
 
-        private void ExitGame()
+        private void ExitGame_OnClick()
         {
             TheGameSceneManager.Instance.ChangeScene("MainMenu");
         }

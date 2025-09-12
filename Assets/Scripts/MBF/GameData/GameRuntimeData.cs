@@ -59,6 +59,9 @@ namespace TheGame.GM
 
         public int CompletedOnboardingIndex = -1;
 
+        public int SigninDays = 0;
+        public DateTime LatestSigninTime;
+
         public static void SaveGame()
         {
             PlayerPrefs.SetString(nameof(GameRuntimeData), JsonConvert.SerializeObject(_instance));
