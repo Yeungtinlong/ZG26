@@ -1,4 +1,6 @@
+using TheGame.GM;
 using TheGame.ResourceManagement;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,18 +11,21 @@ namespace TheGame.UI
         [SerializeField] private RoleMenuUI _roleMenu;
         [SerializeField] private DailyMenuUI _dailyMenu;
         [SerializeField] private ShopMenuUI _shopMenu;
-        
+
         [SerializeField] private Button _startButton;
+        [SerializeField] private TMP_Text _levelText;
+        
         [SerializeField] private Button _roleButton;
         [SerializeField] private Button _dailyButton;
         [SerializeField] private Button _shopButton;
 
-        private void Awake()
+        private void OnEnable()
         {
             SubscribeToEvents();
+            RefreshUI();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             UnsubscribeFromEvents();
         }
@@ -31,10 +36,6 @@ namespace TheGame.UI
             _roleButton.onClick.AddListener(Role_OnClick);
             _dailyButton.onClick.AddListener(Daily_OnClick);
             _shopButton.onClick.AddListener(Shop_OnClick);
-            
-            _roleMenu.Set(() => _roleMenu.gameObject.SetActive(false));
-            _dailyMenu.Set(() => _dailyMenu.gameObject.SetActive(false));
-            _shopMenu.Set(() => _shopMenu.gameObject.SetActive(false));
         }
 
         private void UnsubscribeFromEvents()
@@ -44,7 +45,7 @@ namespace TheGame.UI
             _dailyButton.onClick.RemoveListener(Daily_OnClick);
             _shopButton.onClick.RemoveListener(Shop_OnClick);
         }
-        
+
         private void Start_OnClick()
         {
             TheGameSceneManager.Instance.ChangeScene("Gameplay");
@@ -53,16 +54,24 @@ namespace TheGame.UI
         private void Role_OnClick()
         {
             _roleMenu.gameObject.SetActive(true);
+            _roleMenu.Set(() => _roleMenu.gameObject.SetActive(false));
         }
-        
+
         private void Daily_OnClick()
         {
             _dailyMenu.gameObject.SetActive(true);
+            _dailyMenu.Set(() => _dailyMenu.gameObject.SetActive(false));
         }
-        
+
         private void Shop_OnClick()
         {
             _shopMenu.gameObject.SetActive(true);
+            _shopMenu.Set(() => _shopMenu.gameObject.SetActive(false));
+        }
+
+        private void RefreshUI()
+        {
+            _levelText.text = $"开始第{GameRuntimeData.Instance.SelectedLevel}关";
         }
     }
 }

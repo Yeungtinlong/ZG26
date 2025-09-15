@@ -5,6 +5,7 @@
 ---
 
 local ChaProp = CS.MBF.ChaProp;
+local CharacterType = CS.TheGame.GM.CharacterType;
 
 --local fieldIndex = {};
 --fieldIndex.Id = 1;
@@ -24,7 +25,8 @@ local character = {
     {
         Id = "cha_liubei",
         Name = "刘备",
-        Tags = { "playerActor", "carry" },
+        Tags = { "default", "playerActor", },
+        CharacterType = CharacterType.Carry,
         Description = des["刘备"],
         Prefab = "刘备",
         SkillIds = { "skill_liubei" },
@@ -35,7 +37,8 @@ local character = {
     {
         Id = "cha_guanyu",
         Name = "关羽",
-        Tags = { "playerActor", "warrior" },
+        Tags = { "default", "playerActor" },
+        CharacterType = CharacterType.Warrior,
         Description = des["关羽"],
         Prefab = "关羽",
         SkillIds = { "skill_guanyu" },
@@ -46,7 +49,8 @@ local character = {
     {
         Id = "cha_zhangfei",
         Name = "张飞",
-        Tags = { "playerActor", "tank" },
+        Tags = { "default", "playerActor" },
+        CharacterType = CharacterType.Tank,
         Description = des["张飞"],
         Prefab = "张飞",
         SkillIds = { "skill_zhangfei" },
@@ -57,7 +61,8 @@ local character = {
     {
         Id = "cha_zhaoyun",
         Name = "赵云",
-        Tags = { "playerActor", "assassin" },
+        Tags = { "playerActor", },
+        CharacterType = CharacterType.Assassin,
         Description = des["赵云"],
         Prefab = "赵云",
         SkillIds = { "skill_zhaoyun" },
@@ -68,7 +73,8 @@ local character = {
     {
         Id = "cha_zhugeliang",
         Name = "诸葛亮",
-        Tags = { "playerActor", "carry" },
+        Tags = { "playerActor" },
+        CharacterType = CharacterType.Carry,
         Description = des["诸葛亮"],
         Prefab = "诸葛亮",
         SkillIds = { "skill_zhugeliang" },
@@ -79,7 +85,8 @@ local character = {
     {
         Id = "cha_pangtong",
         Name = "庞统",
-        Tags = { "playerActor", "support" },
+        Tags = { "playerActor" },
+        CharacterType = CharacterType.Support,
         Description = des["庞统"],
         Prefab = "庞统",
         SkillIds = { "skill_pangtong" },
@@ -90,7 +97,8 @@ local character = {
     {
         Id = "cha_sunquan",
         Name = "孙权",
-        Tags = { "playerActor", "support" },
+        Tags = { "playerActor" },
+        CharacterType = CharacterType.Support,
         Description = des["孙权"],
         Prefab = "孙权",
         SkillIds = { "skill_sunquan" },
@@ -101,7 +109,8 @@ local character = {
     {
         Id = "cha_zhouyu",
         Name = "周瑜",
-        Tags = { "playerActor", "carry" },
+        Tags = { "playerActor" },
+        CharacterType = CharacterType.Carry,
         Description = des["周瑜"],
         Prefab = "周瑜",
         SkillIds = { "skill_zhouyu" },
@@ -112,7 +121,8 @@ local character = {
     {
         Id = "cha_xiahoudun",
         Name = "夏侯惇",
-        Tags = { "playerActor", "tank" },
+        Tags = { "playerActor" },
+        CharacterType = CharacterType.Tank,
         Description = des["夏侯惇"],
         Prefab = "夏侯惇",
         SkillIds = { "skill_xiahoudun" },
@@ -123,7 +133,8 @@ local character = {
     {
         Id = "cha_lvbu",
         Name = "吕布",
-        Tags = { "playerActor", "warrior" },
+        Tags = { "playerActor" },
+        CharacterType = CharacterType.Warrior,
         Description = des["吕布"],
         Prefab = "吕布",
         SkillIds = { "skill_lvbu" },
@@ -136,7 +147,8 @@ local character = {
     {
         Id = "cha_bubing",
         Name = "步兵小兵",
-        Tags = { "warrior" },
+        Tags = { },
+        CharacterType = CharacterType.Warrior,
         Description = nil,
         Prefab = "步兵小兵",
         SkillIds = { "skill_bubing" },
@@ -147,7 +159,8 @@ local character = {
     {
         Id = "cha_qishou",
         Name = "旗手",
-        Tags = { "support" },
+        Tags = { },
+        CharacterType = CharacterType.Support,
         Description = nil,
         Prefab = "旗手",
         SkillIds = { "skill_qishou" },
@@ -158,7 +171,8 @@ local character = {
     {
         Id = "cha_gongbing",
         Name = "三国弓兵",
-        Tags = { "carry" },
+        Tags = {  },
+        CharacterType = CharacterType.Carry,
         Description = nil,
         Prefab = "三国弓兵",
         SkillIds = { "skill_gongbing" },
@@ -169,7 +183,8 @@ local character = {
     {
         Id = "cha_gushou",
         Name = "鼓手",
-        Tags = { "support" },
+        Tags = {  },
+        CharacterType = CharacterType.Support,
         Description = nil,
         Prefab = "鼓手",
         SkillIds = { "skill_gushou" },
@@ -180,7 +195,8 @@ local character = {
     {
         Id = "cha_shuibing",
         Name = "水兵",
-        Tags = { "assassin" },
+        Tags = {  },
+        CharacterType = CharacterType.Assassin,
         Description = nil,
         Prefab = "水兵",
         SkillIds = { "skill_shuibing" },
@@ -191,7 +207,8 @@ local character = {
     {
         Id = "cha_huwei",
         Name = "重装护卫",
-        Tags = { "tank" },
+        Tags = {  },
+        CharacterType = CharacterType.Tank,
         Description = nil,
         Prefab = "重装护卫",
         SkillIds = { "skill_huwei" },
@@ -202,7 +219,8 @@ local character = {
     {
         Id = "cha_qibing",
         Name = "骑兵",
-        Tags = { "assassin" },
+        Tags = {  },
+        CharacterType = CharacterType.Assassin,
         Description = nil,
         Prefab = "骑兵",
         SkillIds = { "skill_qibing" },

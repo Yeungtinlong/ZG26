@@ -1,4 +1,5 @@
 using MBF;
+using TheGame.GM;
 
 namespace TheGame
 {
@@ -8,6 +9,7 @@ namespace TheGame
         public string Id { get; set; }
         public string Name { get; set; }
         public string[] Tags { get; set; }
+        public CharacterType CharacterType { get; set; }
         public string Description { get; set; }
         public string Prefab { get; set; }
         public string[] SkillIds { get; set; }

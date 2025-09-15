@@ -9,10 +9,18 @@ local GameLuaInterface = CS.TheGame.GM.GameLuaInterface;
 local ItemStack = CS.TheGame.ItemStack;
 
 local equip_des = require("Designer/Equipment_Description");
+local cha_des = require("Designer/Character_Description");
 
 local function GetItem(timelineObj, params)
     local itemWillGet = params[0];
     GameLuaInterface.GetItem(itemWillGet.id, itemWillGet.count);
+    return true;
+end
+
+local function GetRole(timelineObj, params)
+    local chaId = params[0];
+    GameLuaInterface.UnlockCharacter(chaId);
+    return true;
 end
 
 local fieldIndex = {};
@@ -20,24 +28,16 @@ fieldIndex.Id = 1;
 fieldIndex.Name = 2;
 fieldIndex.Description = 3;
 fieldIndex.Icon = 4;
-fieldIndex.Tags = 5;
-fieldIndex.Price = 6;
-fieldIndex.Effect = 7;
+fieldIndex.Limits = 5;
+fieldIndex.Tags = 6;
+fieldIndex.Price = 7;
+fieldIndex.Effect = 8;
 
 local shop = {
-    --{ "iap_small", "元宝礼包(小)", "内含少量元宝", "Items/元宝", { "iap" }, ItemStack("item_currency_coin", 1), TimelineNode(0, GetItem, { ItemStack("item_currency_coin", 1000) }) },
-    --{ "iap_middle", "元宝礼包(大)", "内含大量元宝", "Items/元宝", { "iap" }, ItemStack("item_currency_coin", 10), TimelineNode(0, GetItem, { ItemStack("item_currency_coin", 10000) }) },
-    { "product_雷神之杖", "雷神之杖", "", "Items/ui_head_item_equipment_雷神之杖", { "equip", "common" }, ItemStack("item_currency_coin", 500), TimelineNode(0, GetItem, { ItemStack("item_equipment_雷神之杖", 1) }) },
-    { "product_奇幻军刀", "奇幻军刀", "", "Items/ui_head_item_equipment_奇幻军刀", { "equip", "common" }, ItemStack("item_currency_coin", 500), TimelineNode(0, GetItem, { ItemStack("item_equipment_奇幻军刀", 1) }) },
-    { "product_奇幻战甲", "奇幻战甲", "", "Items/ui_head_item_equipment_奇幻战甲", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_奇幻战甲", 1) }) },
-    { "product_奇幻战盔", "奇幻战盔", "", "Items/ui_head_item_equipment_奇幻战盔", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_奇幻战盔", 1) }) },
-    { "product_奇幻战靴", "奇幻战靴", "", "Items/ui_head_item_equipment_奇幻战靴", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_奇幻战靴", 1) }) },
-    --{ "product_雷霆战盔", "雷霆战盔", "", "Items/ui_head_item_equipment_雷霆战盔", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_雷霆战盔", 1) }) },
-    --{ "product_雷霆战甲", "雷霆战甲", "", "Items/ui_head_item_equipment_雷霆战甲", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_雷霆战甲", 1) }) },
-    --{ "product_雷霆战靴", "雷霆战靴", "", "Items/ui_head_item_equipment_雷霆战靴", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_雷霆战靴", 1) }) },
-
-    { "product_奇幻之心", "奇幻之心", "", "Items/ui_head_item_equipment_奇幻之心", { "equip", "common" }, ItemStack("item_currency_coin", 3000), TimelineNode(0, GetItem, { ItemStack("item_equipment_奇幻之心", 1) }) },
-    { "product_高能电池", "高能电池", "", "Items/ui_head_item_equipment_高能电池", { "equip", "common" }, ItemStack("item_currency_coin", 3000), TimelineNode(0, GetItem, { ItemStack("item_equipment_高能电池", 1) }) },
+    { "product_zhaoyun", "武将·赵云", cha_des["cha_zhaoyun"], "Roles/ui_cha_zhaoyun", 1, { "role", "common" }, ItemStack("item_currency_coin", 500), TimelineNode(0, GetRole, { "cha_zhaoyun" }) },
+    { "product_lvbu", "武将·吕布", cha_des["cha_lvbu"], "Roles/ui_cha_lvbu", 1, { "role", "common" }, ItemStack("item_currency_coin", 500), TimelineNode(0, GetRole, { "cha_lvbu" }) },
+    --{ "product_奇幻战甲", "奇幻战甲", "", "Items/ui_head_item_equipment_奇幻战甲", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_奇幻战甲", 1) }) },
+    --{ "product_奇幻战盔", "奇幻战盔", "", "Items/ui_head_item_equipment_奇幻战盔", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_奇幻战盔", 1) }) },
 };
 
 local mt = {};

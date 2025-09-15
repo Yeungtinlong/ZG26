@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,20 +10,33 @@ namespace TheGame.UI
     {
         public override UILayer Layer => UILayer.Popup;
 
-        private bool? _confirmed = null;
+        [SerializeField] private TMP_Text _titleText;
+        [SerializeField] private TMP_Text _contentText;
 
+        [SerializeField] private TMP_Text _confirmText;
+        [SerializeField] private TMP_Text _cancelText;
         [SerializeField] private Button _confirmButton;
         [SerializeField] private Button _cancelButton;
 
-        private Action<bool> _callback;
+        private Action<ConfirmPopupUI, bool> _onConfirm;
 
         private void OnEnable()
+        {
+            SubscribeToEvents();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromEvents();
+        }
+
+        private void SubscribeToEvents()
         {
             _confirmButton.onClick.AddListener(ConfirmButton_OnClick);
             _cancelButton.onClick.AddListener(CancelButton_OnClick);
         }
 
-        private void OnDisable()
+        private void UnsubscribeFromEvents()
         {
             _confirmButton.onClick.RemoveListener(ConfirmButton_OnClick);
             _cancelButton.onClick.RemoveListener(CancelButton_OnClick);
@@ -30,28 +44,27 @@ namespace TheGame.UI
 
         private void CancelButton_OnClick()
         {
-            _confirmed = false;
-            _callback?.Invoke(_confirmed.Value);
+            _onConfirm?.Invoke(this, false);
         }
 
         private void ConfirmButton_OnClick()
         {
-            _confirmed = true;
-            _callback?.Invoke(_confirmed.Value);
+            _onConfirm?.Invoke(this, true);
         }
 
-        public async UniTask<bool> ShowPopup()
+        public void Set(string title, string content, Action<ConfirmPopupUI, bool> onConfirm)
         {
-            while (!_confirmed.HasValue)
-                await UniTask.NextFrame();
-
-            this.uiManager.CloseUI(this);
-            return _confirmed.Value;
+            Set(title, content, "是", "否", onConfirm);
         }
 
-        public void ShowPopup(Action<bool> onComplete)
+        public void Set(string title, string content, string confirmText, string cancelText,
+            Action<ConfirmPopupUI, bool> onConfirm)
         {
-            _callback = onComplete;
+            _titleText.text = title;
+            _contentText.text = content;
+            _confirmText.text = confirmText;
+            _cancelText.text = cancelText;
+            _onConfirm = onConfirm;
         }
     }
 }

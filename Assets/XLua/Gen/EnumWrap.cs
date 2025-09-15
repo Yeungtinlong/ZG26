@@ -274,7 +274,7 @@ namespace XLua.CSObjectWrap
 		    Utils.BeginObjectRegister(typeof(TheGame.ItemType), L, translator, 0, 0, 0, 0);
 			Utils.EndObjectRegister(typeof(TheGame.ItemType), L, translator, null, null, null, null, null);
 			
-			Utils.BeginClassRegister(typeof(TheGame.ItemType), L, null, 8, 0, 0);
+			Utils.BeginClassRegister(typeof(TheGame.ItemType), L, null, 9, 0, 0);
 
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Currency", TheGame.ItemType.Currency);
@@ -290,6 +290,8 @@ namespace XLua.CSObjectWrap
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Material", TheGame.ItemType.Material);
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Trap", TheGame.ItemType.Trap);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Role", TheGame.ItemType.Role);
             
 
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "__CastFrom", __CastFrom);
@@ -338,6 +340,10 @@ namespace XLua.CSObjectWrap
                 {
                     translator.PushTheGameItemType(L, TheGame.ItemType.Trap);
                 }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "Role"))
+                {
+                    translator.PushTheGameItemType(L, TheGame.ItemType.Role);
+                }
 				else
                 {
                     return LuaAPI.luaL_error(L, "invalid string for TheGame.ItemType!");
@@ -362,8 +368,10 @@ namespace XLua.CSObjectWrap
 		    Utils.BeginObjectRegister(typeof(TheGame.GM.CharacterType), L, translator, 0, 0, 0, 0);
 			Utils.EndObjectRegister(typeof(TheGame.GM.CharacterType), L, translator, null, null, null, null, null);
 			
-			Utils.BeginClassRegister(typeof(TheGame.GM.CharacterType), L, null, 6, 0, 0);
+			Utils.BeginClassRegister(typeof(TheGame.GM.CharacterType), L, null, 7, 0, 0);
 
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "None", TheGame.GM.CharacterType.None);
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Tank", TheGame.GM.CharacterType.Tank);
             
@@ -394,7 +402,11 @@ namespace XLua.CSObjectWrap
             else if(lua_type == LuaTypes.LUA_TSTRING)
             {
 
-			    if (LuaAPI.xlua_is_eq_str(L, 1, "Tank"))
+			    if (LuaAPI.xlua_is_eq_str(L, 1, "None"))
+                {
+                    translator.PushTheGameGMCharacterType(L, TheGame.GM.CharacterType.None);
+                }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "Tank"))
                 {
                     translator.PushTheGameGMCharacterType(L, TheGame.GM.CharacterType.Tank);
                 }

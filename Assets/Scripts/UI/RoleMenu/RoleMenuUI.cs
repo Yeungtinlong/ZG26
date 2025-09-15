@@ -60,7 +60,10 @@ namespace TheGame.UI
                 _roleElesContainer,
                 _roleElementPrefab,
                 _roleElements,
-                LuaToCsBridge.CharacterTable.Values.Select(role => role.Id).ToList(),
+                LuaToCsBridge.CharacterTable.Values
+                    .Where(role => role.Tags.Contains("playerActor") && GameRuntimeData.Instance.ChaInstances[role.Id].owned)
+                    .Select(role => role.Id)
+                    .ToList(),
                 (ele, roleId) => ele.Set(roleId, _selectedRoleId == roleId, RoleElementUI_OnClick)
             );
             _roleDetail.Set(_selectedRoleId);

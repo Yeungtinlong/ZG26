@@ -9,12 +9,14 @@ namespace TheGame.UI
     public class InGameUI : MonoBehaviour
     {
         [SerializeField] private TMP_Text _levelText;
+        [SerializeField] private GameObject _readyPanel;
         [SerializeField] private Button _startGameButton;
         [SerializeField] private Button _exitButton;
 
         private void OnEnable()
         {
             SubscribeToEvents();
+            SetLevelText();
         }
 
         private void OnDisable()
@@ -34,7 +36,7 @@ namespace TheGame.UI
             _exitButton.onClick.RemoveListener(ExitGame_OnClick);
         }
         
-        public void SetLevelText()
+        private void SetLevelText()
         {
             _levelText.gameObject.SetActive(true);
             _levelText.text = $"LEVEL: {GameRuntimeData.Instance.SelectedLevel}";
@@ -43,12 +45,13 @@ namespace TheGame.UI
         private void StartGame_OnClick()
         {
             GameLuaInterface.game.StartGame();
-            SetLevelText();
+            _readyPanel.SetActive(false);
         }
 
         private void ExitGame_OnClick()
         {
             TheGameSceneManager.Instance.ChangeScene("MainMenu");
+            _readyPanel.SetActive(false);
         }
     }
 }

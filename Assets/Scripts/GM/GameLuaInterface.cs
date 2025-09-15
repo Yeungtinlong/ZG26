@@ -149,6 +149,11 @@ namespace TheGame.GM
             return GameRuntimeData.Instance.RemoveItem(itemId, count);
         }
 
+        public static void UnlockCharacter(string chaId)
+        {
+            GameRuntimeData.Instance.GetCharacter(chaId);
+        }
+
         public static List<CharacterState> GetAllTargets(GameObject finder, int side, bool includeFoe, bool includeAlly, float radius)
         {
             return GetTargetsInRange(finder.transform.position, side, includeFoe, includeAlly, radius);

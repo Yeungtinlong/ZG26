@@ -8,12 +8,18 @@ local levels = {};
 
 local patterns = {
     {
-        -- 3坦克，2射手、1辅助
+        -- 2坦克
         { gridIndex = 0, chaId = "cha_bubing", grade = 1 },
         { gridIndex = 1, chaId = "cha_bubing", grade = 1 },
-        { gridIndex = 2, chaId = "cha_bubing", grade = 1 },
+    },
+
+    {
+        -- 3坦克，2射手、1辅助
+        { gridIndex = 0, chaId = "cha_bubing",   grade = 1 },
+        { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
+        { gridIndex = 2, chaId = "cha_bubing",   grade = 1 },
         { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
-        { gridIndex = 4, chaId = "cha_qishou", grade = 1 },
+        { gridIndex = 4, chaId = "cha_qishou",   grade = 1 },
         { gridIndex = 5, chaId = "cha_gongbing", grade = 1 },
     },
 };
@@ -31,10 +37,10 @@ for idx = 1, 100 do
     };
 
     for i = 1, #gridInfoPattern do
-        level.gridInfos[i] = { 
-            gridIndex = gridInfoPattern[i].gridIndex, 
-            chaId = gridInfoPattern[i].chaId, 
-            grade = gridInfoPattern[i].grade 
+        level.gridInfos[i] = {
+            gridIndex = gridInfoPattern[i].gridIndex,
+            chaId = gridInfoPattern[i].chaId,
+            grade = gridInfoPattern[i].grade
         };
     end
     levels[idx] = level;

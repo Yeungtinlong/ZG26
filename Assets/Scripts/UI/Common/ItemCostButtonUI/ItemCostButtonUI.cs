@@ -8,30 +8,32 @@ namespace TheGame.UI
     public class ItemCostButtonUI : MonoBehaviour
     {
         [SerializeField] private Button _clickable;
-        
+
         [SerializeField] private Image _bgImage;
         [SerializeField] private Sprite _activeSprite;
         [SerializeField] private Sprite _inactiveSprite;
-        
+
         [SerializeField] private ItemStackUI _prefab;
         [SerializeField] private Transform _containerParent;
         private readonly List<ItemStackUI> _itemStacks = new List<ItemStackUI>();
-         
-        public event Action<ItemCostButtonUI> OnClick;
-        
+
+        private Action<ItemCostButtonUI> _onClick;
+
         private void Awake()
         {
-            _clickable.onClick.AddListener(() => OnClick?.Invoke(this));
+            _clickable.onClick.AddListener(() => _onClick?.Invoke(this));
         }
-        
+
         public void SetActive(bool active)
         {
             _bgImage.sprite = active ? _activeSprite : _inactiveSprite;
         }
 
-        public void Set(List<ItemStack> data)
+        public void Set(List<ItemStack> data, Action<ItemCostButtonUI> onClick = null)
         {
-            UIHelpers.GenerateCachedListItems(_containerParent, _prefab, _itemStacks, data, (ui, stack) => ui.Set(stack));
+            _onClick = onClick;
+            UIHelpers.GenerateCachedListItems(_containerParent, _prefab, _itemStacks, data,
+                (ui, stack) => ui.Set(stack));
         }
     }
 }

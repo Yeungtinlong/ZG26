@@ -57,7 +57,7 @@ namespace TheGame.GM
         private float GameSpeed => _gameSpeed;
 
         public event Action<DropInfo> OnDropCreated;
-        public static event Action OnGameOver;
+        public static event Action<bool, int> OnGameOver;
 
         /// <summary>
         /// Gameplay资产发生变化
@@ -99,7 +99,8 @@ namespace TheGame.GM
         }
 
         private void GameOver(bool win)
-        {
+        { 
+            int level = GameRuntimeData.Instance.SelectedLevel;
             if (win)
             {
                 _gameState = GameControlState.GameOver;
@@ -147,6 +148,8 @@ namespace TheGame.GM
                 //     null
                 // );
             }
+            
+            OnGameOver?.Invoke(win, level);
         }
 
         public void GetGameAsset(string id, int count)
@@ -303,10 +306,9 @@ namespace TheGame.GM
             _damage.LogicTick();
             _character.LogicTick();
 
-            if (_gameState == GameControlState.InGame && CheckGameOver())
+            if (_gameState == GameControlState.InGame && CheckGameOver(out bool win))
             {
-                _gameState = GameControlState.GameOver;
-                OnGameOver?.Invoke();
+                GameOver(win);
             }
         }
 
@@ -349,9 +351,9 @@ namespace TheGame.GM
             }
         }
         
-        public bool CheckGameOver()
+        public bool CheckGameOver(out bool win)
         {
-            return _turn.CheckGameOver();
+            return _turn.CheckGameOver(out win);
         }
     }
 }

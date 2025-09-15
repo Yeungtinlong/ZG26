@@ -31,12 +31,20 @@ namespace TheGame.UI
             _onClick?.Invoke(this);
         }
 
-        public void Set(string equipId, Action<RoleEquipSlotUI> onClick)
+        public void Set(string equipId, Action<RoleEquipSlotUI> onClick = null)
         {
             EquipId = equipId;
             _onClick = onClick;
+            if (string.IsNullOrEmpty(EquipId))
+            {
+                _equipAvatarImage.sprite = null;
+                _equipAvatarImage.gameObject.SetActive(false);
+                _equipNameText.text = null;
+                return;
+            }
+            
             _equipNameText.text = LuaToCsBridge.EquipmentTable[EquipId].name;
-            _equipAvatarImage.LoadAsyncForget(PathHelper.GetSpritePath($"ui_head_{equipId}"));
+            _equipAvatarImage.LoadAsyncForget(PathHelper.GetSpritePath($"Items/ui_head_{equipId}"));
         }
     }
 }

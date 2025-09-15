@@ -5,7 +5,7 @@ namespace TheGame.UI
 {
     public class GameplayUI : MonoBehaviour
     {
-        [SerializeField] private GameOverUI _gameOverUI;
+        [SerializeField] private GameOverPanelUI _gameOverPanelUI;
         [SerializeField] private InGameUI _inGameUI;
 
         private void Awake()
@@ -20,22 +20,18 @@ namespace TheGame.UI
 
         private void SubscribeToEvents()
         {
-            GameManager.OnGameOver += OpenGameOverUI;
+            GameManager.OnGameOver += GameManager_OnGameOver;
         }
 
         private void UnsubscribeFromEvents()
         {
-            GameManager.OnGameOver -= OpenGameOverUI;
+            GameManager.OnGameOver -= GameManager_OnGameOver;
         }
 
-        private void OpenGameOverUI()
+        private void GameManager_OnGameOver(bool win, int level)
         {
-            _gameOverUI.gameObject.SetActive(true);
-        }
-
-        private void CloseGameOverUI()
-        {
-            _gameOverUI.gameObject.SetActive(false);
+            _gameOverPanelUI.gameObject.SetActive(true);
+            _gameOverPanelUI.Set(win, level);
         }
     }
 }

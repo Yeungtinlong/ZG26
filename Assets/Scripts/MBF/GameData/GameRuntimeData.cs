@@ -19,7 +19,8 @@ namespace TheGame.GM
         // TODO: 这里需要做存档初始化工作
         public static GameRuntimeData Instance => _instance ??= new GameRuntimeData();
 
-        private static Dictionary<string, List<Action<string, int>>> _listeners = new Dictionary<string, List<Action<string, int>>>();
+        private static Dictionary<string, List<Action<string, int>>> _listeners =
+            new Dictionary<string, List<Action<string, int>>>();
 
         public static void AddItemCountChangeListener(string itemId, Action<string, int> listener)
         {
@@ -52,6 +53,9 @@ namespace TheGame.GM
         // 角色运行时数据
         public Dictionary<string, ChaInstance> ChaInstances = new Dictionary<string, ChaInstance>();
 
+        // 购买记录，<商品Id, 购买次数>
+        public Dictionary<string, int> PurchaseRecord = new Dictionary<string, int>();
+
         // 角色持有装备运行时数据
         public List<EquipInfo> EquipInfos = new List<EquipInfo>();
 
@@ -71,7 +75,8 @@ namespace TheGame.GM
         {
             JsonSerializerSettings settings = new JsonSerializerSettings()
                 { ObjectCreationHandling = ObjectCreationHandling.Replace };
-            _instance = JsonConvert.DeserializeObject<GameRuntimeData>(PlayerPrefs.GetString(nameof(GameRuntimeData)), settings);
+            _instance = JsonConvert.DeserializeObject<GameRuntimeData>(PlayerPrefs.GetString(nameof(GameRuntimeData)),
+                settings);
         }
 
         public static bool SaveExists()
@@ -90,12 +95,20 @@ namespace TheGame.GM
             // 默认存档
             gameRuntimeData.SelectedLevel = 1;
 
-            //TODO: 默认获取所有角色所有装备
+            // 默认获取所有角色所有装备
             foreach (var (chaId, config) in LuaToCsBridge.CharacterTable)
             {
-                if (config.Tags.ContainsTagNotNull("playerActor"))
+                if (config.Tags.ContainsTagNotNull("default"))
                 {
                     gameRuntimeData.GetCharacter(chaId);
+                }
+            }
+
+            foreach (var defaultEquip in LuaToCsBridge.DefaultEquipTable.Values)
+            {
+                foreach (var eid in defaultEquip.equipIds)
+                {
+                    gameRuntimeData.AddEquipToCha(eid, defaultEquip.chaId);
                 }
             }
 
@@ -163,6 +176,25 @@ namespace TheGame.GM
             int total = CountOfItem(itemId);
             int equipped = EquipInfos.Count(e => e.itemId == itemId);
             return total - equipped;
+        }
+
+        public bool CheckProductValid(string productId)
+        {
+            LProductConfig productConfig = LuaToCsBridge.ShopTable[productId];
+            return this.PurchaseRecord.ContainsKey(productId) && productConfig.Limits <= this.PurchaseRecord[productId];
+        }
+
+        public bool Purchase(string productId)
+        {
+            LProductConfig productConfig = LuaToCsBridge.ShopTable[productId];
+            if (!RemoveItem(productConfig.Price.id, productConfig.Price.count))
+                return false;
+            
+            if (!PurchaseRecord.ContainsKey(productId))
+                PurchaseRecord.Add(productId, 0);
+            
+            PurchaseRecord[productId]++;
+            return (bool)productConfig.Effect.doEvent.Invoke(null, productConfig.Effect.eventParams);
         }
     }
 }

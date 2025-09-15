@@ -31,7 +31,7 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 19, 2, 2);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 20, 2, 2);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "CreateBullet", _m_CreateBullet_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "CreateAoe", _m_CreateAoe_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "RemoveAoe", _m_RemoveAoe_xlua_st_);
@@ -43,6 +43,7 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.CLS_IDX, "CreateCharacter", _m_CreateCharacter_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetItem", _m_GetItem_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "RemoveItem", _m_RemoveItem_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "UnlockCharacter", _m_UnlockCharacter_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetAllTargets", _m_GetAllTargets_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetTargetsInRange", _m_GetTargetsInRange_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetMouseWorldPosition", _m_GetMouseWorldPosition_xlua_st_);
@@ -384,6 +385,30 @@ namespace XLua.CSObjectWrap
                     
                     
                     return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_UnlockCharacter_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+            
+            
+                
+                {
+                    string _chaId = LuaAPI.lua_tostring(L, 1);
+                    
+                    TheGame.GM.GameLuaInterface.UnlockCharacter( _chaId );
+                    
+                    
+                    
+                    return 0;
                 }
                 
             } catch(System.Exception gen_e) {

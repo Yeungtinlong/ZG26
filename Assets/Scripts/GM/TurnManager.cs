@@ -30,7 +30,7 @@ namespace TheGame.GM
 
         private IEnumerator TurnCycle()
         {
-            while (!CheckGameOver())
+            while (!CheckGameOver(out _))
             {
                 _currentTurn++;
                 yield return new WaitForSeconds(k_TurnBreak);
@@ -41,23 +41,26 @@ namespace TheGame.GM
             }
         }
 
-        public bool CheckGameOver()
+        public bool CheckGameOver(out bool win)
         {
             if (_sceneVariants.characters.All(c => c.side == 0))
             {
+                win = true;
                 return true;
             }
             else if (_sceneVariants.characters.All(c => c.side == 1))
             {
+                win = false;
                 return true;
             }
 
+            win = false;
             return false;
         }
 
         private IEnumerator ActionCycle()
         {
-            while (!CheckGameOver())
+            while (!CheckGameOver(out _))
             {
                 List<CharacterState> characters = new List<CharacterState>(_sceneVariants.characters);
                 // 1. 为存活角色速度排序
