@@ -1,4 +1,5 @@
 using System;
+using MBF;
 using TheGame.GM;
 using TheGame.ResourceManagement;
 using TMPro;
@@ -10,12 +11,14 @@ namespace TheGame.UI
     public class RoleEquipSlotUI : MonoBehaviour
     {
         [SerializeField] private TMP_Text _equipNameText;
+        [SerializeField] private TMP_Text _equipSlotText;
+        [SerializeField] private GameObject _equipSlotObject;
         [SerializeField] private Image _equipAvatarImage;
         [SerializeField] private Button _button;
         public string EquipId { get; private set; }
 
         private Action<RoleEquipSlotUI> _onClick;
-        
+
         private void OnEnable()
         {
             _button.onClick.AddListener(OnClick);
@@ -39,11 +42,25 @@ namespace TheGame.UI
             {
                 _equipAvatarImage.sprite = null;
                 _equipAvatarImage.gameObject.SetActive(false);
+                _equipSlotObject.SetActive(false);
                 _equipNameText.text = null;
                 return;
             }
-            
-            _equipNameText.text = LuaToCsBridge.EquipmentTable[EquipId].name;
+
+            EquipmentModel model = LuaToCsBridge.EquipmentTable[EquipId];
+            _equipNameText.text = model.name;
+            _equipSlotText.text = model.slot switch
+            {
+                EquipmentSlot.Weapon => "武器",
+                EquipmentSlot.Helmet => "头盔",
+                EquipmentSlot.Armor => "上衣",
+                EquipmentSlot.Shoe => "鞋",
+                EquipmentSlot.Relic => "法宝",
+                EquipmentSlot.Horse => "坐骑",
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            _equipAvatarImage.gameObject.SetActive(true);
+            _equipSlotObject.SetActive(true);
             _equipAvatarImage.LoadAsyncForget(PathHelper.GetSpritePath($"Items/ui_head_{equipId}"));
         }
     }

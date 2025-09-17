@@ -19,7 +19,7 @@ local model = {
         hitAlly = false,
         sameTargetDelay = 50,
         onHit = bullet_onHit["CommonBulletHit"],
-        onHitParams = { }
+        onHitParams = {}
     },
     bullet_zhangfei = {
         id = "bullet_zhangfei",
@@ -28,7 +28,7 @@ local model = {
         hitAlly = false,
         sameTargetDelay = 50,
         onHit = bullet_onHit["CommonBulletHit"],
-        onHitParams = { }
+        onHitParams = {}
     },
     bullet_machao = {
         id = "bullet_machao",
@@ -37,7 +37,7 @@ local model = {
         hitAlly = false,
         sameTargetDelay = 50,
         onHit = bullet_onHit["CommonBulletHit"],
-        onHitParams = { }
+        onHitParams = {}
     },
     bullet_huangzhong = {
         id = "bullet_huangzhong",
@@ -46,7 +46,7 @@ local model = {
         hitAlly = false,
         sameTargetDelay = 50,
         onHit = bullet_onHit["CommonBulletHit"],
-        onHitParams = { }
+        onHitParams = {}
     },
     bullet_zhugeliang = {
         id = "bullet_zhugeliang",
@@ -62,7 +62,7 @@ local model = {
     },
     bullet_a = {
         id = "bullet_a",
-        prefab = "BulletA",
+        prefab = "Bullet斩击",
         hitFoe = true,
         hitAlly = false,
         sameTargetDelay = 50,
@@ -72,6 +72,69 @@ local model = {
     bullet_arrow = {
         id = "bullet_arrow",
         prefab = "BulletArrow",
+        hitFoe = true,
+        hitAlly = false,
+        sameTargetDelay = 50,
+        onHit = bullet_onHit["CommonBulletHit"],
+        onHitParams = {}
+    },
+    bullet_fire_arrow = {
+        id = "bullet_fire_arrow",
+        prefab = "Bullet火箭",
+        hitFoe = true,
+        hitAlly = false,
+        sameTargetDelay = 50,
+        onHit = bullet_onHit["CommonBulletHit"],
+        onHitParams = {}
+    },
+    bullet_qianghua = {
+        id = "bullet_qianghua",
+        prefab = "Bullet枪划",
+        hitFoe = true,
+        hitAlly = false,
+        sameTargetDelay = 50,
+        onHit = bullet_onHit["CommonBulletHit"],
+        onHitParams = {}
+    },
+    bullet_heal = {
+        id = "bullet_heal",
+        prefab = "Bullet治疗",
+        hitFoe = false,
+        hitAlly = true,
+        sameTargetDelay = 50,
+        onHit = bullet_onHit["CommonBulletHealHit"],
+        onHitParams = {}
+    },
+    bullet_rising = {
+        id = "bullet_rising",
+        prefab = "Bullet鼓舞",
+        hitFoe = false,
+        hitAlly = true,
+        sameTargetDelay = 50,
+        onHit = bullet_onHit["CommonBulletRisingHit"],
+        onHitParams = {}
+    },
+    bullet_qinglong = {
+        id = "bullet_qinglong",
+        prefab = "Bullet青龙旋风斩",
+        hitFoe = true,
+        hitAlly = false,
+        sameTargetDelay = 50,
+        onHit = bullet_onHit["CommonBulletHit"],
+        onHitParams = {}
+    },
+    bullet_fire_strike = {
+        id = "bullet_fire_strike",
+        prefab = "Bullet火攻",
+        hitFoe = true,
+        hitAlly = false,
+        sameTargetDelay = 50,
+        onHit = bullet_onHit["CommonBulletHit"],
+        onHitParams = {}
+    },
+    bullet_dongfeng = {
+        id = "bullet_dongfeng",
+        prefab = "Bullet东风",
         hitFoe = true,
         hitAlly = false,
         sameTargetDelay = 50,

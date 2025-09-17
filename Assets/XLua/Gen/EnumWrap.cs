@@ -132,6 +132,70 @@ namespace XLua.CSObjectWrap
 		}
 	}
     
+    public class MBFChaResTypeWrap
+    {
+		public static void __Register(RealStatePtr L)
+        {
+		    ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+		    Utils.BeginObjectRegister(typeof(MBF.ChaResType), L, translator, 0, 0, 0, 0);
+			Utils.EndObjectRegister(typeof(MBF.ChaResType), L, translator, null, null, null, null, null);
+			
+			Utils.BeginClassRegister(typeof(MBF.ChaResType), L, null, 4, 0, 0);
+
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Health", MBF.ChaResType.Health);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Speed", MBF.ChaResType.Speed);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Shield", MBF.ChaResType.Shield);
+            
+
+			Utils.RegisterFunc(L, Utils.CLS_IDX, "__CastFrom", __CastFrom);
+            
+            Utils.EndClassRegister(typeof(MBF.ChaResType), L, translator);
+        }
+		
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int __CastFrom(RealStatePtr L)
+		{
+			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			LuaTypes lua_type = LuaAPI.lua_type(L, 1);
+            if (lua_type == LuaTypes.LUA_TNUMBER)
+            {
+                translator.PushMBFChaResType(L, (MBF.ChaResType)LuaAPI.xlua_tointeger(L, 1));
+            }
+			
+            else if(lua_type == LuaTypes.LUA_TSTRING)
+            {
+
+			    if (LuaAPI.xlua_is_eq_str(L, 1, "Health"))
+                {
+                    translator.PushMBFChaResType(L, MBF.ChaResType.Health);
+                }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "Speed"))
+                {
+                    translator.PushMBFChaResType(L, MBF.ChaResType.Speed);
+                }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "Shield"))
+                {
+                    translator.PushMBFChaResType(L, MBF.ChaResType.Shield);
+                }
+				else
+                {
+                    return LuaAPI.luaL_error(L, "invalid string for MBF.ChaResType!");
+                }
+
+            }
+			
+            else
+            {
+                return LuaAPI.luaL_error(L, "invalid lua type for MBF.ChaResType! Expect number or string, got + " + lua_type);
+            }
+
+            return 1;
+		}
+	}
+    
     public class MBFDamageInfoTagWrap
     {
 		public static void __Register(RealStatePtr L)
@@ -198,7 +262,7 @@ namespace XLua.CSObjectWrap
 		    Utils.BeginObjectRegister(typeof(MBF.EquipmentSlot), L, translator, 0, 0, 0, 0);
 			Utils.EndObjectRegister(typeof(MBF.EquipmentSlot), L, translator, null, null, null, null, null);
 			
-			Utils.BeginClassRegister(typeof(MBF.EquipmentSlot), L, null, 6, 0, 0);
+			Utils.BeginClassRegister(typeof(MBF.EquipmentSlot), L, null, 7, 0, 0);
 
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Weapon", MBF.EquipmentSlot.Weapon);
@@ -210,6 +274,8 @@ namespace XLua.CSObjectWrap
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Shoe", MBF.EquipmentSlot.Shoe);
             
             Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Relic", MBF.EquipmentSlot.Relic);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Horse", MBF.EquipmentSlot.Horse);
             
 
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "__CastFrom", __CastFrom);
@@ -249,6 +315,10 @@ namespace XLua.CSObjectWrap
 				else if (LuaAPI.xlua_is_eq_str(L, 1, "Relic"))
                 {
                     translator.PushMBFEquipmentSlot(L, MBF.EquipmentSlot.Relic);
+                }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "Horse"))
+                {
+                    translator.PushMBFEquipmentSlot(L, MBF.EquipmentSlot.Horse);
                 }
 				else
                 {
@@ -436,6 +506,82 @@ namespace XLua.CSObjectWrap
             else
             {
                 return LuaAPI.luaL_error(L, "invalid lua type for TheGame.GM.CharacterType! Expect number or string, got + " + lua_type);
+            }
+
+            return 1;
+		}
+	}
+    
+    public class TheGameGMRarityWrap
+    {
+		public static void __Register(RealStatePtr L)
+        {
+		    ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+		    Utils.BeginObjectRegister(typeof(TheGame.GM.Rarity), L, translator, 0, 0, 0, 0);
+			Utils.EndObjectRegister(typeof(TheGame.GM.Rarity), L, translator, null, null, null, null, null);
+			
+			Utils.BeginClassRegister(typeof(TheGame.GM.Rarity), L, null, 6, 0, 0);
+
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Normal", TheGame.GM.Rarity.Normal);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Rare", TheGame.GM.Rarity.Rare);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "SuperRare", TheGame.GM.Rarity.SuperRare);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Legendary", TheGame.GM.Rarity.Legendary);
+            
+            Utils.RegisterObject(L, translator, Utils.CLS_IDX, "Mythic", TheGame.GM.Rarity.Mythic);
+            
+
+			Utils.RegisterFunc(L, Utils.CLS_IDX, "__CastFrom", __CastFrom);
+            
+            Utils.EndClassRegister(typeof(TheGame.GM.Rarity), L, translator);
+        }
+		
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int __CastFrom(RealStatePtr L)
+		{
+			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			LuaTypes lua_type = LuaAPI.lua_type(L, 1);
+            if (lua_type == LuaTypes.LUA_TNUMBER)
+            {
+                translator.PushTheGameGMRarity(L, (TheGame.GM.Rarity)LuaAPI.xlua_tointeger(L, 1));
+            }
+			
+            else if(lua_type == LuaTypes.LUA_TSTRING)
+            {
+
+			    if (LuaAPI.xlua_is_eq_str(L, 1, "Normal"))
+                {
+                    translator.PushTheGameGMRarity(L, TheGame.GM.Rarity.Normal);
+                }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "Rare"))
+                {
+                    translator.PushTheGameGMRarity(L, TheGame.GM.Rarity.Rare);
+                }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "SuperRare"))
+                {
+                    translator.PushTheGameGMRarity(L, TheGame.GM.Rarity.SuperRare);
+                }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "Legendary"))
+                {
+                    translator.PushTheGameGMRarity(L, TheGame.GM.Rarity.Legendary);
+                }
+				else if (LuaAPI.xlua_is_eq_str(L, 1, "Mythic"))
+                {
+                    translator.PushTheGameGMRarity(L, TheGame.GM.Rarity.Mythic);
+                }
+				else
+                {
+                    return LuaAPI.luaL_error(L, "invalid string for TheGame.GM.Rarity!");
+                }
+
+            }
+			
+            else
+            {
+                return LuaAPI.luaL_error(L, "invalid lua type for TheGame.GM.Rarity! Expect number or string, got + " + lua_type);
             }
 
             return 1;

@@ -10,6 +10,7 @@ namespace MBF
         Armor = 2,
         Shoe = 3,
         Relic = 4,
+        Horse = 5,
     }
 
     [XLua.LuaCallCSharp]

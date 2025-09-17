@@ -6,6 +6,7 @@
 
 local MBF = CS.MBF;
 local CharacterState = MBF.CharacterState;
+local ChaResType = MBF.ChaResType;
 local GameLuaInterface = CS.TheGame.GM.GameLuaInterface;
 local DamageInfoTag = MBF.DamageInfoTag;
 local Damage = MBF.Damage;
@@ -21,15 +22,52 @@ onHit.CommonBulletHit = function(bs, target)
     end
 
     GameLuaInterface.CreateDamage(
-            bs.caster.gameObject,
-            target,
-            { bullet = bs.propWhileCast.atk},
-            { DamageInfoTag.DirectHurt }
+        bs.caster.gameObject,
+        target,
+        { bullet = bs.propWhileCast.atk },
+        { DamageInfoTag.DirectHurt }
     );
-    
+
     GameLuaInterface.CreateSightEffect(
-            bs.model.prefab .. "_Hit",
-            bs.transform.position
+        bs.model.prefab .. "_Hit",
+        cs.transform.position
+    );
+end
+
+onHit.CommonBulletHealHit = function(bs, target)
+    local cs = target:GetComponent(typeof(CharacterState));
+    if (Utils.IsNil(cs) or cs.IsDead) then
+        return;
+    end
+
+    GameLuaInterface.CreateDamage(
+        bs.caster.gameObject,
+        target,
+        { bullet = -bs.propWhileCast.atk },
+        { DamageInfoTag.DirectHeal }
+    );
+
+    GameLuaInterface.CreateSightEffect(
+        bs.model.prefab .. "_Hit",
+        cs.transform.position
+    );
+end
+
+onHit.CommonBulletRisingHit = function(bs, target)
+    local cs = target:GetComponent(typeof(CharacterState));
+    if (Utils.IsNil(cs) or cs.IsDead) then
+        return;
+    end
+
+    cs:SetResource(ChaResType.Speed, cs.Prop.speed + bs.propWhileCast.atk);
+    local caster = bs.caster:GetComponent(typeof(CharacterState));
+    if (cs == caster and not _G.Utils.IsNil(caster) and not caster.IsDead) then
+        caster:SetResource(ChaResType.Speed, 0);
+    end
+
+    GameLuaInterface.CreateSightEffect(
+        bs.model.prefab .. "_Hit",
+        cs.transform.position
     );
 end
 

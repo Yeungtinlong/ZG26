@@ -35,7 +35,9 @@ fieldIndex.Effect = 8;
 
 local shop = {
     { "product_zhaoyun", "武将·赵云", cha_des["cha_zhaoyun"], "Roles/ui_cha_zhaoyun", 1, { "role", "common" }, ItemStack("item_currency_coin", 500), TimelineNode(0, GetRole, { "cha_zhaoyun" }) },
-    { "product_lvbu", "武将·吕布", cha_des["cha_lvbu"], "Roles/ui_cha_lvbu", 1, { "role", "common" }, ItemStack("item_currency_coin", 500), TimelineNode(0, GetRole, { "cha_lvbu" }) },
+    { "product_pangtong", "武将·庞统", cha_des["cha_pangtong"], "Roles/ui_cha_pangtong", 1, { "role", "common" }, ItemStack("item_currency_coin", 800), TimelineNode(0, GetRole, { "cha_pangtong" }) },
+    { "product_sunquan", "武将·孙权", cha_des["cha_sunquan"], "Roles/ui_cha_sunquan", 1, { "role", "common" }, ItemStack("item_currency_coin", 1200), TimelineNode(0, GetRole, { "cha_sunquan" }) },
+    { "product_lvbu", "武将·吕布", cha_des["cha_lvbu"], "Roles/ui_cha_lvbu", 1, { "role", "common" }, ItemStack("item_currency_coin", 2000), TimelineNode(0, GetRole, { "cha_lvbu" }) },
     --{ "product_奇幻战甲", "奇幻战甲", "", "Items/ui_head_item_equipment_奇幻战甲", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_奇幻战甲", 1) }) },
     --{ "product_奇幻战盔", "奇幻战盔", "", "Items/ui_head_item_equipment_奇幻战盔", { "equip", "common" }, ItemStack("item_currency_coin", 200), TimelineNode(0, GetItem, { ItemStack("item_equipment_奇幻战盔", 1) }) },
 };

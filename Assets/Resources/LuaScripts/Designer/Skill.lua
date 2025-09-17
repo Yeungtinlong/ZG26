@@ -8,21 +8,21 @@ local timelineTable = require("Designer/Timeline");
 
 --- id, tags, cooldown, effect
 local skill = {
-    skill_liubei = { id = "skill_liubei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_ad_a"] },
-    skill_guanyu = { id = "skill_guanyu", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
+    skill_liubei = { id = "skill_liubei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_heal"] },
+    skill_guanyu = { id = "skill_guanyu", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_qinglong"] },
     skill_zhangfei = { id = "skill_zhangfei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
-    skill_zhaoyun = { id = "skill_zhangfei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
-    skill_zhugeliang = { id = "skill_zhangfei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_ad_a"] },
-    skill_pangtong = { id = "skill_zhangfei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
-    skill_sunquan = { id = "skill_zhangfei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
-    skill_zhouyu = { id = "skill_zhangfei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
-    skill_xiahoudun = { id = "skill_zhangfei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
-    skill_lvbu = { id = "skill_zhangfei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
-    
+    skill_zhaoyun = { id = "skill_zhaoyun", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_zhaoyun"] },
+    skill_zhugeliang = { id = "skill_zhugeliang", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_dongfeng"] },
+    skill_pangtong = { id = "skill_pangtong", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_fire_strike"] },
+    skill_sunquan = { id = "skill_sunquan", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_rising"] },
+    skill_zhouyu = { id = "skill_zhouyu", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_fire_arrow"] },
+    skill_xiahoudun = { id = "skill_xiahoudun", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
+    skill_lvbu = { id = "skill_lvbu", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
+
     skill_bubing = { id = "skill_bubing", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
     skill_qishou = { id = "skill_qishou", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
     skill_gongbing = { id = "skill_gongbing", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_ad_a"] },
-    skill_gushou = { id = "skill_gushou", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
+    skill_gushou = { id = "skill_gushou", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_rising"] },
     skill_shuibing = { id = "skill_shuibing", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
     skill_huwei = { id = "skill_huwei", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },
     skill_qibing = { id = "skill_qibing", tags = nil, cooldown = 0, effect = timelineTable.Model["skill_tank_a"] },

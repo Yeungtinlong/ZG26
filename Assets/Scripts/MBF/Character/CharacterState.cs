@@ -74,7 +74,7 @@ namespace MBF
         {
             this.baseProp = cProp;
             RecheckProps();
-            SetResource(new ChaRes(_prop.hp, _prop.speed));
+            SetResource(new ChaRes(_prop.hp, _prop.speed, 0));
             OnResourceChanged?.Invoke(this);
 
             SyncUnitBehaviors();
@@ -160,11 +160,10 @@ namespace MBF
         {
             if (idx < 0 || idx >= skills.Count) return;
             SkillObj skillObj = skills[idx];
-            if (skillObj.cooldown > 0) return;
-
-            float skillSpd = DesignerFormula.GetSkillSpeed(_prop.skillSpd);
-            GameLuaInterface.CreateTimeline(new TimelineObj(skillObj.model.effect, gameObject, skillObj, skillSpd));
-            skillObj.cooldown = Mathf.RoundToInt(skillObj.model.cooldown / skillSpd);
+            GameLuaInterface.CreateTimeline(new TimelineObj(skillObj.model.effect, gameObject, skillObj));
+            // if (skillObj.cooldown > 0) return;
+            // float skillSpd = DesignerFormula.GetSkillSpeed(_prop.skillSpd);
+            // skillObj.cooldown = Mathf.RoundToInt(skillObj.model.cooldown / skillSpd);
         }
 
         public void Upgrade()
@@ -174,7 +173,7 @@ namespace MBF
             baseProp = DesignerFormula.GetGradeProp(cfg.BaseProp, cfg.PropGrowth[0], cfg.PropGrowth[1], grade);
             UpgradeSkills();
             RecheckProps();
-            SetResource(new ChaRes(_prop.hp, _resource.speed));
+            SetResource(new ChaRes(_prop.hp, _resource.speed, 0));
             OnResourceChanged?.Invoke(this);
         }
 
@@ -205,7 +204,7 @@ namespace MBF
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
-        
+
         public void SetResource(ChaResType type, int value)
         {
             switch (type)
@@ -220,10 +219,15 @@ namespace MBF
                     _resource.speed = value;
                     break;
                 }
+                case ChaResType.Shield:
+                {
+                    _resource.shp = value;
+                    break;
+                }
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
-            
+
             OnResourceChanged?.Invoke(this);
         }
 
@@ -286,18 +290,42 @@ namespace MBF
         {
             if (damage > 0)
             {
-                _unitViewController.ShowHitEffect();
-                if (damage >= _resource.hp)
+                int damageAfterShp = damage - _resource.shp;
+                if (damageAfterShp > 0)
                 {
-                    SetResource(new ChaRes(0, _resource.speed));
-                    Kill();
-                    OnDie?.Invoke(this);
+                    _unitViewController.ShowHitEffect();
+                    if (damage >= _resource.hp)
+                    {
+                        SetResource(new ChaRes(0, _resource.speed, 0));
+                        Kill();
+                        OnDie?.Invoke(this);
+                        return;
+                    }
+                }
+
+                if (damageAfterShp <= 0)
+                {
+                    SetResource(ChaResType.Shield, _resource.shp - damage);
                     return;
                 }
+                SetResource(ChaResType.Shield, 0);
+                SetResource(ChaResType.Health, Mathf.Min(_resource.hp - damageAfterShp, _prop.hp));
             }
 
-            SetResource(new ChaRes(_resource.hp - damage, _resource.speed));
-            OnResourceChanged?.Invoke(this);
+            if (damage < 0)
+            {
+                int heal = -damage;
+                int healAfterAddHp = heal - (_prop.hp - _resource.hp);
+                if (healAfterAddHp > 0)
+                {
+                    SetResource(ChaResType.Health, _prop.hp);
+                    SetResource(ChaResType.Shield, healAfterAddHp);
+                }
+                else
+                {
+                    SetResource(ChaResType.Health, _resource.hp + heal);
+                }
+            }
         }
 
         public void Kill()

@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using TheGame.GM;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TheGame.UI
 {
-    public class ShopMenuUI : MonoBehaviour
+    public class ShopMenuUI : MonoBehaviour, INavigationMenu
     {
-        [SerializeField] private Button _closeButton;
         [SerializeField] private ProductElementUI _productElementPrefab;
         [SerializeField] private Transform _container;
         private readonly List<ProductElementUI> _productElementUis = new List<ProductElementUI>();
-        
-        private Action _onClose;
-        
+
+        public NavigationMenuType Type => NavigationMenuType.Shop;
+
         private void OnEnable()
         {
             SubscribeToEvents();
@@ -29,22 +27,15 @@ namespace TheGame.UI
 
         private void SubscribeToEvents()
         {
-            _closeButton.onClick.AddListener(Close_OnClick);
         }
 
         private void UnsubscribeFromEvents()
         {
-            _closeButton.onClick.RemoveListener(Close_OnClick);
         }
 
-        public void Set(Action onClose)
+        public void Set()
         {
-            _onClose = onClose;
-        }
-        
-        private void Close_OnClick()
-        {
-            _onClose?.Invoke();
+            RefreshUI();
         }
 
         private void RefreshUI()
@@ -53,7 +44,6 @@ namespace TheGame.UI
                 _container,
                 _productElementPrefab, 
                 _productElementUis,
-                
                 LuaToCsBridge.ShopTable.Values.ToList(),
                 (ele, data) =>
             {

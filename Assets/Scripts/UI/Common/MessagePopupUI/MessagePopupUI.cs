@@ -21,8 +21,8 @@ namespace TheGame.UI
         {
             _sequence?.Kill();
         }
-
-        public void Set(string message, float duration)
+        
+        public void Set(string message, float duration = 1f)
         {
             _messageText.text = message;
 

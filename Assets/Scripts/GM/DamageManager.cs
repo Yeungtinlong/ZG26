@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using MBF;
 using UnityEngine;
 
@@ -32,7 +33,7 @@ namespace TheGame.GM
                 
                 Vector3 effectPos = damageInfo.defender.transform.position + new Vector3(Random.insideUnitCircle.x * 0.2f, Random.insideUnitCircle.y * 0.2f, 0f); 
                 
-                GameLuaInterface.PopText($"{damage}", 1f, Color.white, effectPos);
+                GameLuaInterface.PopText($"{Mathf.Abs(damage)}", 1f, damageInfo.tags.Contains(DamageInfoTag.DirectHurt) ? Color.white : Color.green, effectPos);
                 
                 _damageInfos[i] = null;
             }

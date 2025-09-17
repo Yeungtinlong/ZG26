@@ -99,7 +99,7 @@ namespace TheGame.GM
                     if (!bs.CanHit(cs.gameObject))
                         continue;
 
-                    if ((bs.side == cs.side && !bs.model.hitAlly) || !bs.model.hitFoe)
+                    if ((bs.side == cs.side && !bs.model.hitAlly) || (bs.side != cs.side && !bs.model.hitFoe))
                         continue;
 
                     // if ((bs.transform.position - cs.transform.position).sqrMagnitude > bs.radius * bs.radius)

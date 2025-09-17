@@ -34,7 +34,7 @@ namespace MBF
 
                 // 处理TimelineObj生命周期
                 timelineObj.tickElapsed++;
-                if (timelineObj.tickElapsed >= timelineObj.model.duration)
+                if (timelineObj.tickElapsed > timelineObj.model.duration)
                 {
                     _timelines[i] = null;
                     hasTimelineObjRemoved = true;

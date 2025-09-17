@@ -27,6 +27,7 @@ function _G.Game.InitLuaTables()
     _G.Game.Designer.Story = require("Designer/Story");
     _G.Game.Designer.Daily = require("Designer/Daily");
     _G.Game.Designer.DefaultEquip = require("Designer/Character_DefaultEquip");
+    _G.Game.Designer.Strategy = require("Designer/Strategy");
 end
 
 return _G.Game;

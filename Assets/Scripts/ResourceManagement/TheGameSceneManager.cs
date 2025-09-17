@@ -48,7 +48,7 @@ namespace TheGame.ResourceManagement
             DontDestroyOnLoad(gameObject);
         }
 
-        public async UniTask ChangeScene(string sceneName)
+        private async UniTask ChangeScene_Internal(string sceneName)
         {
             _currentScene = SceneManager.GetActiveScene().name;
 
@@ -63,6 +63,12 @@ namespace TheGame.ResourceManagement
             OnBeforeSceneReady?.Invoke(sceneName);
 
             OnSceneTransitionComplete?.Invoke(sceneName);
+        }
+        
+        public async UniTask ChangeScene(string sceneName)
+        {
+            await ChangeScene_Internal("EmptyScene");
+            await ChangeScene_Internal(sceneName);
         }
     }
 }

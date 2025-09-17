@@ -42,12 +42,12 @@ end
 
 function timelineEvent.SkillGuanyu(timelineObj, args)
     if (Utils.IsNil(timelineObj.caster)) then
-        return ;
+        return;
     end
     local bl = args[0];
     local cs = timelineObj.caster:GetComponent(typeof(CharacterState));
     if (Utils.IsNil(cs) or cs.IsDead) then
-        return ;
+        return;
     end
 
     bl.caster = timelineObj.caster;
@@ -57,7 +57,7 @@ function timelineEvent.SkillGuanyu(timelineObj, args)
 
     local target = bl.caster:GetComponent(typeof(CS.TheGame.ITargetHolder)):GetTarget();
     if (Utils.IsNil(target)) then
-        return ;
+        return;
     end
     local targetDir = (target.transform.position - bl.launchPos).normalized;
     local skillObj = timelineObj.source;
@@ -77,7 +77,8 @@ function timelineEvent.SkillGuanyu(timelineObj, args)
 
     -- 10级时，向所有范围内目标发射一箭
     if (skillObj.grade >= 10) then
-        local targets = GameLuaInterface.GetAllTargets(bl.caster.gameObject, bl.side, true, false, designerFormula.GetRange(bl.propWhileCast.rng));
+        local targets = GameLuaInterface.GetAllTargets(bl.caster.gameObject, bl.side, true, false,
+            designerFormula.GetRange(bl.propWhileCast.rng));
         for i, targetCs in pairs(targets) do
             if (targetCs.gameObject ~= target) then
                 bl.launchDir = (targetCs.transform.position - bl.launchPos).normalized;
@@ -92,12 +93,12 @@ end
 
 function timelineEvent.SkillZhangfei(timelineObj, args)
     if (Utils.IsNil(timelineObj.caster)) then
-        return ;
+        return;
     end
     local bl = args[0];
     local cs = timelineObj.caster:GetComponent(typeof(CharacterState));
     if (Utils.IsNil(cs) or cs.IsDead) then
-        return ;
+        return;
     end
 
     bl.caster = timelineObj.caster;
@@ -111,7 +112,7 @@ function timelineEvent.SkillZhangfei(timelineObj, args)
 
     local target = bl.caster:GetComponent(typeof(CS.TheGame.ITargetHolder)):GetTarget();
     if (Utils.IsNil(target)) then
-        return ;
+        return;
     end
     local targetDir = (target.transform.position - bl.launchPos).normalized;
     local skillObj = timelineObj.source;
@@ -171,12 +172,12 @@ end
 
 function timelineEvent.SkillMachao(timelineObj, args)
     if (Utils.IsNil(timelineObj.caster)) then
-        return ;
+        return;
     end
     local bl = args[0];
     local cs = timelineObj.caster:GetComponent(typeof(CharacterState));
     if (Utils.IsNil(cs) or cs.IsDead) then
-        return ;
+        return;
     end
 
     bl.caster = timelineObj.caster;
@@ -185,7 +186,7 @@ function timelineEvent.SkillMachao(timelineObj, args)
 
     local target = bl.caster:GetComponent(typeof(CS.TheGame.ITargetHolder)):GetTarget();
     if (Utils.IsNil(target)) then
-        return ;
+        return;
     end
     local skillObj = timelineObj.source;
 
@@ -219,12 +220,12 @@ end
 
 function timelineEvent.SkillHuangzhong(timelineObj, args)
     if (Utils.IsNil(timelineObj.caster)) then
-        return ;
+        return;
     end
     local bl = args[0];
     local cs = timelineObj.caster:GetComponent(typeof(CharacterState));
     if (Utils.IsNil(cs) or cs.IsDead) then
-        return ;
+        return;
     end
 
     bl.caster = timelineObj.caster;
@@ -238,14 +239,15 @@ function timelineEvent.SkillHuangzhong(timelineObj, args)
 
     local mainTarget = bl.caster:GetComponent(typeof(CS.TheGame.ITargetHolder)):GetTarget();
     if (Utils.IsNil(mainTarget)) then
-        return ;
+        return;
     end
 
     local skillObj = timelineObj.source;
 
     -- 10级时，向所有范围内目标发射一箭
     if (skillObj.grade >= 10) then
-        local targets = GameLuaInterface.GetAllTargets(bl.caster.gameObject, bl.side, true, false, designerFormula.GetRange(bl.propWhileCast.rng));
+        local targets = GameLuaInterface.GetAllTargets(bl.caster.gameObject, bl.side, true, false,
+            designerFormula.GetRange(bl.propWhileCast.rng));
         for i, targetCs in pairs(targets) do
             if (targetCs.gameObject ~= mainTarget) then
                 bl.launchDir = (targetCs.transform.position - bl.launchPos).normalized;
@@ -275,12 +277,12 @@ end
 
 function timelineEvent.SkillZhugeliang(timelineObj, args)
     if (Utils.IsNil(timelineObj.caster)) then
-        return ;
+        return;
     end
     local bl = args[0];
     local cs = timelineObj.caster:GetComponent(typeof(CharacterState));
     if (Utils.IsNil(cs) or cs.IsDead) then
-        return ;
+        return;
     end
 
     bl.caster = timelineObj.caster;
@@ -295,7 +297,8 @@ function timelineEvent.SkillZhugeliang(timelineObj, args)
 
     -- 10级时，向所有范围内目标发射一箭
     if (skillObj.grade >= 10) then
-        local targets = GameLuaInterface.GetAllTargets(bl.caster.gameObject, bl.side, true, false, designerFormula.GetRange(bl.propWhileCast.rng));
+        local targets = GameLuaInterface.GetAllTargets(bl.caster.gameObject, bl.side, true, false,
+            designerFormula.GetRange(bl.propWhileCast.rng));
         for i, targetCs in pairs(targets) do
             if (targetCs.gameObject ~= mainTarget) then
                 bl.launchDir = (targetCs.transform.position - bl.launchPos).normalized;
@@ -314,7 +317,7 @@ function timelineEvent.SkillZhugeliang(timelineObj, args)
         for i = 1, skillObj.grade do
             local target = cs:GetComponent(typeof(CS.TheGame.ITargetHolder)):GetTarget();
             if (Utils.IsNil(target)) then
-                break ;
+                break;
             end
             local targetDir = (target.transform.position - bl.launchPos).normalized;
 
@@ -328,7 +331,6 @@ function timelineEvent.SkillZhugeliang(timelineObj, args)
                 else
                     return bulletTable.Tween["ArrowTween"](t, bs, targetObj, (i - 2) * 0.2, -1);
                 end
-
             end
             GameLuaInterface.CreateBullet(bl);
             coroutine.yield(CS.UnityEngine.WaitForSeconds(0.2));
@@ -341,7 +343,7 @@ end
 function timelineEvent.CasterPlayAnim(timelineObj, args)
     local cs = GetAliveCaster(timelineObj);
     if (cs == nil) then
-        return ;
+        return;
     end
     local animName = args[0];
     local face = Vector3.right;
@@ -363,7 +365,7 @@ end
 function timelineEvent.A(timelineObj, args)
     local cs = GetAliveCaster(timelineObj);
     if (cs == nil) then
-        return ;
+        return;
     end
 
     local bl = args[0];
@@ -373,7 +375,7 @@ function timelineEvent.A(timelineObj, args)
     bl.propWhileCast = cs.Prop;
     local target = GetAliveMainTarget(timelineObj);
     if (target == nil) then
-        return ;
+        return;
     end
 
     bl.launchDir = target.transform.position - bl.launchPos;
@@ -386,10 +388,13 @@ end
 function timelineEvent.TankFindSingleFoe(timelineObj, args)
     local cs = GetAliveCaster(timelineObj);
     if (cs == nil) then
-        return ;
+        return;
     end
     local skillObj = timelineObj.source;
     local currentTarget = skillObj.mainTarget;
+    if (not _G.Utils.IsNil(currentTarget) and currentTarget.side == cs.side) then
+        currentTarget = nil;
+    end
     if (_G.Utils.IsNil(currentTarget) or currentTarget.IsDead) then
         skillObj.mainTarget = GameLuaInterface.RandomGetCharacter(cs.side, true, false);
     end
@@ -398,10 +403,13 @@ end
 function timelineEvent.AdFindSingleFoe(timelineObj, args)
     local cs = GetAliveCaster(timelineObj);
     if (cs == nil) then
-        return ;
+        return;
     end
     local skillObj = timelineObj.source;
     local currentTarget = skillObj.mainTarget;
+    if (not _G.Utils.IsNil(currentTarget) and currentTarget.side == cs.side) then
+        currentTarget = nil;
+    end
     if (_G.Utils.IsNil(currentTarget) or currentTarget.IsDead) then
         currentTarget = GameLuaInterface.RandomGetCharacterOfType(CharacterType.Tank, cs.side, true, false);
     end
@@ -417,15 +425,25 @@ function timelineEvent.AdFindSingleFoe(timelineObj, args)
     skillObj.mainTarget = currentTarget;
 end
 
+function timelineEvent.FindLowestHealthAlly(timelineObj, args)
+    local cs = GetAliveCaster(timelineObj);
+    if (cs == nil) then
+        return;
+    end
+    local skillObj = timelineObj.source;
+    local currentTarget = GameLuaInterface.RandomGetCharacter(cs.side, false, true);
+    skillObj.mainTarget = currentTarget;
+end
+
 function timelineEvent.MoveToFrontOfTarget(timelineObj, args)
     local cs = GetAliveCaster(timelineObj);
     if (cs == nil) then
-        return ;
+        return;
     end
 
     local currentTarget = GetAliveMainTarget(timelineObj);
     if (_G.Utils.IsNil(currentTarget)) then
-        return ;
+        return;
     end
 
     local srcPos = cs.transform.position;
@@ -443,7 +461,7 @@ end
 function timelineEvent.MoveBackToGrid(timelineObj, args)
     local cs = GetAliveCaster(timelineObj);
     if (cs == nil) then
-        return ;
+        return;
     end
     cs.transform:DOKill();
     cs.transform:DOMove(cs.Grid.transform.position, 0.2);

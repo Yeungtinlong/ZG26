@@ -39,10 +39,12 @@ namespace XLua
 				translator.RegisterPushAndGetAndUpdate<XLuaTest.PushAsTableStruct>(translator.PushXLuaTestPushAsTableStruct, translator.Get, translator.UpdateXLuaTestPushAsTableStruct);
 				translator.RegisterPushAndGetAndUpdate<Tutorial.TestEnum>(translator.PushTutorialTestEnum, translator.Get, translator.UpdateTutorialTestEnum);
 				translator.RegisterPushAndGetAndUpdate<XLuaTest.MyEnum>(translator.PushXLuaTestMyEnum, translator.Get, translator.UpdateXLuaTestMyEnum);
+				translator.RegisterPushAndGetAndUpdate<MBF.ChaResType>(translator.PushMBFChaResType, translator.Get, translator.UpdateMBFChaResType);
 				translator.RegisterPushAndGetAndUpdate<MBF.DamageInfoTag>(translator.PushMBFDamageInfoTag, translator.Get, translator.UpdateMBFDamageInfoTag);
 				translator.RegisterPushAndGetAndUpdate<MBF.EquipmentSlot>(translator.PushMBFEquipmentSlot, translator.Get, translator.UpdateMBFEquipmentSlot);
 				translator.RegisterPushAndGetAndUpdate<TheGame.ItemType>(translator.PushTheGameItemType, translator.Get, translator.UpdateTheGameItemType);
 				translator.RegisterPushAndGetAndUpdate<TheGame.GM.CharacterType>(translator.PushTheGameGMCharacterType, translator.Get, translator.UpdateTheGameGMCharacterType);
+				translator.RegisterPushAndGetAndUpdate<TheGame.GM.Rarity>(translator.PushTheGameGMRarity, translator.Get, translator.UpdateTheGameGMRarity);
 				translator.RegisterPushAndGetAndUpdate<Tutorial.DerivedClass.TestEnumInner>(translator.PushTutorialDerivedClassTestEnumInner, translator.Get, translator.UpdateTutorialDerivedClassTestEnumInner);
 			
 			}
@@ -943,6 +945,90 @@ namespace XLua
             }
         }
         
+        int MBFChaResType_TypeID = -1;
+		int MBFChaResType_EnumRef = -1;
+        
+        public void PushMBFChaResType(RealStatePtr L, MBF.ChaResType val)
+        {
+            if (MBFChaResType_TypeID == -1)
+            {
+			    bool is_first;
+                MBFChaResType_TypeID = getTypeId(L, typeof(MBF.ChaResType), out is_first);
+				
+				if (MBFChaResType_EnumRef == -1)
+				{
+				    Utils.LoadCSTable(L, typeof(MBF.ChaResType));
+				    MBFChaResType_EnumRef = LuaAPI.luaL_ref(L, LuaIndexes.LUA_REGISTRYINDEX);
+				}
+				
+            }
+			
+			if (LuaAPI.xlua_tryget_cachedud(L, (int)val, MBFChaResType_EnumRef) == 1)
+            {
+			    return;
+			}
+			
+            IntPtr buff = LuaAPI.xlua_pushstruct(L, 4, MBFChaResType_TypeID);
+            if (!CopyByValue.Pack(buff, 0, (int)val))
+            {
+                throw new Exception("pack fail fail for MBF.ChaResType ,value="+val);
+            }
+			
+			LuaAPI.lua_getref(L, MBFChaResType_EnumRef);
+			LuaAPI.lua_pushvalue(L, -2);
+			LuaAPI.xlua_rawseti(L, -2, (int)val);
+			LuaAPI.lua_pop(L, 1);
+			
+        }
+		
+        public void Get(RealStatePtr L, int index, out MBF.ChaResType val)
+        {
+		    LuaTypes type = LuaAPI.lua_type(L, index);
+            if (type == LuaTypes.LUA_TUSERDATA )
+            {
+			    if (LuaAPI.xlua_gettypeid(L, index) != MBFChaResType_TypeID)
+				{
+				    throw new Exception("invalid userdata for MBF.ChaResType");
+				}
+				
+                IntPtr buff = LuaAPI.lua_touserdata(L, index);
+				int e;
+                if (!CopyByValue.UnPack(buff, 0, out e))
+                {
+                    throw new Exception("unpack fail for MBF.ChaResType");
+                }
+				val = (MBF.ChaResType)e;
+                
+            }
+            else
+            {
+                val = (MBF.ChaResType)objectCasters.GetCaster(typeof(MBF.ChaResType))(L, index, null);
+            }
+        }
+		
+        public void UpdateMBFChaResType(RealStatePtr L, int index, MBF.ChaResType val)
+        {
+		    
+            if (LuaAPI.lua_type(L, index) == LuaTypes.LUA_TUSERDATA)
+            {
+			    if (LuaAPI.xlua_gettypeid(L, index) != MBFChaResType_TypeID)
+				{
+				    throw new Exception("invalid userdata for MBF.ChaResType");
+				}
+				
+                IntPtr buff = LuaAPI.lua_touserdata(L, index);
+                if (!CopyByValue.Pack(buff, 0,  (int)val))
+                {
+                    throw new Exception("pack fail for MBF.ChaResType ,value="+val);
+                }
+            }
+			
+            else
+            {
+                throw new Exception("try to update a data with lua type:" + LuaAPI.lua_type(L, index));
+            }
+        }
+        
         int MBFDamageInfoTag_TypeID = -1;
 		int MBFDamageInfoTag_EnumRef = -1;
         
@@ -1279,6 +1365,90 @@ namespace XLua
             }
         }
         
+        int TheGameGMRarity_TypeID = -1;
+		int TheGameGMRarity_EnumRef = -1;
+        
+        public void PushTheGameGMRarity(RealStatePtr L, TheGame.GM.Rarity val)
+        {
+            if (TheGameGMRarity_TypeID == -1)
+            {
+			    bool is_first;
+                TheGameGMRarity_TypeID = getTypeId(L, typeof(TheGame.GM.Rarity), out is_first);
+				
+				if (TheGameGMRarity_EnumRef == -1)
+				{
+				    Utils.LoadCSTable(L, typeof(TheGame.GM.Rarity));
+				    TheGameGMRarity_EnumRef = LuaAPI.luaL_ref(L, LuaIndexes.LUA_REGISTRYINDEX);
+				}
+				
+            }
+			
+			if (LuaAPI.xlua_tryget_cachedud(L, (int)val, TheGameGMRarity_EnumRef) == 1)
+            {
+			    return;
+			}
+			
+            IntPtr buff = LuaAPI.xlua_pushstruct(L, 4, TheGameGMRarity_TypeID);
+            if (!CopyByValue.Pack(buff, 0, (int)val))
+            {
+                throw new Exception("pack fail fail for TheGame.GM.Rarity ,value="+val);
+            }
+			
+			LuaAPI.lua_getref(L, TheGameGMRarity_EnumRef);
+			LuaAPI.lua_pushvalue(L, -2);
+			LuaAPI.xlua_rawseti(L, -2, (int)val);
+			LuaAPI.lua_pop(L, 1);
+			
+        }
+		
+        public void Get(RealStatePtr L, int index, out TheGame.GM.Rarity val)
+        {
+		    LuaTypes type = LuaAPI.lua_type(L, index);
+            if (type == LuaTypes.LUA_TUSERDATA )
+            {
+			    if (LuaAPI.xlua_gettypeid(L, index) != TheGameGMRarity_TypeID)
+				{
+				    throw new Exception("invalid userdata for TheGame.GM.Rarity");
+				}
+				
+                IntPtr buff = LuaAPI.lua_touserdata(L, index);
+				int e;
+                if (!CopyByValue.UnPack(buff, 0, out e))
+                {
+                    throw new Exception("unpack fail for TheGame.GM.Rarity");
+                }
+				val = (TheGame.GM.Rarity)e;
+                
+            }
+            else
+            {
+                val = (TheGame.GM.Rarity)objectCasters.GetCaster(typeof(TheGame.GM.Rarity))(L, index, null);
+            }
+        }
+		
+        public void UpdateTheGameGMRarity(RealStatePtr L, int index, TheGame.GM.Rarity val)
+        {
+		    
+            if (LuaAPI.lua_type(L, index) == LuaTypes.LUA_TUSERDATA)
+            {
+			    if (LuaAPI.xlua_gettypeid(L, index) != TheGameGMRarity_TypeID)
+				{
+				    throw new Exception("invalid userdata for TheGame.GM.Rarity");
+				}
+				
+                IntPtr buff = LuaAPI.lua_touserdata(L, index);
+                if (!CopyByValue.Pack(buff, 0,  (int)val))
+                {
+                    throw new Exception("pack fail for TheGame.GM.Rarity ,value="+val);
+                }
+            }
+			
+            else
+            {
+                throw new Exception("try to update a data with lua type:" + LuaAPI.lua_type(L, index));
+            }
+        }
+        
         int TutorialDerivedClassTestEnumInner_TypeID = -1;
 		int TutorialDerivedClassTestEnumInner_EnumRef = -1;
         
@@ -1452,6 +1622,12 @@ namespace XLua
 				translator.PushXLuaTestMyEnum(L, array[index]);
 				return true;
 			}
+			else if (type == typeof(MBF.ChaResType[]))
+			{
+			    MBF.ChaResType[] array = obj as MBF.ChaResType[];
+				translator.PushMBFChaResType(L, array[index]);
+				return true;
+			}
 			else if (type == typeof(MBF.DamageInfoTag[]))
 			{
 			    MBF.DamageInfoTag[] array = obj as MBF.DamageInfoTag[];
@@ -1474,6 +1650,12 @@ namespace XLua
 			{
 			    TheGame.GM.CharacterType[] array = obj as TheGame.GM.CharacterType[];
 				translator.PushTheGameGMCharacterType(L, array[index]);
+				return true;
+			}
+			else if (type == typeof(TheGame.GM.Rarity[]))
+			{
+			    TheGame.GM.Rarity[] array = obj as TheGame.GM.Rarity[];
+				translator.PushTheGameGMRarity(L, array[index]);
 				return true;
 			}
 			else if (type == typeof(Tutorial.DerivedClass.TestEnumInner[]))
@@ -1566,6 +1748,12 @@ namespace XLua
 				translator.Get(L, obj_idx, out array[array_idx]);
 				return true;
 			}
+			else if (type == typeof(MBF.ChaResType[]))
+			{
+			    MBF.ChaResType[] array = obj as MBF.ChaResType[];
+				translator.Get(L, obj_idx, out array[array_idx]);
+				return true;
+			}
 			else if (type == typeof(MBF.DamageInfoTag[]))
 			{
 			    MBF.DamageInfoTag[] array = obj as MBF.DamageInfoTag[];
@@ -1587,6 +1775,12 @@ namespace XLua
 			else if (type == typeof(TheGame.GM.CharacterType[]))
 			{
 			    TheGame.GM.CharacterType[] array = obj as TheGame.GM.CharacterType[];
+				translator.Get(L, obj_idx, out array[array_idx]);
+				return true;
+			}
+			else if (type == typeof(TheGame.GM.Rarity[]))
+			{
+			    TheGame.GM.Rarity[] array = obj as TheGame.GM.Rarity[];
 				translator.Get(L, obj_idx, out array[array_idx]);
 				return true;
 			}

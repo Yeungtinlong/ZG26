@@ -6,15 +6,47 @@
 
 local levels = {};
 
-local patterns = {
+-- 1~5关
+local basePatterns = {
     {
         -- 2坦克
         { gridIndex = 0, chaId = "cha_bubing", grade = 1 },
         { gridIndex = 1, chaId = "cha_bubing", grade = 1 },
     },
-
     {
-        -- 3坦克，2射手、1辅助
+        -- 2坦克、1旗手
+        { gridIndex = 0, chaId = "cha_bubing", grade = 1 },
+        { gridIndex = 2, chaId = "cha_bubing", grade = 1 },
+        { gridIndex = 5, chaId = "cha_qishou", grade = 1 },
+    },
+    {
+        -- 3坦克、1射手
+        { gridIndex = 0, chaId = "cha_bubing",   grade = 1 },
+        { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
+        { gridIndex = 2, chaId = "cha_bubing",   grade = 1 },
+        { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
+    },
+    {
+        -- 2骑兵、2射手、1步兵
+        { gridIndex = 0, chaId = "cha_qibing",   grade = 1 },
+        { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
+        { gridIndex = 2, chaId = "cha_qibing",   grade = 1 },
+        { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
+        { gridIndex = 5, chaId = "cha_gongbing", grade = 1 },
+    },
+    {
+        -- 1吕布、4骑兵
+        { gridIndex = 0, chaId = "cha_qibing", grade = 1 },
+        { gridIndex = 1, chaId = "cha_lvbu", grade = 1 },
+        { gridIndex = 2, chaId = "cha_qibing", grade = 1 },
+        { gridIndex = 3, chaId = "cha_qibing", grade = 1 },
+        { gridIndex = 5, chaId = "cha_qibing", grade = 1 },
+    },
+};
+
+local patterns = {
+    {
+        -- 3步兵、2弓兵、1旗手
         { gridIndex = 0, chaId = "cha_bubing",   grade = 1 },
         { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
         { gridIndex = 2, chaId = "cha_bubing",   grade = 1 },
@@ -22,9 +54,67 @@ local patterns = {
         { gridIndex = 4, chaId = "cha_qishou",   grade = 1 },
         { gridIndex = 5, chaId = "cha_gongbing", grade = 1 },
     },
+    {
+        -- 2骑兵、1步兵，1弓兵、1旗手、1鼓手
+        { gridIndex = 0, chaId = "cha_qibing",   grade = 1 },
+        { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
+        { gridIndex = 2, chaId = "cha_qibing",   grade = 1 },
+        { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
+        { gridIndex = 4, chaId = "cha_qishou",   grade = 1 },
+        { gridIndex = 5, chaId = "cha_gushou",   grade = 1 },
+    },
+    {
+        -- 3护卫、1骑兵、1弓兵、1旗手
+        { gridIndex = 0, chaId = "cha_huwei",    grade = 1 },
+        { gridIndex = 1, chaId = "cha_huwei",    grade = 1 },
+        { gridIndex = 2, chaId = "cha_huwei",    grade = 1 },
+        { gridIndex = 3, chaId = "cha_qibing",   grade = 1 },
+        { gridIndex = 4, chaId = "cha_gongbing", grade = 1 },
+        { gridIndex = 5, chaId = "cha_qishou",   grade = 1 },
+    },
+    {
+        -- 6水兵
+        { gridIndex = 0, chaId = "cha_shuibing", grade = 1 },
+        { gridIndex = 1, chaId = "cha_shuibing", grade = 1 },
+        { gridIndex = 2, chaId = "cha_shuibing", grade = 1 },
+        { gridIndex = 3, chaId = "cha_shuibing", grade = 1 },
+        { gridIndex = 4, chaId = "cha_shuibing", grade = 1 },
+        { gridIndex = 5, chaId = "cha_shuibing", grade = 1 },
+    },
+    {
+        -- 3护卫、1骑兵、1弓兵、1鼓手
+        { gridIndex = 0, chaId = "cha_huwei",    grade = 1 },
+        { gridIndex = 1, chaId = "cha_huwei",    grade = 1 },
+        { gridIndex = 2, chaId = "cha_huwei",    grade = 1 },
+        { gridIndex = 3, chaId = "cha_qibing",   grade = 1 },
+        { gridIndex = 4, chaId = "cha_gongbing", grade = 1 },
+        { gridIndex = 5, chaId = "cha_gushou",   grade = 1 },
+    },
 };
 -- 关卡数据处理
-for idx = 1, 100 do
+for idx = 1, 5 do
+    local id = idx;
+    local gridInfoPattern = basePatterns[(idx - 1) % #basePatterns + 1];
+    local level = {
+        id = id,
+        name = "Level_" .. tostring(id),
+        rewards = {
+            { id = "item_currency_coin", count = 100 * idx }
+        },
+        gridInfos = {},
+    };
+
+    for i = 1, #gridInfoPattern do
+        level.gridInfos[i] = {
+            gridIndex = gridInfoPattern[i].gridIndex,
+            chaId = gridInfoPattern[i].chaId,
+            grade = idx
+        };
+    end
+    levels[idx] = level;
+end
+
+for idx = 6, 100 do
     local id = idx;
     local gridInfoPattern = patterns[(idx - 1) % #patterns + 1];
     local level = {
@@ -40,7 +130,7 @@ for idx = 1, 100 do
         level.gridInfos[i] = {
             gridIndex = gridInfoPattern[i].gridIndex,
             chaId = gridInfoPattern[i].chaId,
-            grade = gridInfoPattern[i].grade
+            grade = idx
         };
     end
     levels[idx] = level;

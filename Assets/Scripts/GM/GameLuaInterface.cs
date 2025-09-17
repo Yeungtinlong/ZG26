@@ -22,6 +22,9 @@ namespace TheGame.GM
     [XLua.CSharpCallLua]
     public delegate float RangeDelegate(int range);
 
+    /// <summary>
+    /// TODO: 可以从Lua中读取，暂时偷个懒
+    /// </summary>
     public static class DesignerFormula
     {
         private static MoveSpeedDelegate _moveSpeedDelegate;
@@ -36,10 +39,9 @@ namespace TheGame.GM
             _damageDelegate = LuaManager.LuaEnv.Global.GetInPath<DamageDelegate>("Game.Designer.Formula.GetDamage");
             _rangeDelegate = LuaManager.LuaEnv.Global.GetInPath<RangeDelegate>("Game.Designer.Formula.GetRange");
         }
-
+        
         public static int GetGradeProp(int baseValue, int plus, int times, int grade)
         {
-            // TODO: 可以从Lua中读取，暂时偷个懒
             return (baseValue + (grade - 1) * plus) * (1 + (grade - 1) * times);
         }
 
@@ -228,6 +230,11 @@ namespace TheGame.GM
             if (target == null)
                 target = enemies.RandomPickOne();
             return target;
+        }
+
+        public static List<CharacterState> GetAllCharacters()
+        {
+            return game.SceneVariants.characters;
         }
     }
 }

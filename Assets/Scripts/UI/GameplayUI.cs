@@ -28,10 +28,10 @@ namespace TheGame.UI
             GameManager.OnGameOver -= GameManager_OnGameOver;
         }
 
-        private void GameManager_OnGameOver(bool win, int level)
+        private void GameManager_OnGameOver(GameResult gameResult, int level)
         {
             _gameOverPanelUI.gameObject.SetActive(true);
-            _gameOverPanelUI.Set(win, level);
+            _gameOverPanelUI.Set(gameResult, level);
         }
     }
 }

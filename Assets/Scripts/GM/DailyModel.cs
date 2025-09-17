@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using MBF;
 
 namespace TheGame.GM
 {
@@ -6,6 +6,8 @@ namespace TheGame.GM
     public struct DailyModel
     {
         public int day;
-        public List<ItemStack> rewards;
+        public string icon;
+        public string description;
+        public TimelineNode effect;
     }
 }

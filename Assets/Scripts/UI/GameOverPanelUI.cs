@@ -55,12 +55,12 @@ namespace TheGame.UI
             TheGameSceneManager.Instance.ChangeScene("Gameplay");
         }
 
-        public void Set(bool win, int level)
+        public void Set(GameResult gameResult, int level)
         {
-            _winPart.SetActive(win);
-            _losePart.SetActive(!win);
+            _winPart.SetActive(gameResult == GameResult.Win);
+            _losePart.SetActive(gameResult == GameResult.Lose);
             
-            if (win)
+            if (gameResult == GameResult.Win)
             {
                 _rewardsInspector.Set(LuaToCsBridge.LevelTable[level].rewards);
             }

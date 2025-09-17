@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -303,16 +304,98 @@ namespace SupportUtils
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="folderPath"></param>
+        /// <param name="newControllerName"></param>
+        /// <returns></returns>
+        private static RuntimeAnimatorController CreateAnimatorControllerAtPath(
+            string folderPath,
+            string newControllerName)
+        {
+            AnimatorController newController = AnimatorController.CreateAnimatorControllerAtPath($"{folderPath}/{newControllerName}.controller");
+            List<AnimationClip> clips = AssetDatabaseUtils.GetAllAssetsOfType<AnimationClip>(folderPath);
+
+            foreach (var clip in clips)
+            {
+                newController.layers[0].stateMachine.AddState(clip.name).motion = clip;
+            }
+            
+            EditorUtility.SetDirty(newController);
+            return newController;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clipsPath">本次要override的clips的目录</param>
+        /// <param name="newControllerName"></param>
+        /// <param name="virtualController"></param>
+        /// <returns>返回OverrideAnimationController</returns>
+        private static AnimatorOverrideController CreateOverrideAnimationControllerAtPath(
+            string clipsPath,
+            string newControllerName,
+            RuntimeAnimatorController virtualController)
+        {
+            List<AnimationClip> clips = AssetDatabaseUtils.GetAllAssetsOfType<AnimationClip>(clipsPath);
+
+            var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
+            AnimatorOverrideController newOverrideController = new AnimatorOverrideController();
+            newOverrideController.runtimeAnimatorController = virtualController;
+            newOverrideController.GetOverrides(overrides);
+
+            var overrideDict = new Dictionary<AnimationClip, AnimationClip>();
+
+            foreach (var kvp in overrides)
+            {
+                AnimationClip virtualClip = kvp.Key;
+                AnimationClip overrideClip = clips.FirstOrDefault(c => c.name == virtualClip.name);
+                if (overrideClip == null)
+                {
+                    // 匹配方向名，如 attack_left 匹配不到，就用 move_left 来重写 attack_left
+                    string[] dirNameSplits = virtualClip.name.Split('_');
+                    if (dirNameSplits is { Length: 2 })
+                    {
+                        overrideClip = clips.FirstOrDefault(c =>
+                        {
+                            string[] clipNameSplits = c.name.Split('_');
+                            if (clipNameSplits is { Length: 2 })
+                                return clipNameSplits[1] == dirNameSplits[1];
+                            return false;
+                        });
+                        if (overrideClip == null)
+                        {
+                            Debug.LogWarning($"Cannot find overrideClip for {virtualClip.name} in {clipsPath}.");
+                            continue;
+                        }
+                    }
+                }
+
+                overrideDict.Add(virtualClip, overrideClip);
+            }
+
+            newOverrideController.ApplyOverrides(overrideDict.ToList());
+            newOverrideController.name = newControllerName;
+            string newAssetPath = $"{clipsPath}/{newOverrideController.name}.overrideController";
+            AssetDatabase.CreateAsset(newOverrideController, newAssetPath);
+            
+            return newOverrideController;
+        }
+
+        /// <summary>
         /// 为某个代表一个角色的目录创建OverrideAnimationController和PrefabVariant，并且自动赋值，由此产生最终的角色View预制体
         /// </summary>
         /// <param name="folderObjects">代表一个角色的文件夹</param>
         /// <param name="virtualController"></param>
         /// <param name="virtualViewPrefab"></param>
+        /// <param name="virtualLogicPrefab"></param>
+        /// <param name="logicPrefabVariantTargetPath"></param>
         public static void GenerateOverrideAnimationControllerAndPrefabVariant(
             List<Object> folderObjects,
             RuntimeAnimatorController virtualController,
             GameObject virtualViewPrefab,
-            GameObject virtualLogicPrefab, string logicPrefabVariantTargetPath
+            GameObject virtualLogicPrefab,
+            string logicPrefabVariantTargetPath
         )
         {
             if (folderObjects is not { Count: > 0 })
@@ -321,53 +404,16 @@ namespace SupportUtils
             foreach (var folderObject in folderObjects)
             {
                 string folderPath = AssetDatabase.GetAssetPath(folderObject);
-
                 List<AnimationClip> clips = AssetDatabaseUtils.GetAllAssetsOfType<AnimationClip>(folderPath);
-
-                var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>();
-                AnimatorOverrideController newOverrideController = new AnimatorOverrideController();
-                newOverrideController.runtimeAnimatorController = virtualController;
-                newOverrideController.GetOverrides(overrides);
-
-                var overrideDict = new Dictionary<AnimationClip, AnimationClip>();
-
-                foreach (var kvp in overrides)
-                {
-                    AnimationClip virtualClip = kvp.Key;
-                    AnimationClip overrideClip = clips.FirstOrDefault(c => c.name == virtualClip.name);
-                    if (overrideClip == null)
-                    {
-                        // 匹配方向名，如 attack_left 匹配不到，就用 move_left 来重写 attack_left
-                        string[] dirNameSplits = virtualClip.name.Split('_');
-                        if (dirNameSplits is { Length: 2 })
-                        {
-                            overrideClip = clips.FirstOrDefault(c =>
-                            {
-                                string[] clipNameSplits = c.name.Split('_');
-                                if (clipNameSplits is { Length: 2 })
-                                    return clipNameSplits[1] == dirNameSplits[1];
-                                return false;
-                            });
-                            if (overrideClip == null)
-                            {
-                                Debug.LogWarning($"Cannot find overrideClip for {virtualClip.name} in {folderPath}.");
-                                continue;
-                            }
-                        }
-                    }
-
-                    overrideDict.Add(virtualClip, overrideClip);
-                }
-
-                newOverrideController.ApplyOverrides(overrideDict.ToList());
-
+                
                 string folderName = folderPath.Substring(folderPath.LastIndexOf('/') + 1);
-                newOverrideController.name = $"{folderName}_AnimatorOverrideController";
-                string newAssetPath = $"{folderPath}/{newOverrideController.name}.overrideController";
-                AssetDatabase.CreateAsset(newOverrideController, newAssetPath);
-
+                
+                RuntimeAnimatorController newOverrideController = virtualController != null 
+                    ? CreateOverrideAnimationControllerAtPath(folderPath, $"{folderName}_AnimatorOverrideController", virtualController)
+                    : CreateAnimatorControllerAtPath(folderPath, $"{folderName}_AnimatorController");
+                
                 // 产生美术预制体变体，并保存在Arts目录下
-                string overrideViewPrefabPath = $"{folderPath}/{folderName}_CharacterView.prefab";
+                string overrideViewPrefabPath = $"{folderPath}/{folderName}_View.prefab";
                 {
                     // 实例化预制体到当前Active场景中
                     GameObject instanceRoot = (GameObject)PrefabUtility.InstantiatePrefab(virtualViewPrefab);
@@ -378,7 +424,8 @@ namespace SupportUtils
                         type = typeof(SpriteRenderer),
                         propertyName = "m_Sprite",
                     };
-                    ObjectReferenceKeyframe[] keyframes = AnimationUtility.GetObjectReferenceCurve(clips[0], curveBinding);
+                    ObjectReferenceKeyframe[] keyframes =
+                        AnimationUtility.GetObjectReferenceCurve(clips[0], curveBinding);
                     instanceRoot.GetComponent<SpriteRenderer>().sprite = (Sprite)keyframes[0].value;
                     instanceRoot.GetComponent<Animator>().runtimeAnimatorController = newOverrideController;
 
@@ -394,9 +441,11 @@ namespace SupportUtils
                 {
                     GameObject instanceRoot = (GameObject)PrefabUtility.InstantiatePrefab(virtualLogicPrefab);
                     Transform viewT = instanceRoot.transform.Find("View");
-                    GameObject overrideViewPrefabInstance = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(overrideViewPrefabPath), viewT);
+                    PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(overrideViewPrefabPath),
+                        viewT);
 
-                    PrefabUtility.SaveAsPrefabAsset(instanceRoot, $"{logicPrefabVariantTargetPath}/{folderName}.prefab");
+                    PrefabUtility.SaveAsPrefabAsset(instanceRoot,
+                        $"{logicPrefabVariantTargetPath}/{folderName}.prefab");
                     Object.DestroyImmediate(instanceRoot);
                 }
             }
@@ -436,7 +485,9 @@ namespace SupportUtils
                         // 以同级目录第0个目录的第0个Sprite Pivot为准
                         var texture2dList = AssetDatabaseUtils.GetAllAssetsOfType<Texture2D>(brotherFolders[0]);
                         texture2dList = texture2dList.OrderBy(t => t.name).ToList();
-                        Vector2 pivot = (AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(texture2dList[0])) as TextureImporter).spritePivot;
+                        Vector2 pivot =
+                            (AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(texture2dList[0])) as TextureImporter)
+                            .spritePivot;
                         foreach (var brotherFolder in brotherFolders)
                         {
                             SyncPivots(brotherFolder, pivot);
@@ -449,7 +500,9 @@ namespace SupportUtils
                             var texture2dList = AssetDatabaseUtils.GetAllAssetsOfType<Texture2D>(subPath);
                             texture2dList = texture2dList.OrderBy(t => t.name).ToList();
                             // 选择第一张 Texture2D 作为参考 pivot
-                            Vector2 pivot = (AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(texture2dList[0])) as TextureImporter).spritePivot;
+                            Vector2 pivot =
+                                (AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(texture2dList[0])) as
+                                    TextureImporter).spritePivot;
 
                             SyncPivots(subPath, pivot);
                         }

@@ -65,6 +65,8 @@ namespace TheGame.GM
 
         public int SigninDays = 0;
         public DateTime LatestSigninTime;
+        
+        public string SelectedStrategy { get; set; }
 
         public static void SaveGame()
         {
@@ -95,9 +97,12 @@ namespace TheGame.GM
             // 默认存档
             gameRuntimeData.SelectedLevel = 1;
 
-            // 默认获取所有角色所有装备
+            // TODO: 测试，获取所有角色
             foreach (var (chaId, config) in LuaToCsBridge.CharacterTable)
             {
+                // if (config.Tags.ContainsTagNotNull("playerActor"))
+                //     gameRuntimeData.GetCharacter(chaId);
+                // continue;
                 if (config.Tags.ContainsTagNotNull("default"))
                 {
                     gameRuntimeData.GetCharacter(chaId);
@@ -189,10 +194,10 @@ namespace TheGame.GM
             LProductConfig productConfig = LuaToCsBridge.ShopTable[productId];
             if (!RemoveItem(productConfig.Price.id, productConfig.Price.count))
                 return false;
-            
+
             if (!PurchaseRecord.ContainsKey(productId))
                 PurchaseRecord.Add(productId, 0);
-            
+
             PurchaseRecord[productId]++;
             return (bool)productConfig.Effect.doEvent.Invoke(null, productConfig.Effect.eventParams);
         }

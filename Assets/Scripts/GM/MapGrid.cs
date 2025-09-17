@@ -11,6 +11,9 @@ namespace TheGame.GM
         [SerializeField] private int _side;
         public int Side => _side;
 
+        [SerializeField] private bool _isReadyGrid;
+        public bool IsReadyGrid => _isReadyGrid;
+
         public CharacterState Character { get; set; }
     }
 }

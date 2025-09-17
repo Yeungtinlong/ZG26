@@ -19,6 +19,7 @@ namespace TheGame.GM
         public static Dictionary<string, LItemConfig> ItemTable;
         public static Dictionary<int, DailyModel> DailyTable;
         public static Dictionary<string, RoleDefaultEquipModel> DefaultEquipTable;
+        public static Dictionary<string, StrategyModel> StrategyTable;
         public static string StoryText;
 
         private static void Print(string msg)
@@ -69,6 +70,9 @@ namespace TheGame.GM
                 .ToDictionary(k => k.chaId, v => v);
             Print($"[LuaConfigToCsInit] DefaultEquipTable {DefaultEquipTable.Count} success");
 
+            StrategyTable = _luaEnv.Global.GetInPath<Dictionary<string, StrategyModel>>("Game.Designer.Strategy");
+            Print($"[LuaConfigToCsInit] StrategyTable {StrategyTable.Count} success");
+            
             DesignerFormula.Init();
         }
     }

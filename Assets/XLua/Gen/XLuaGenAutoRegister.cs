@@ -200,6 +200,9 @@ namespace XLua.CSObjectWrap
             translator.DelayWrapLoader(typeof(MBF.ChaProp), MBFChaPropWrap.__Register);
         
         
+            translator.DelayWrapLoader(typeof(MBF.ChaResType), MBFChaResTypeWrap.__Register);
+        
+        
             translator.DelayWrapLoader(typeof(MBF.DamageInfoTag), MBFDamageInfoTagWrap.__Register);
         
         
@@ -243,6 +246,12 @@ namespace XLua.CSObjectWrap
         
         
             translator.DelayWrapLoader(typeof(TheGame.GM.GameLuaInterface), TheGameGMGameLuaInterfaceWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(TheGame.GM.Rarity), TheGameGMRarityWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(TheGame.GM.StrategyModel), TheGameGMStrategyModelWrap.__Register);
         
         
             translator.DelayWrapLoader(typeof(Tutorial.DerivedClass.TestEnumInner), TutorialDerivedClassTestEnumInnerWrap.__Register);

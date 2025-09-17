@@ -1,6 +1,7 @@
-using TheGame.GM;
+using System.Collections.Generic;
+using System.Linq;
+using DG.Tweening;
 using TheGame.ResourceManagement;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,21 +9,22 @@ namespace TheGame.UI
 {
     public class MainMenuUI : MonoBehaviour
     {
-        [SerializeField] private RoleMenuUI _roleMenu;
-        [SerializeField] private DailyMenuUI _dailyMenu;
-        [SerializeField] private ShopMenuUI _shopMenu;
+        private List<INavigationMenu> _navigationMenus;
+        private List<NavigationMenuSelectorUI> _navigationMenuSelectors;
 
-        [SerializeField] private Button _startButton;
-        [SerializeField] private TMP_Text _levelText;
-        
-        [SerializeField] private Button _roleButton;
-        [SerializeField] private Button _dailyButton;
-        [SerializeField] private Button _shopButton;
+        [SerializeField] private Button _startGameButton;
+
+        private void Awake()
+        {
+            _navigationMenus = GetComponentsInChildren<INavigationMenu>(true).ToList();
+            _navigationMenuSelectors = GetComponentsInChildren<NavigationMenuSelectorUI>(true).ToList();
+        }
 
         private void OnEnable()
         {
             SubscribeToEvents();
             RefreshUI();
+            SetDefaultMenu();
         }
 
         private void OnDisable()
@@ -32,46 +34,60 @@ namespace TheGame.UI
 
         private void SubscribeToEvents()
         {
-            _startButton.onClick.AddListener(Start_OnClick);
-            _roleButton.onClick.AddListener(Role_OnClick);
-            _dailyButton.onClick.AddListener(Daily_OnClick);
-            _shopButton.onClick.AddListener(Shop_OnClick);
+            _startGameButton.onClick.AddListener(StartGame_OnClick);
+            foreach (var selector in _navigationMenuSelectors)
+            {
+                selector.Set(NavigationMenuSelector_OnClick);
+            }
         }
 
         private void UnsubscribeFromEvents()
         {
-            _startButton.onClick.RemoveListener(Start_OnClick);
-            _roleButton.onClick.RemoveListener(Role_OnClick);
-            _dailyButton.onClick.RemoveListener(Daily_OnClick);
-            _shopButton.onClick.RemoveListener(Shop_OnClick);
+            _startGameButton.onClick.RemoveListener(StartGame_OnClick);
         }
 
-        private void Start_OnClick()
+        private void StartGame_OnClick()
         {
             TheGameSceneManager.Instance.ChangeScene("Gameplay");
         }
 
-        private void Role_OnClick()
+        private void NavigationMenuSelector_OnClick(NavigationMenuSelectorUI currentSelector)
         {
-            _roleMenu.gameObject.SetActive(true);
-            _roleMenu.Set(() => _roleMenu.gameObject.SetActive(false));
+            Set(currentSelector.NavigationMenuType);
         }
 
-        private void Daily_OnClick()
+        private void Set(NavigationMenuType navigationMenuType)
         {
-            _dailyMenu.gameObject.SetActive(true);
-            _dailyMenu.Set(() => _dailyMenu.gameObject.SetActive(false));
-        }
+            foreach (var menu in _navigationMenus)
+            {
+                if (navigationMenuType == menu.Type)
+                {
+                    (menu as Component).gameObject.SetActive(true);
+                    menu.Set();
+                }
+                else
+                {
+                    (menu as Component).gameObject.SetActive(false);
+                }
+            }
 
-        private void Shop_OnClick()
-        {
-            _shopMenu.gameObject.SetActive(true);
-            _shopMenu.Set(() => _shopMenu.gameObject.SetActive(false));
+            foreach (var selector in _navigationMenuSelectors)
+            {
+                selector.DOKill();
+                selector.transform.DOLocalMoveY(selector.NavigationMenuType == navigationMenuType ? 100f : 0f, 0.2f);
+                selector.transform.DOScale(selector.NavigationMenuType == navigationMenuType
+                    ? Vector3.one * 1.2f
+                    : Vector3.one, 0.2f);
+            }
         }
 
         private void RefreshUI()
         {
-            _levelText.text = $"开始第{GameRuntimeData.Instance.SelectedLevel}关";
+        }
+
+        private void SetDefaultMenu()
+        {
+            Set(NavigationMenuType.Role);
         }
     }
 }

@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using TheGame.GM;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TheGame.UI
 {
-    public class RoleMenuUI : MonoBehaviour
+    public class RoleMenuUI : MonoBehaviour, INavigationMenu
     {
-        [SerializeField] private Button _closeButton;
-
-        [Header("Role Name Scrollbar")] [SerializeField]
+        [Header("Role Name Scrollbar")]
+        [SerializeField]
         private Transform _roleElesContainer;
 
         [SerializeField] private RoleElementUI _roleElementPrefab;
@@ -20,7 +18,8 @@ namespace TheGame.UI
         [SerializeField] private RoleDetailUI _roleDetail;
 
         private string _selectedRoleId;
-        private Action _onClose;
+
+        public NavigationMenuType Type => NavigationMenuType.Role;
 
         private void OnEnable()
         {
@@ -34,24 +33,16 @@ namespace TheGame.UI
 
         private void SubscribeToEvents()
         {
-            _closeButton.onClick.AddListener(Close_OnClick);
         }
 
         private void UnsubscribeFromEvents()
         {
-            _closeButton.onClick.RemoveListener(Close_OnClick);
         }
 
-        public void Set(Action onClose)
+        public void Set()
         {
-            _onClose = onClose;
             _selectedRoleId = LuaToCsBridge.CharacterTable.Values.First().Id;
             RefreshUI();
-        }
-
-        private void Close_OnClick()
-        {
-            _onClose?.Invoke();
         }
 
         private void RefreshUI()

@@ -62,6 +62,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid (2)
@@ -124,6 +128,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid (8)
@@ -186,6 +194,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid (1)
@@ -248,6 +260,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid (4)
@@ -310,6 +326,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid
@@ -372,6 +392,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid (6)
@@ -434,6 +458,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid (7)
@@ -496,6 +524,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid (9)
@@ -558,6 +590,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid (3)
@@ -620,6 +656,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422091436419914388}
     m_Modifications:
+    - target: {fileID: 2894624122579831401, guid: e202cd184ee0345129db9f925cca5145, type: 3}
+      propertyPath: _isReadyGrid
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234554598031135914, guid: e202cd184ee0345129db9f925cca5145, type: 3}
       propertyPath: m_Name
       value: MapGrid (5)

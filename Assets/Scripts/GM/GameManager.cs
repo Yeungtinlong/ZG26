@@ -5,6 +5,7 @@ using MBF;
 using UnityEngine;
 using TheGame.CoreModule;
 using TheGame.ResourceManagement;
+using TheGame.UI;
 using Object = UnityEngine.Object;
 
 namespace TheGame.GM
@@ -57,7 +58,7 @@ namespace TheGame.GM
         private float GameSpeed => _gameSpeed;
 
         public event Action<DropInfo> OnDropCreated;
-        public static event Action<bool, int> OnGameOver;
+        public static event Action<GameResult, int> OnGameOver;
 
         /// <summary>
         /// Gameplay资产发生变化
@@ -70,6 +71,11 @@ namespace TheGame.GM
         private void Awake()
         {
             ValidateRequiredComponents();
+        }
+
+        private void OnDestroy()
+        {
+            ClearGameSpeedFactors();
         }
 
         private void ValidateRequiredComponents()
@@ -93,19 +99,28 @@ namespace TheGame.GM
             _aoe.Set(_sceneVariants);
             _character.Set(_sceneVariants);
             _damage.Set(_sceneVariants);
-            _turn.Set(_sceneVariants);
+            _turn.Set(_sceneVariants, TurnManager_OnGameOver);
 
             CreateMap(levelModel.id);
         }
 
-        private void GameOver(bool win)
-        { 
+        private void TurnManager_OnGameOver(GameResult gameResult)
+        {
+            if (_gameState == GameControlState.InGame)
+            {
+                GameOver(gameResult);
+            }
+        }
+
+        private void GameOver(GameResult gameResult)
+        {
             int level = GameRuntimeData.Instance.SelectedLevel;
-            if (win)
+            if (gameResult == GameResult.Win)
             {
                 _gameState = GameControlState.GameOver;
                 GameRuntimeData.Instance.SelectedLevel++;
-                GameRuntimeData.Instance.SelectedLevel = Mathf.Min(GameRuntimeData.Instance.SelectedLevel, LuaToCsBridge.LevelTable.Count);
+                GameRuntimeData.Instance.SelectedLevel = Mathf.Min(GameRuntimeData.Instance.SelectedLevel,
+                    LuaToCsBridge.LevelTable.Count);
                 GameRuntimeData.SaveGame();
 
                 SetPause(true);
@@ -129,7 +144,7 @@ namespace TheGame.GM
 
                 levelModel.rewards?.ForEach(r => GameRuntimeData.Instance.GetItem(r.id, r.count));
             }
-            else
+            else if (gameResult == GameResult.Lose)
             {
                 _gameState = GameControlState.GameOver;
                 SetPause(true);
@@ -148,8 +163,8 @@ namespace TheGame.GM
                 //     null
                 // );
             }
-            
-            OnGameOver?.Invoke(win, level);
+
+            OnGameOver?.Invoke(gameResult, level);
         }
 
         public void GetGameAsset(string id, int count)
@@ -193,29 +208,29 @@ namespace TheGame.GM
 
         private void CreateMap(int levelId)
         {
-            _sceneVariants.map = Instantiate(ResLoader.LoadAsset<GameObject>($"{PathHelper.GetPrefabPath($"Maps/Map_{(levelId - 1) % 4 + 1}")}")).GetComponent<Map>();
+            _sceneVariants.map =
+                Instantiate(
+                        ResLoader.LoadAsset<GameObject>(
+                            $"{PathHelper.GetPrefabPath($"Maps/Map_{(levelId - 1) % 4 + 1}")}"))
+                    .GetComponent<Map>();
             _sceneVariants.map.Set();
         }
 
-        /// <summary>
-        /// 应该在布阵后调用，布阵操作在GameplayUI中提供
-        /// </summary>
-        public void StartGame()
+        public bool StartGame()
         {
+            List<MapGrid> playerSideGrids = FindObjectsByType<MapGrid>(FindObjectsSortMode.None)
+                .Where(g => g.Side == 0)
+                .OrderBy(m => m.name)
+                .ToList();
+            if (playerSideGrids.Where(g => !g.IsReadyGrid)
+                .All(g => g.Character == null))
+                return false;
+
             _gameState = GameControlState.InGame;
-
-            // TODO：指定目标Grid？
-            List<MapGrid> playerSideGrids = FindObjectsByType<MapGrid>(FindObjectsSortMode.None).Where(g => g.Side == 0).OrderBy(m => m.name).ToList();
-
-            List<string> selectedCharacters = GameRuntimeData.Instance.SelectedCharacters;
-            for (int i = 0; i < selectedCharacters.Count; i++)
-            {
-                ChaInstance chaInstance = GameRuntimeData.Instance.ChaInstances[selectedCharacters[i]];
-                AddCharacterToGrid(CreateCharacter(chaInstance.id, 0, chaInstance.grade), playerSideGrids[i]);
-            }
 
             CloseReadyArea();
             _turn.StartCycle();
+            return true;
         }
 
         public void ReadyGame()
@@ -226,6 +241,18 @@ namespace TheGame.GM
             SpawnEnemies();
             OpenReadyArea();
             SetActorsFace();
+            ApplyStrategy();
+        }
+
+        private void ApplyStrategy()
+        {
+            string strategyId = GameRuntimeData.Instance.SelectedStrategy;
+            if (string.IsNullOrEmpty(GameRuntimeData.Instance.SelectedStrategy))
+                return;
+
+            StrategyModel strategyModel = LuaToCsBridge.StrategyTable[strategyId];
+            UIManager.Instance.OpenUI<MessagePopupUI>().Set(strategyModel.description);
+            strategyModel.effect.doEvent?.Invoke(null, strategyModel.effect.eventParams);
         }
 
         private void OpenReadyArea()
@@ -252,7 +279,8 @@ namespace TheGame.GM
 
         private void SpawnEnemies()
         {
-            List<MapGrid> npcSideGrids = Object.FindObjectsByType<MapGrid>(FindObjectsSortMode.None).Where(g => g.Side == 1).OrderBy(m => m.name).ToList();
+            List<MapGrid> npcSideGrids = Object.FindObjectsByType<MapGrid>(FindObjectsSortMode.None)
+                .Where(g => g.Side == 1).OrderBy(m => m.name).ToList();
 
             LevelModel levelModel = LuaToCsBridge.LevelTable[GameRuntimeData.Instance.SelectedLevel];
             for (int i = 0; i < levelModel.gridInfos.Count; i++)
@@ -305,11 +333,6 @@ namespace TheGame.GM
             _timeline.LogicTick();
             _damage.LogicTick();
             _character.LogicTick();
-
-            if (_gameState == GameControlState.InGame && CheckGameOver(out bool win))
-            {
-                GameOver(win);
-            }
         }
 
         public void SetGameSpeedFactor(string id, float effectorSpeed)
@@ -349,11 +372,6 @@ namespace TheGame.GM
             {
                 RemoveGameSpeedFactor("Pause");
             }
-        }
-        
-        public bool CheckGameOver(out bool win)
-        {
-            return _turn.CheckGameOver(out win);
         }
     }
 }

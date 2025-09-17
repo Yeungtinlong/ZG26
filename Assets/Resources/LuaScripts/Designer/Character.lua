@@ -6,16 +6,7 @@
 
 local ChaProp = CS.MBF.ChaProp;
 local CharacterType = CS.TheGame.GM.CharacterType;
-
---local fieldIndex = {};
---fieldIndex.Id = 1;
---fieldIndex.Name = 2;
---fieldIndex.Tags = 3;
---fieldIndex.Description = 4;
---fieldIndex.Prefab = 5;
---fieldIndex.SkillIds = 6;
---fieldIndex.BaseProp = 7;
---fieldIndex.PropGrowth = 8;
+local Rarity = CS.TheGame.GM.Rarity;
 
 local des = require("Designer/Character_Description");
 
@@ -26,220 +17,225 @@ local character = {
         Id = "cha_liubei",
         Name = "刘备",
         Tags = { "default", "playerActor", },
-        CharacterType = CharacterType.Carry,
+        CharacterType = CharacterType.Support,
+        Rarity = Rarity.Rare,
         Description = des["刘备"],
         Prefab = "刘备",
         SkillIds = { "skill_liubei" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 400, 100, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(12, 36, 0, 0, 12), ChaProp.zero }
     },
     {
         Id = "cha_guanyu",
         Name = "关羽",
         Tags = { "default", "playerActor" },
         CharacterType = CharacterType.Warrior,
+        Rarity = Rarity.Rare,
         Description = des["关羽"],
         Prefab = "关羽",
         SkillIds = { "skill_guanyu" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 600, 100, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(24, 13, 0, 0, 13), ChaProp.zero }
     },
     {
         Id = "cha_zhangfei",
         Name = "张飞",
         Tags = { "default", "playerActor" },
         CharacterType = CharacterType.Tank,
+        Rarity = Rarity.Rare,
         Description = des["张飞"],
         Prefab = "张飞",
         SkillIds = { "skill_zhangfei" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 300, 120, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(36, 12, 0, 0, 12), ChaProp.zero }
     },
     {
         Id = "cha_zhaoyun",
         Name = "赵云",
         Tags = { "playerActor", },
         CharacterType = CharacterType.Assassin,
+        Rarity = Rarity.Rare,
         Description = des["赵云"],
         Prefab = "赵云",
         SkillIds = { "skill_zhaoyun" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 300, 120, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(12, 24, 0, 0, 24), ChaProp.zero }
     },
     {
         Id = "cha_zhugeliang",
         Name = "诸葛亮",
         Tags = { "playerActor" },
         CharacterType = CharacterType.Carry,
+        Rarity = Rarity.SuperRare,
         Description = des["诸葛亮"],
         Prefab = "诸葛亮",
         SkillIds = { "skill_zhugeliang" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 300, 120, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(14, 42, 20, 10, 14), ChaProp.zero }
     },
     {
         Id = "cha_pangtong",
         Name = "庞统",
         Tags = { "playerActor" },
-        CharacterType = CharacterType.Support,
+        CharacterType = CharacterType.Carry,
+        Rarity = Rarity.Rare,
         Description = des["庞统"],
         Prefab = "庞统",
         SkillIds = { "skill_pangtong" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 300, 120, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(12, 24, 0, 0, 12), ChaProp.zero }
     },
     {
         Id = "cha_sunquan",
         Name = "孙权",
         Tags = { "playerActor" },
         CharacterType = CharacterType.Support,
+        Rarity = Rarity.Rare,
         Description = des["孙权"],
         Prefab = "孙权",
         SkillIds = { "skill_sunquan" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 300, 120, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(12, 24, 0, 0, 12), ChaProp.zero }
     },
     {
         Id = "cha_zhouyu",
         Name = "周瑜",
         Tags = { "playerActor" },
         CharacterType = CharacterType.Carry,
+        Rarity = Rarity.SuperRare,
         Description = des["周瑜"],
         Prefab = "周瑜",
         SkillIds = { "skill_zhouyu" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 300, 120, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(14, 42, 20, 10, 14), ChaProp.zero }
     },
     {
         Id = "cha_xiahoudun",
         Name = "夏侯惇",
         Tags = { "playerActor" },
         CharacterType = CharacterType.Tank,
+        Rarity = Rarity.Normal,
         Description = des["夏侯惇"],
         Prefab = "夏侯惇",
         SkillIds = { "skill_xiahoudun" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 300, 120, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(30, 10, 0, 0, 10), ChaProp.zero }
     },
     {
         Id = "cha_lvbu",
         Name = "吕布",
         Tags = { "playerActor" },
         CharacterType = CharacterType.Warrior,
+        Rarity = Rarity.Legendary,
         Description = des["吕布"],
         Prefab = "吕布",
         SkillIds = { "skill_lvbu" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(1000, 100, 300, 120, 100),
-        PropGrowth = { ChaProp(50, 10, 20, 10, 50), ChaProp.zero }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(32, 24, 0, 0, 24), ChaProp.zero }
     },
 
     -- Soldier
     {
         Id = "cha_bubing",
         Name = "步兵小兵",
-        Tags = { },
+        Tags = {},
         CharacterType = CharacterType.Warrior,
+        Rarity = Rarity.Normal,
         Description = nil,
         Prefab = "步兵小兵",
         SkillIds = { "skill_bubing" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 100, 90),
-        PropGrowth = { ChaProp(12, 0, 0, 0, 0), ChaProp(100, 0, 0, 0, 0) }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(20, 15, 0, 0, 15), ChaProp.zero }
     },
     {
         Id = "cha_qishou",
         Name = "旗手",
-        Tags = { },
+        Tags = {},
         CharacterType = CharacterType.Support,
+        Rarity = Rarity.Normal,
         Description = nil,
         Prefab = "旗手",
         SkillIds = { "skill_qishou" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(100, 100, 0, 100, 120),
-        PropGrowth = { ChaProp(9, 0, 0, 0, 0), ChaProp(70, 0, 0, 0, 0) }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(10, 30, 0, 0, 10), ChaProp.zero }
     },
     {
         Id = "cha_gongbing",
         Name = "三国弓兵",
-        Tags = {  },
+        Tags = {},
         CharacterType = CharacterType.Carry,
+        Rarity = Rarity.Normal,
         Description = nil,
         Prefab = "三国弓兵",
         SkillIds = { "skill_gongbing" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(100, 100, 0, 100, 90),
-        PropGrowth = { ChaProp(12, 0, 0, 0, 0), ChaProp(100, 0, 0, 0, 0) }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(10, 30, 0, 0, 10), ChaProp.zero }
     },
     {
         Id = "cha_gushou",
         Name = "鼓手",
-        Tags = {  },
+        Tags = {},
         CharacterType = CharacterType.Support,
+        Rarity = Rarity.Normal,
         Description = nil,
         Prefab = "鼓手",
         SkillIds = { "skill_gushou" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(100, 100, 0, 100, 120),
-        PropGrowth = { ChaProp(9, 0, 0, 0, 0), ChaProp(70, 0, 0, 0, 0) }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(10, 30, 0, 0, 10), ChaProp.zero }
     },
     {
         Id = "cha_shuibing",
         Name = "水兵",
-        Tags = {  },
+        Tags = {},
         CharacterType = CharacterType.Assassin,
+        Rarity = Rarity.Normal,
         Description = nil,
-        Prefab = "水兵",
+        Prefab = "吴国水兵",
         SkillIds = { "skill_shuibing" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(100, 100, 0, 100, 120),
-        PropGrowth = { ChaProp(9, 0, 0, 0, 0), ChaProp(70, 0, 0, 0, 0) }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(10, 20, 0, 0, 20), ChaProp.zero }
     },
     {
         Id = "cha_huwei",
         Name = "重装护卫",
-        Tags = {  },
+        Tags = {},
         CharacterType = CharacterType.Tank,
+        Rarity = Rarity.Rare,
         Description = nil,
         Prefab = "重装护卫",
         SkillIds = { "skill_huwei" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(300, 100, 0, 100, 160),
-        PropGrowth = { ChaProp(9, 0, 0, 0, 0), ChaProp(70, 0, 0, 0, 0) }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(30, 10, 0, 0, 10), ChaProp.zero }
     },
     {
         Id = "cha_qibing",
         Name = "骑兵",
-        Tags = {  },
+        Tags = {},
         CharacterType = CharacterType.Assassin,
+        Rarity = Rarity.Rare,
         Description = nil,
         Prefab = "骑兵",
         SkillIds = { "skill_qibing" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(100, 100, 0, 100, 160),
-        PropGrowth = { ChaProp(9, 0, 0, 0, 0), ChaProp(70, 0, 0, 0, 0) }
+        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        PropGrowth = { ChaProp(10, 20, 0, 0, 20), ChaProp.zero }
     },
 };
-
---local mt = {};
---mt.__index = function(table, key)
---    if (fieldIndex[key]) then
---        return table[fieldIndex[key]];
---    end
---end
---mt.__metatable = false;
---
---for _, v in pairs(character) do
---    setmetatable(v, mt);
---end
 
 return character;
