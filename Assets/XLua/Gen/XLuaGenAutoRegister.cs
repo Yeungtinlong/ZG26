@@ -248,6 +248,9 @@ namespace XLua.CSObjectWrap
             translator.DelayWrapLoader(typeof(TheGame.GM.GameLuaInterface), TheGameGMGameLuaInterfaceWrap.__Register);
         
         
+            translator.DelayWrapLoader(typeof(TheGame.GM.MissionModel), TheGameGMMissionModelWrap.__Register);
+        
+        
             translator.DelayWrapLoader(typeof(TheGame.GM.Rarity), TheGameGMRarityWrap.__Register);
         
         

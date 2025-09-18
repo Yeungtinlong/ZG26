@@ -6,9 +6,9 @@ namespace TheGame.UI
         Daily,
         Shop,
         Strategy,
+        Mission,
     }
-
-
+    
     public interface INavigationMenu
     {
         NavigationMenuType Type { get; }

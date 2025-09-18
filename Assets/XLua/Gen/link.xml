@@ -97,6 +97,7 @@
 		<type fullname="TheGame.ItemType" preserve="all"/>
 		<type fullname="TheGame.GM.CharacterType" preserve="all"/>
 		<type fullname="TheGame.GM.GameLuaInterface" preserve="all"/>
+		<type fullname="TheGame.GM.MissionModel" preserve="all"/>
 		<type fullname="TheGame.GM.Rarity" preserve="all"/>
 		<type fullname="TheGame.GM.StrategyModel" preserve="all"/>
 		<type fullname="Tutorial.DerivedClass+TestEnumInner" preserve="all"/>

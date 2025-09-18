@@ -12,54 +12,6 @@ local aoeTable = require("Designer/Aoe");
 local bullet_onHit = require("Designer/Bullet_OnHit")
 
 local model = {
-    bullet_guanyu = {
-        id = "bullet_guanyu",
-        prefab = "BulletFireBall",
-        hitFoe = true,
-        hitAlly = false,
-        sameTargetDelay = 50,
-        onHit = bullet_onHit["CommonBulletHit"],
-        onHitParams = {}
-    },
-    bullet_zhangfei = {
-        id = "bullet_zhangfei",
-        prefab = "BulletPurpleSword",
-        hitFoe = true,
-        hitAlly = false,
-        sameTargetDelay = 50,
-        onHit = bullet_onHit["CommonBulletHit"],
-        onHitParams = {}
-    },
-    bullet_machao = {
-        id = "bullet_machao",
-        prefab = "BulletTiger",
-        hitFoe = true,
-        hitAlly = false,
-        sameTargetDelay = 50,
-        onHit = bullet_onHit["CommonBulletHit"],
-        onHitParams = {}
-    },
-    bullet_huangzhong = {
-        id = "bullet_huangzhong",
-        prefab = "BulletIceArrow",
-        hitFoe = true,
-        hitAlly = false,
-        sameTargetDelay = 50,
-        onHit = bullet_onHit["CommonBulletHit"],
-        onHitParams = {}
-    },
-    bullet_zhugeliang = {
-        id = "bullet_zhugeliang",
-        prefab = "BulletThunderSword",
-        hitFoe = true,
-        hitAlly = false,
-        sameTargetDelay = 50,
-        onHit = bullet_onHit["CreateAoeOnHit"],
-        onHitParams = {
-            -- model, caster, side, targetPos, duration, tickTime, radius, propWhileCast, parameters
-            AoeLauncher(aoeTable.Model["aoe_shandian"], nil, -1, Vector3.zero, 2, 1, 2.0, ChaProp.zero, nil)
-        }
-    },
     bullet_a = {
         id = "bullet_a",
         prefab = "Bullet斩击",
@@ -84,7 +36,7 @@ local model = {
         hitFoe = true,
         hitAlly = false,
         sameTargetDelay = 50,
-        onHit = bullet_onHit["CommonBulletHit"],
+        onHit = bullet_onHit["CommonAoeBulletHit"],
         onHitParams = {}
     },
     bullet_qianghua = {
@@ -129,7 +81,7 @@ local model = {
         hitFoe = true,
         hitAlly = false,
         sameTargetDelay = 50,
-        onHit = bullet_onHit["CommonBulletHit"],
+        onHit = bullet_onHit["CommonAoeBulletHit"],
         onHitParams = {}
     },
     bullet_dongfeng = {
@@ -138,7 +90,7 @@ local model = {
         hitFoe = true,
         hitAlly = false,
         sameTargetDelay = 50,
-        onHit = bullet_onHit["CommonBulletHit"],
+        onHit = bullet_onHit["CommonAoeBulletHit"],
         onHitParams = {}
     },
 };

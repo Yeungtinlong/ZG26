@@ -7,11 +7,8 @@ namespace TheGame.UI
 {
     public class ItemStackUI : MonoBehaviour
     {
-        [SerializeField] private Image _bgImage;
         [SerializeField] private Image _spriteImage;
-        [SerializeField] private Image _selectedObject;
         [SerializeField] private TMP_Text _valueText;
-        [SerializeField] private Button _clickable;
 
         private string _id;
         public string Id => _id;

@@ -207,6 +207,15 @@ namespace TheGame.GM
             ).RandomPickOne();
         }
 
+        public static List<CharacterState> RandomGetCharacters(int side, bool includeFoe, bool includeAlly, int maxCount)
+        {
+            return game.SceneVariants.characters.Where(c =>
+                (c != null && !c.IsDead)
+                &&
+                ((c.side != side && includeFoe) || (c.side == side && includeAlly))
+            ).ToList().RandomPick(maxCount);
+        }
+
         public static List<CharacterState> RandomGetCharactersOfType(CharacterType characterType, int count, int side, bool includeFoe, bool includeAlly)
         {
             return game.SceneVariants.characters.Where(c =>

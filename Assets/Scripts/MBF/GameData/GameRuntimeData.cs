@@ -68,6 +68,8 @@ namespace TheGame.GM
         
         public string SelectedStrategy { get; set; }
 
+        public List<string> CompletedMissions = new List<string>();
+
         public static void SaveGame()
         {
             PlayerPrefs.SetString(nameof(GameRuntimeData), JsonConvert.SerializeObject(_instance));

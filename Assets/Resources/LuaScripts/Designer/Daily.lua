@@ -24,7 +24,7 @@ local daily = {
     { day = 2, icon = "Items/ui_head_item_currency_coin", description = "金币x100", effect = TimelineNode(0, GetItem, { ItemStack("item_currency_coin", 100) }) },
     { day = 3, icon = "Items/ui_head_item_currency_coin", description = "金币x200", effect = TimelineNode(0, GetItem, { ItemStack("item_currency_coin", 200) }) },
     { day = 4, icon = "Items/ui_head_item_currency_coin", description = "金币x300", effect = TimelineNode(0, GetItem, { ItemStack("item_currency_coin", 300) }) },
-    { day = 5, icon = "Roles/ui_cha_zhouyu", description = "武将·周瑜", effect = TimelineNode(0, GetRole, { "cha_zhouyu" }) },
+    { day = 5, icon = "Items/ui_head_item_currency_coin", description = "金币x400", effect = TimelineNode(0, GetItem, { ItemStack("item_currency_coin", 400) }) },
     { day = 6, icon = "Items/ui_head_item_currency_coin", description = "金币x500", effect = TimelineNode(0, GetItem, { ItemStack("item_currency_coin", 500) }) },
     { day = 7, icon = "Roles/ui_cha_zhugeliang", description = "武将·诸葛亮", effect = TimelineNode(0, GetRole, { "cha_zhugeliang" }) },
 };

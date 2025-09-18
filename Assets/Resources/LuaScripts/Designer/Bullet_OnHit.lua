@@ -34,6 +34,25 @@ onHit.CommonBulletHit = function(bs, target)
     );
 end
 
+onHit.CommonAoeBulletHit = function(bs, target)
+    local cs = target:GetComponent(typeof(CharacterState));
+    if (Utils.IsNil(cs) or cs.IsDead) then
+        return;
+    end
+
+    GameLuaInterface.CreateDamage(
+        bs.caster.gameObject,
+        target,
+        { bullet = math.ceil(bs.propWhileCast.atk * 0.5) },
+        { DamageInfoTag.DirectHurt }
+    );
+
+    GameLuaInterface.CreateSightEffect(
+        bs.model.prefab .. "_Hit",
+        cs.transform.position
+    );
+end
+
 onHit.CommonBulletHealHit = function(bs, target)
     local cs = target:GetComponent(typeof(CharacterState));
     if (Utils.IsNil(cs) or cs.IsDead) then
@@ -54,21 +73,21 @@ onHit.CommonBulletHealHit = function(bs, target)
 end
 
 onHit.CommonBulletRisingHit = function(bs, target)
-    local cs = target:GetComponent(typeof(CharacterState));
-    if (Utils.IsNil(cs) or cs.IsDead) then
+    local targetCs = target:GetComponent(typeof(CharacterState));
+    if (Utils.IsNil(targetCs) or targetCs.IsDead) then
         return;
     end
-
-    cs:SetResource(ChaResType.Speed, cs.Prop.speed + bs.propWhileCast.atk);
-    local caster = bs.caster:GetComponent(typeof(CharacterState));
-    if (cs == caster and not _G.Utils.IsNil(caster) and not caster.IsDead) then
-        caster:SetResource(ChaResType.Speed, 0);
+    local casterCs = bs.caster:GetComponent(typeof(CharacterState));
+    local casterOriginSpeed = 0;
+    if (not _G.Utils.IsNil(casterCs) and not casterCs.IsDead) then
+        casterOriginSpeed = casterCs.resource.speed;
+        targetCs:SetResource(ChaResType.Speed, targetCs.resource.speed + casterOriginSpeed);
+        casterCs:SetResource(ChaResType.Speed, 0);
+        GameLuaInterface.CreateSightEffect(
+            bs.model.prefab .. "_Hit",
+            targetCs.transform.position
+        );
     end
-
-    GameLuaInterface.CreateSightEffect(
-        bs.model.prefab .. "_Hit",
-        cs.transform.position
-    );
 end
 
 onHit.CreateAoeOnHit = function(bs, target)

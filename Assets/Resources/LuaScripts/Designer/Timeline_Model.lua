@@ -26,149 +26,6 @@ local timelineEvent = require("Designer/Timeline_Event");
 
 local timelineModel = {};
 
-timelineModel.skill_guanyu = TimelineModel("skill_guanyu", 50, {
-    TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(23, timelineEvent.SkillGuanyu, {
-        BulletLauncher(
-            bulletTable.Model["bullet_guanyu"],
-            nil,
-            0,
-            Vector3.zero,
-            Vector3.zero,
-            Vector3.zero,
-            0.5,   -- radius
-            20.0,  -- speed
-            50,    -- duration
-            10,    -- hp
-            false, -- justHitTarget
-            nil,   -- targeting
-            bulletTable.Tween["StraightTween"],
-            ChaProp.zero,
-            nil
-        )
-    }),
-});
-timelineModel.skill_zhangfei = TimelineModel("skill_zhangfei", 50, {
-    TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(28, timelineEvent.SkillZhangfei, {
-        BulletLauncher(
-            bulletTable.Model["bullet_zhangfei"],
-            nil,
-            0,
-            Vector3.zero,
-            Vector3.zero,
-            Vector3.zero,
-            0.5,
-            20.0,
-            10,
-            10,
-            false, -- justHitTarget
-            nil,
-            bulletTable.Tween["StraightTween"],
-            ChaProp.zero,
-            nil
-        )
-    }),
-});
-timelineModel.skill_machao = TimelineModel("skill_machao", 50, {
-    TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(30, timelineEvent.SkillMachao, {
-        BulletLauncher(
-            bulletTable.Model["bullet_machao"],
-            nil,
-            0,
-            Vector3.zero,
-            Vector3.zero,
-            Vector3.zero,
-            0.5,
-            20.0,
-            50,
-            10,
-            false, -- justHitTarget
-            bulletTable.Targeting["GetCurrentTarget"],
-            bulletTable.Tween["StraightTween"],
-            ChaProp.zero,
-            nil
-        )
-    }),
-});
-timelineModel.skill_huangzhong = TimelineModel("skill_huangzhong", 50, {
-    TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(37, timelineEvent.SkillHuangzhong, {
-        BulletLauncher(
-            bulletTable.Model["bullet_huangzhong"],
-            nil,
-            0,
-            Vector3.zero,
-            Vector3.zero,
-            Vector3.zero,
-            0.1,
-            20.0,
-            50,
-            1,
-            true, -- justHitTarget
-            bulletTable.Targeting["GetCurrentTarget"],
-            bulletTable.Tween["ArrowTween"],
-            ChaProp.zero,
-            nil
-        )
-    }),
-});
-timelineModel.skill_zhugeliang = TimelineModel("skill_zhugeliang", 50, {
-    TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(9, timelineEvent.SkillZhugeliang, {
-        BulletLauncher(
-            bulletTable.Model["bullet_zhugeliang"],
-            nil,
-            0,
-            Vector3.zero,
-            Vector3.zero,
-            Vector3.zero,
-            0.5,
-            20.0,
-            50,
-            1,
-            true, -- justHitTarget
-            bulletTable.Targeting["GetCurrentTarget"],
-            bulletTable.Tween["ArrowStraightTween"],
-            ChaProp.zero,
-            nil
-        )
-    }),
-});
-
-timelineModel.trap_mine = TimelineModel("trap_mine", 10, {
-    TimelineNode(0, timelineEvent.CreateTrap, {
-        AoeLauncher(
-            aoeTable["aoe_mine"], -- model
-            nil,                  -- caster
-            0,                    -- side
-            Vector3.zero,         -- targetPos
-            2500,                 -- duration
-            0,                    -- tickTime
-            0.5,                  -- radius
-            ChaProp.zero,         -- propWhileCast
-            nil                   -- parameters
-        )
-    }),
-});
-
-timelineModel.trap_spike = TimelineModel("trap_spike", 10, {
-    TimelineNode(0, timelineEvent.CreateTrap, {
-        AoeLauncher(
-            aoeTable["aoe_spike"], -- model
-            nil,                   -- caster
-            0,                     -- side
-            Vector3.zero,          -- targetPos
-            2500,                  -- duration
-            0,                     -- tickTime
-            0.5,                   -- radius
-            ChaProp.zero,          -- propWhileCast
-            nil                    -- parameters
-        )
-    }),
-});
-
 timelineModel.skill_tank_a = TimelineModel("skill_tank_a", 50, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
     TimelineNode(0, timelineEvent.TankFindSingleFoe, nil),
@@ -221,8 +78,8 @@ timelineModel.skill_ad_a = TimelineModel("skill_ad_a", 50, {
 -- 周瑜火箭
 timelineModel.skill_fire_arrow = TimelineModel("skill_fire_arrow", 50, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(0, timelineEvent.AdFindSingleFoe, nil),
-    TimelineNode(50, timelineEvent.A, {
+    TimelineNode(0, timelineEvent.FindMultiRandomTargets, nil),
+    TimelineNode(50, timelineEvent.MultiA, {
         BulletLauncher(
             bulletTable.Model["bullet_fire_arrow"],
             nil,
@@ -245,8 +102,8 @@ timelineModel.skill_fire_arrow = TimelineModel("skill_fire_arrow", 50, {
 -- 诸葛亮东风
 timelineModel.skill_dongfeng = TimelineModel("skill_dongfeng", 50, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(0, timelineEvent.AdFindSingleFoe, nil),
-    TimelineNode(50, timelineEvent.A, {
+    TimelineNode(0, timelineEvent.FindMultiRandomTargets, nil),
+    TimelineNode(50, timelineEvent.MultiA, {
         BulletLauncher(
             bulletTable.Model["bullet_dongfeng"],
             nil,
@@ -269,8 +126,8 @@ timelineModel.skill_dongfeng = TimelineModel("skill_dongfeng", 50, {
 -- 庞统火攻
 timelineModel.skill_fire_strike = TimelineModel("skill_fire_strike", 100, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(0, timelineEvent.AdFindSingleFoe, nil),
-    TimelineNode(50, timelineEvent.A, {
+    TimelineNode(0, timelineEvent.FindMultiRandomTargets, nil),
+    TimelineNode(50, timelineEvent.MultiA, {
         BulletLauncher(
             bulletTable.Model["bullet_fire_strike"],
             nil,

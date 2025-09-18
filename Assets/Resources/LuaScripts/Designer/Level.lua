@@ -6,41 +6,89 @@
 
 local levels = {};
 
--- 1~5关
+-- 1~10关
 local basePatterns = {
+    -- MISSION 1
     {
-        -- 2坦克
-        { gridIndex = 0, chaId = "cha_bubing", grade = 1 },
-        { gridIndex = 1, chaId = "cha_bubing", grade = 1 },
+        -- 2步兵
+        { gridIndex = 0, chaId = "cha_bubing", grade = 2 },
+        { gridIndex = 1, chaId = "cha_bubing", grade = 2 },
     },
     {
-        -- 2坦克、1旗手
-        { gridIndex = 0, chaId = "cha_bubing", grade = 1 },
-        { gridIndex = 2, chaId = "cha_bubing", grade = 1 },
-        { gridIndex = 5, chaId = "cha_qishou", grade = 1 },
+        -- 2步兵、1旗手
+        { gridIndex = 0, chaId = "cha_bubing", grade = 3 },
+        { gridIndex = 1, chaId = "cha_bubing", grade = 3 },
+        { gridIndex = 3, chaId = "cha_qishou", grade = 3 },
     },
     {
-        -- 3坦克、1射手
-        { gridIndex = 0, chaId = "cha_bubing",   grade = 1 },
-        { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
-        { gridIndex = 2, chaId = "cha_bubing",   grade = 1 },
-        { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
+        -- 3步兵、1弓兵
+        { gridIndex = 0, chaId = "cha_bubing",   grade = 3 },
+        { gridIndex = 1, chaId = "cha_bubing",   grade = 3 },
+        { gridIndex = 2, chaId = "cha_bubing",   grade = 3 },
+        { gridIndex = 3, chaId = "cha_gongbing", grade = 3 },
     },
     {
-        -- 2骑兵、2射手、1步兵
-        { gridIndex = 0, chaId = "cha_qibing",   grade = 1 },
-        { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
-        { gridIndex = 2, chaId = "cha_qibing",   grade = 1 },
-        { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
-        { gridIndex = 5, chaId = "cha_gongbing", grade = 1 },
+        -- 2骑兵、2弓兵、1步兵
+        { gridIndex = 0, chaId = "cha_qibing",   grade = 4 },
+        { gridIndex = 1, chaId = "cha_bubing",   grade = 4 },
+        { gridIndex = 2, chaId = "cha_qibing",   grade = 4 },
+        { gridIndex = 3, chaId = "cha_gongbing", grade = 4 },
+        { gridIndex = 5, chaId = "cha_gongbing", grade = 4 },
+    },
+    -- MISSION 5
+    {
+        -- 吕布、4骑兵、1鼓手
+        { gridIndex = 0, chaId = "cha_qibing", grade = 5 },
+        { gridIndex = 1, chaId = "cha_lvbu",   grade = 10 },
+        { gridIndex = 2, chaId = "cha_qibing", grade = 5 },
+        { gridIndex = 3, chaId = "cha_qibing", grade = 5 },
+        { gridIndex = 4, chaId = "cha_gushou", grade = 5 },
+        { gridIndex = 5, chaId = "cha_qibing", grade = 5 },
     },
     {
-        -- 1吕布、4骑兵
-        { gridIndex = 0, chaId = "cha_qibing", grade = 1 },
-        { gridIndex = 1, chaId = "cha_lvbu", grade = 1 },
-        { gridIndex = 2, chaId = "cha_qibing", grade = 1 },
-        { gridIndex = 3, chaId = "cha_qibing", grade = 1 },
-        { gridIndex = 5, chaId = "cha_qibing", grade = 1 },
+        -- 2骑兵、2弓兵、1步兵
+        { gridIndex = 0, chaId = "cha_qibing",   grade = 6 },
+        { gridIndex = 1, chaId = "cha_bubing",   grade = 6 },
+        { gridIndex = 2, chaId = "cha_qibing",   grade = 6 },
+        { gridIndex = 3, chaId = "cha_gongbing", grade = 6 },
+        { gridIndex = 5, chaId = "cha_gongbing", grade = 6 },
+    },
+    {
+        -- 3水兵、3护卫
+        { gridIndex = 0, chaId = "cha_shuibing", grade = 7 },
+        { gridIndex = 1, chaId = "cha_shuibing", grade = 7 },
+        { gridIndex = 2, chaId = "cha_shuibing", grade = 7 },
+        { gridIndex = 3, chaId = "cha_huwei",    grade = 7 },
+        { gridIndex = 4, chaId = "cha_huwei",    grade = 7 },
+        { gridIndex = 5, chaId = "cha_huwei",    grade = 7 },
+    },
+    {
+        -- 6水兵
+        { gridIndex = 0, chaId = "cha_shuibing", grade = 8 },
+        { gridIndex = 1, chaId = "cha_shuibing", grade = 8 },
+        { gridIndex = 2, chaId = "cha_shuibing", grade = 8 },
+        { gridIndex = 3, chaId = "cha_shuibing", grade = 8 },
+        { gridIndex = 4, chaId = "cha_shuibing", grade = 8 },
+        { gridIndex = 5, chaId = "cha_shuibing", grade = 8 },
+    },
+    {
+        -- 3水兵、2弓兵、1鼓手
+        { gridIndex = 0, chaId = "cha_shuibing", grade = 9 },
+        { gridIndex = 1, chaId = "cha_shuibing", grade = 9 },
+        { gridIndex = 2, chaId = "cha_shuibing", grade = 9 },
+        { gridIndex = 3, chaId = "cha_gongbing", grade = 9 },
+        { gridIndex = 4, chaId = "cha_gongbing", grade = 9 },
+        { gridIndex = 5, chaId = "cha_gushou",   grade = 9 },
+    },
+    -- MISSION 10
+    {
+        -- 孙权、周瑜、3水兵、1鼓手
+        { gridIndex = 0, chaId = "cha_shuibing", grade = 10 },
+        { gridIndex = 1, chaId = "cha_shuibing", grade = 10 },
+        { gridIndex = 2, chaId = "cha_shuibing", grade = 10 },
+        { gridIndex = 3, chaId = "cha_zhouyu",   grade = 5 },
+        { gridIndex = 4, chaId = "cha_sunquan",  grade = 5 },
+        { gridIndex = 5, chaId = "cha_gushou",   grade = 10 },
     },
 };
 
@@ -92,7 +140,7 @@ local patterns = {
     },
 };
 -- 关卡数据处理
-for idx = 1, 5 do
+for idx = 1, 10 do
     local id = idx;
     local gridInfoPattern = basePatterns[(idx - 1) % #basePatterns + 1];
     local level = {
@@ -108,13 +156,13 @@ for idx = 1, 5 do
         level.gridInfos[i] = {
             gridIndex = gridInfoPattern[i].gridIndex,
             chaId = gridInfoPattern[i].chaId,
-            grade = idx
+            grade = gridInfoPattern[i].grade,
         };
     end
     levels[idx] = level;
 end
 
-for idx = 6, 100 do
+for idx = 11, 100 do
     local id = idx;
     local gridInfoPattern = patterns[(idx - 1) % #patterns + 1];
     local level = {

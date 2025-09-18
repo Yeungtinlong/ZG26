@@ -23,7 +23,6 @@ namespace TheGame.UI
         private void OnEnable()
         {
             SubscribeToEvents();
-            RefreshUI();
             SetDefaultMenu();
         }
 
@@ -62,27 +61,23 @@ namespace TheGame.UI
             {
                 if (navigationMenuType == menu.Type)
                 {
-                    (menu as Component).gameObject.SetActive(true);
+                    (menu as Component)?.gameObject.SetActive(true);
                     menu.Set();
                 }
                 else
                 {
-                    (menu as Component).gameObject.SetActive(false);
+                    (menu as Component)?.gameObject.SetActive(false);
                 }
             }
 
             foreach (var selector in _navigationMenuSelectors)
             {
                 selector.DOKill();
-                selector.transform.DOLocalMoveY(selector.NavigationMenuType == navigationMenuType ? 100f : 0f, 0.2f);
+                selector.transform.DOLocalMoveY(selector.NavigationMenuType == navigationMenuType ? 40f : 0f, 0.2f);
                 selector.transform.DOScale(selector.NavigationMenuType == navigationMenuType
                     ? Vector3.one * 1.2f
                     : Vector3.one, 0.2f);
             }
-        }
-
-        private void RefreshUI()
-        {
         }
 
         private void SetDefaultMenu()

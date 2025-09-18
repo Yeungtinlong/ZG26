@@ -31,7 +31,7 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 21, 2, 2);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 22, 2, 2);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "CreateBullet", _m_CreateBullet_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "CreateAoe", _m_CreateAoe_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "RemoveAoe", _m_RemoveAoe_xlua_st_);
@@ -49,6 +49,7 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetMouseWorldPosition", _m_GetMouseWorldPosition_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "RandomGetCharacterOfType", _m_RandomGetCharacterOfType_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "RandomGetCharacter", _m_RandomGetCharacter_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "RandomGetCharacters", _m_RandomGetCharacters_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "RandomGetCharactersOfType", _m_RandomGetCharactersOfType_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "MeleeFindSingleFoe", _m_MeleeFindSingleFoe_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "GetAllCharacters", _m_GetAllCharacters_xlua_st_);
@@ -552,6 +553,36 @@ namespace XLua.CSObjectWrap
                     bool _includeAlly = LuaAPI.lua_toboolean(L, 3);
                     
                         var gen_ret = TheGame.GM.GameLuaInterface.RandomGetCharacter( _side, _includeFoe, _includeAlly );
+                        translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_RandomGetCharacters_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    int _side = LuaAPI.xlua_tointeger(L, 1);
+                    bool _includeFoe = LuaAPI.lua_toboolean(L, 2);
+                    bool _includeAlly = LuaAPI.lua_toboolean(L, 3);
+                    int _maxCount = LuaAPI.xlua_tointeger(L, 4);
+                    
+                        var gen_ret = TheGame.GM.GameLuaInterface.RandomGetCharacters( _side, _includeFoe, _includeAlly, _maxCount );
                         translator.Push(L, gen_ret);
                     
                     

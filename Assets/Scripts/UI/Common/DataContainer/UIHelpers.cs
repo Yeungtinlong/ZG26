@@ -11,6 +11,13 @@ namespace TheGame.UI
             List<TContainer> containerList, List<TData> dataList,
             Action<TContainer, TData> dataSetter) where TContainer : Component
         {
+            if (dataList == null)
+            {
+                for (int i = 0; i < containerList.Count; i++)
+                    containerList[i].gameObject.SetActive(false);
+                return;
+            }
+
             if (parent.childCount != containerList.Count)
             {
                 containerList.Clear();

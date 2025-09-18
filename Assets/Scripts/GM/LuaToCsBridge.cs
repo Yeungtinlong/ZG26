@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MBF;
 using TheGame.Common;
+using Unity.Burst.Intrinsics;
 using XLua;
 
 namespace TheGame.GM
@@ -20,6 +21,7 @@ namespace TheGame.GM
         public static Dictionary<int, DailyModel> DailyTable;
         public static Dictionary<string, RoleDefaultEquipModel> DefaultEquipTable;
         public static Dictionary<string, StrategyModel> StrategyTable;
+        public static Dictionary<string, MissionModel> MissionTable;
         public static string StoryText;
 
         private static void Print(string msg)
@@ -72,7 +74,10 @@ namespace TheGame.GM
 
             StrategyTable = _luaEnv.Global.GetInPath<Dictionary<string, StrategyModel>>("Game.Designer.Strategy");
             Print($"[LuaConfigToCsInit] StrategyTable {StrategyTable.Count} success");
-            
+
+            MissionTable = _luaEnv.Global.GetInPath<List<MissionModel>>("Game.Designer.Mission").ToDictionary(k => k.id, v => v);
+            Print($"[LuaConfigToCsInit] MissionTable {MissionTable.Count} success");
+
             DesignerFormula.Init();
         }
     }

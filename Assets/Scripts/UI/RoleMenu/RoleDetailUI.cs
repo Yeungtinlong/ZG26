@@ -39,10 +39,10 @@ namespace TheGame.UI
         
         private static readonly Dictionary<CharacterType, string> _typeTexts = new Dictionary<CharacterType, string>
         {
-            { CharacterType.Tank, "坦克" },
+            { CharacterType.Tank, "护卫" },
             { CharacterType.Warrior, "战士" },
-            { CharacterType.Carry, "法师" },
-            { CharacterType.Support, "特殊" },
+            { CharacterType.Carry, "军师" },
+            { CharacterType.Support, "主公" },
             { CharacterType.Assassin, "刺客" },
         };
 

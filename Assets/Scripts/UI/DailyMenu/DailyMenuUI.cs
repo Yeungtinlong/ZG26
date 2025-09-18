@@ -55,7 +55,7 @@ namespace TheGame.UI
         private void Daily_OnClick(DailyElementUI element)
         {
             if ((GameRuntimeData.Instance.SigninDays % 7) + 1 != element.Day) return;
-            if ((DateTime.Now - GameRuntimeData.Instance.LatestSigninTime).TotalDays < 1) return;
+            if (DateTime.Now.Date == GameRuntimeData.Instance.LatestSigninTime.Date) return;
 
             GameRuntimeData.Instance.LatestSigninTime = DateTime.Now;
             GameRuntimeData.Instance.SigninDays++;
