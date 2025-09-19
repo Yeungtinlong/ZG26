@@ -39,9 +39,9 @@ local model = {
         onHit = bullet_onHit["CommonAoeBulletHit"],
         onHitParams = {}
     },
-    bullet_qianghua = {
-        id = "bullet_qianghua",
-        prefab = "Bullet枪划",
+    bullet_qianlongji = {
+        id = "bullet_qianlongji",
+        prefab = "Bullet潜龙击",
         hitFoe = true,
         hitAlly = false,
         sameTargetDelay = 50,

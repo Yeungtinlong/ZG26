@@ -154,7 +154,7 @@ timelineModel.skill_zhaoyun = TimelineModel("skill_zhaoyun", 50, {
     TimelineNode(0, timelineEvent.MoveToFrontOfTarget, nil),
     TimelineNode(25, timelineEvent.A, {
         BulletLauncher(
-            bulletTable.Model["bullet_qianghua"],
+            bulletTable.Model["bullet_qianlongji"],
             nil,
             0,
             Vector3.zero,
