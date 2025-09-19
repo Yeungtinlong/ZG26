@@ -4,17 +4,15 @@ local TimelineNode = CS.MBF.TimelineNode;
 local ItemStack = CS.TheGame.ItemStack;
 
 local function GetItems(timelineObj, params)
-    local itemsWillGet = params[0];
-    for _, itemStack in pairs(itemsWillGet) do
-        GameLuaInterface.GetItem(itemStack.id, itemStack.count);
+    for i = 0, params.Length - 1 do
+        GameLuaInterface.GetItem(params[i].id, params[i].count);
     end
     return true;
 end
 
 local function GetRoles(timelineObj, params)
-    local chaIds = params[0];
-    for _, chaId in pairs(chaIds) do
-        GameLuaInterface.UnlockCharacter(chaId);
+    for i = 0, params.Length - 1 do
+        GameLuaInterface.UnlockCharacter(params[i]);
     end
     return true;
 end

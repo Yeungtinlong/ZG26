@@ -43,7 +43,7 @@ onHit.CommonAoeBulletHit = function(bs, target)
     GameLuaInterface.CreateDamage(
         bs.caster.gameObject,
         target,
-        { bullet = math.ceil(bs.propWhileCast.atk * 0.5) },
+        { bullet = math.ceil(bs.propWhileCast.atk) },
         { DamageInfoTag.DirectHurt }
     );
 

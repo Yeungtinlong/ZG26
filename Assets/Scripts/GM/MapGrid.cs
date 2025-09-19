@@ -14,6 +14,14 @@ namespace TheGame.GM
         [SerializeField] private bool _isReadyGrid;
         public bool IsReadyGrid => _isReadyGrid;
 
+        [SerializeField] public Vector2Int _gridPosition;
+
+        public Vector2Int GridPosition
+        {
+            get => _gridPosition;
+            set => _gridPosition = value;
+        }
+
         public CharacterState Character { get; set; }
     }
 }

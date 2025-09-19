@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 0
-  _iphoneCameraSize: 6
+  _iphoneCameraSize: 7.5
   _ipadCameraSize: 5
   _orientation: 1
 --- !u!1 &1058784450

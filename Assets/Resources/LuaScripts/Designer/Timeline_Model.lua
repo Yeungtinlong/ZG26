@@ -28,9 +28,9 @@ local timelineModel = {};
 
 timelineModel.skill_tank_a = TimelineModel("skill_tank_a", 50, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(0, timelineEvent.TankFindSingleFoe, nil),
+    TimelineNode(0, timelineEvent.GetFoeRowFirst, nil),
     TimelineNode(0, timelineEvent.MoveToFrontOfTarget, nil),
-    TimelineNode(10, timelineEvent.A, {
+    TimelineNode(25, timelineEvent.A, {
         BulletLauncher(
             bulletTable.Model["bullet_a"],
             nil,
@@ -54,7 +54,7 @@ timelineModel.skill_tank_a = TimelineModel("skill_tank_a", 50, {
 -- 普通adc
 timelineModel.skill_ad_a = TimelineModel("skill_ad_a", 50, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(0, timelineEvent.AdFindSingleFoe, nil),
+    TimelineNode(0, timelineEvent.GetFoeRowFirst, nil),
     TimelineNode(50, timelineEvent.A, {
         BulletLauncher(
             bulletTable.Model["bullet_arrow"],
@@ -150,9 +150,9 @@ timelineModel.skill_fire_strike = TimelineModel("skill_fire_strike", 100, {
 -- 赵云枪划
 timelineModel.skill_zhaoyun = TimelineModel("skill_zhaoyun", 50, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(0, timelineEvent.TankFindSingleFoe, nil),
+    TimelineNode(0, timelineEvent.GetFoeRowFirst, nil),
     TimelineNode(0, timelineEvent.MoveToFrontOfTarget, nil),
-    TimelineNode(10, timelineEvent.A, {
+    TimelineNode(25, timelineEvent.A, {
         BulletLauncher(
             bulletTable.Model["bullet_qianghua"],
             nil,
@@ -176,9 +176,9 @@ timelineModel.skill_zhaoyun = TimelineModel("skill_zhaoyun", 50, {
 -- 青龙旋风斩
 timelineModel.skill_qinglong = TimelineModel("skill_qinglong", 50, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(0, timelineEvent.TankFindSingleFoe, nil),
+    TimelineNode(0, timelineEvent.GetFoeRowFirst, nil),
     TimelineNode(0, timelineEvent.MoveToFrontOfTarget, nil),
-    TimelineNode(10, timelineEvent.A, {
+    TimelineNode(25, timelineEvent.A, {
         BulletLauncher(
             bulletTable.Model["bullet_qinglong"],
             nil,
@@ -203,7 +203,7 @@ timelineModel.skill_qinglong = TimelineModel("skill_qinglong", 50, {
 timelineModel.skill_heal = TimelineModel("skill_heal", 150, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
     TimelineNode(0, timelineEvent.FindLowestHealthAlly, nil),
-    TimelineNode(10, timelineEvent.A, {
+    TimelineNode(25, timelineEvent.A, {
         BulletLauncher(
             bulletTable.Model["bullet_heal"],
             nil,
@@ -223,7 +223,7 @@ timelineModel.skill_heal = TimelineModel("skill_heal", 150, {
         )
     }),
     TimelineNode(50, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(50, timelineEvent.TankFindSingleFoe, nil),
+    TimelineNode(50, timelineEvent.GetFoeRowFirst, nil),
     TimelineNode(50, timelineEvent.MoveToFrontOfTarget, nil),
     TimelineNode(100, timelineEvent.A, {
         BulletLauncher(
@@ -248,7 +248,7 @@ timelineModel.skill_heal = TimelineModel("skill_heal", 150, {
 });
 timelineModel.skill_rising = TimelineModel("skill_rising", 150, {
     TimelineNode(0, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(0, timelineEvent.FindLowestHealthAlly, nil),
+    TimelineNode(0, timelineEvent.FindHighestAttackAlly, nil),
     TimelineNode(10, timelineEvent.A, {
         BulletLauncher(
             bulletTable.Model["bullet_rising"],
@@ -269,7 +269,7 @@ timelineModel.skill_rising = TimelineModel("skill_rising", 150, {
         )
     }),
     TimelineNode(50, timelineEvent.CasterPlayAnim, { "attack" }),
-    TimelineNode(50, timelineEvent.TankFindSingleFoe, nil),
+    TimelineNode(50, timelineEvent.GetFoeRowFirst, nil),
     TimelineNode(50, timelineEvent.MoveToFrontOfTarget, nil),
     TimelineNode(100, timelineEvent.A, {
         BulletLauncher(

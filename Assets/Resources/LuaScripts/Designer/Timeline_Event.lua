@@ -101,6 +101,8 @@ function timelineEvent.MultiA(timelineObj, args)
     if (skillObj.targets == nil) then
         return;
     end
+    -- 攻击力根据敌人数量均摊
+    bl.propWhileCast.atk = math.ceil(bl.propWhileCast.atk * 1.2 / skillObj.targets.Count + 0.5);
     for _, target in pairs(skillObj.targets) do
         if (not _G.Utils.IsNil(target) and not target.IsDead) then
             bl.launchDir = target.transform.position - bl.launchPos;
@@ -135,8 +137,8 @@ function timelineEvent.FindMultiRandomTargets(timelineObj, args)
     local skillObj = timelineObj.source;
     local characters = GameLuaInterface.RandomGetCharacters(cs.side, true, false, 3);
     skillObj.targets:Clear();
-    for _, cs in pairs(characters) do
-        skillObj.targets:Add(cs);
+    for _, t in pairs(characters) do
+        skillObj.targets:Add(t);
     end
 end
 
@@ -166,13 +168,45 @@ function timelineEvent.AdFindSingleFoe(timelineObj, args)
 end
 
 function timelineEvent.FindLowestHealthAlly(timelineObj, args)
+    local caster = GetAliveCaster(timelineObj);
+    if (caster == nil) then
+        return;
+    end
+    local skillObj = timelineObj.source;
+    local allCharacters = GameLuaInterface.GetAllCharacters();
+    local currentTarget = caster;
+    for _, t in pairs(allCharacters) do
+        if (not _G.Utils.IsNil(t) and (not t.IsDead) and caster.side == t.side and (t.resource.hp < currentTarget.resource.hp)) then
+            currentTarget = t;
+        end
+    end
+    skillObj.mainTarget = currentTarget;
+end
+
+function timelineEvent.FindHighestAttackAlly(timelineObj, args)
+    local caster = GetAliveCaster(timelineObj);
+    if (caster == nil) then
+        return;
+    end
+    local skillObj = timelineObj.source;
+    local allCharacters = GameLuaInterface.GetAllCharacters();
+    local currentTarget = nil;
+    for _, t in pairs(allCharacters) do
+        if ((not _G.Utils.IsNil(t)) and (not t.IsDead) and (caster.side == t.side) and (not (t == caster)) and (currentTarget == nil or t.Prop.atk > currentTarget.Prop.atk)) then
+            currentTarget = t;
+        end
+    end
+    skillObj.mainTarget = currentTarget;
+end
+
+function timelineEvent.GetFoeRowFirst(timelineObj, args)
     local cs = GetAliveCaster(timelineObj);
     if (cs == nil) then
         return;
     end
     local skillObj = timelineObj.source;
-    local currentTarget = GameLuaInterface.RandomGetCharacter(cs.side, false, true);
-    skillObj.mainTarget = currentTarget;
+    local gridPos = cs.Grid.GridPosition;
+    skillObj.mainTarget = GameLuaInterface.GetFoeRowFirst(gridPos.x, gridPos.y, cs.side);
 end
 
 function timelineEvent.MoveToFrontOfTarget(timelineObj, args)

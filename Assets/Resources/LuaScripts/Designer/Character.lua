@@ -23,7 +23,7 @@ local character = {
         Prefab = "刘备",
         SkillIds = { "skill_liubei" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(12, 36, 0, 0, 12), ChaProp.zero }
     },
     {
@@ -36,7 +36,7 @@ local character = {
         Prefab = "关羽",
         SkillIds = { "skill_guanyu" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(24, 13, 0, 0, 13), ChaProp.zero }
     },
     {
@@ -49,7 +49,7 @@ local character = {
         Prefab = "张飞",
         SkillIds = { "skill_zhangfei" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(36, 12, 0, 0, 12), ChaProp.zero }
     },
     {
@@ -62,7 +62,7 @@ local character = {
         Prefab = "赵云",
         SkillIds = { "skill_zhaoyun" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(12, 24, 0, 0, 24), ChaProp.zero }
     },
     {
@@ -75,7 +75,7 @@ local character = {
         Prefab = "诸葛亮",
         SkillIds = { "skill_zhugeliang" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(14, 42, 20, 10, 14), ChaProp.zero }
     },
     {
@@ -88,7 +88,7 @@ local character = {
         Prefab = "庞统",
         SkillIds = { "skill_pangtong" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(12, 24, 0, 0, 12), ChaProp.zero }
     },
     {
@@ -101,7 +101,7 @@ local character = {
         Prefab = "孙权",
         SkillIds = { "skill_sunquan" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(12, 24, 0, 0, 12), ChaProp.zero }
     },
     {
@@ -114,7 +114,7 @@ local character = {
         Prefab = "周瑜",
         SkillIds = { "skill_zhouyu" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(14, 42, 20, 10, 14), ChaProp.zero }
     },
     {
@@ -127,7 +127,7 @@ local character = {
         Prefab = "夏侯惇",
         SkillIds = { "skill_xiahoudun" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(30, 10, 0, 0, 10), ChaProp.zero }
     },
     {
@@ -140,7 +140,7 @@ local character = {
         Prefab = "吕布",
         SkillIds = { "skill_lvbu" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(32, 24, 0, 0, 24), ChaProp.zero }
     },
 
@@ -155,7 +155,7 @@ local character = {
         Prefab = "步兵小兵",
         SkillIds = { "skill_bubing" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(20, 15, 0, 0, 15), ChaProp.zero }
     },
     {
@@ -168,7 +168,7 @@ local character = {
         Prefab = "旗手",
         SkillIds = { "skill_qishou" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(10, 30, 0, 0, 10), ChaProp.zero }
     },
     {
@@ -181,7 +181,7 @@ local character = {
         Prefab = "三国弓兵",
         SkillIds = { "skill_gongbing" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(10, 30, 0, 0, 10), ChaProp.zero }
     },
     {
@@ -194,7 +194,7 @@ local character = {
         Prefab = "鼓手",
         SkillIds = { "skill_gushou" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(10, 30, 0, 0, 10), ChaProp.zero }
     },
     {
@@ -207,7 +207,7 @@ local character = {
         Prefab = "吴国水兵",
         SkillIds = { "skill_shuibing" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(10, 20, 0, 0, 20), ChaProp.zero }
     },
     {
@@ -220,7 +220,7 @@ local character = {
         Prefab = "重装护卫",
         SkillIds = { "skill_huwei" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(30, 10, 0, 0, 10), ChaProp.zero }
     },
     {
@@ -233,7 +233,7 @@ local character = {
         Prefab = "骑兵",
         SkillIds = { "skill_qibing" },
         --- hp, atk, rng, skillSpd, speed
-        BaseProp = ChaProp(200, 100, 0, 0, 100),
+        BaseProp = ChaProp(500, 100, 0, 0, 100),
         PropGrowth = { ChaProp(10, 20, 0, 0, 20), ChaProp.zero }
     },
 };

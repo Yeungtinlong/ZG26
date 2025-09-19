@@ -96,8 +96,6 @@ namespace TheGame.GM
                 cs.CastSkill(0);
                 yield return new WaitForSeconds(cs.skills[0].model.effect.duration * Time.fixedDeltaTime + k_TurnBreak);
             }
-
-            yield return new WaitForSeconds(k_GameOverBreak);
         }
     }
 }

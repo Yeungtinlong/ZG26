@@ -35,6 +35,13 @@ namespace TheGame.CoreModule
             }
         }
 
+        public void Set(float height)
+        {
+            _iphoneCameraSize = height;
+            _ipadCameraSize = height;
+            MainCamera.orthographicSize = _maxSize;
+        }
+
         private float _minSize => 5.5f;
         private float _scale = 1f;
 
@@ -45,13 +52,13 @@ namespace TheGame.CoreModule
 
         private bool _isMoving = false;
         private Vector3 _targetPos;
-        
+
         public void MoveCamera(Vector3 targetPos)
         {
             _isMoving = true;
             _targetPos = GetSuggestCameraPos(targetPos);
         }
-        
+
         public void MoveCameraVec(Vector3 targetVec)
         {
             _isMoving = true;
@@ -72,7 +79,7 @@ namespace TheGame.CoreModule
         {
             float widthHalf = MainCamera.orthographicSize * MainCamera.aspect;
             float heightHalf = MainCamera.orthographicSize;
-            
+
             if (targetPos.x + widthHalf > _mapWidth * 0.5f)
                 targetPos = new Vector3(_mapWidth * 0.5f - widthHalf, targetPos.y, targetPos.z);
 
@@ -87,7 +94,7 @@ namespace TheGame.CoreModule
 
             return new Vector3(targetPos.x, targetPos.y, transform.position.z);
         }
-        
+
         public void Awake()
         {
             MainCamera = GetComponentInChildren<Camera>();
@@ -96,11 +103,6 @@ namespace TheGame.CoreModule
         private void OnDisable()
         {
             _sequence?.Kill();
-        }
-
-        private void Start()
-        {
-            MainCamera.orthographicSize = _maxSize;
         }
 
         public void SetCameraScale(float targetScale, bool smooth = true)

@@ -43,11 +43,11 @@ namespace TheGame.UI
                 (uiElement, data) =>
                 {
                     uiElement.Set(data.id,
-                    data.name,
-                    data.description,
-                    data.icon,
-                    GameRuntimeData.Instance.CompletedMissions.Contains(data.id),
-                    data.showRewards,
+                        data.name,
+                        data.description,
+                        data.icon,
+                        GameRuntimeData.Instance.CompletedMissions.Contains(data.id),
+                        data.showRewards,
                         Element_OnClick);
                 });
         }
@@ -63,11 +63,13 @@ namespace TheGame.UI
                 UIManager.Instance.OpenUI<MessagePopupUI>().Set("任务条件未达成");
                 return;
             }
+
             StringBuilder stringBuilder = new StringBuilder();
             model.showRewards.ForEach(r => stringBuilder.Append($"{LuaToCsBridge.ItemTable[r.id].Name}x{r.count},"));
             string text = stringBuilder.ToString().TrimEnd(',');
             UIManager.Instance.OpenUI<MessagePopupUI>().Set($"任务{model.name}完成，获得奖励{text}");
             GameRuntimeData.Instance.CompletedMissions.Add(model.id);
+            model.onClaim.doEvent?.Invoke(null, model.onClaim.eventParams);
             GameRuntimeData.SaveGame();
             RefreshUI();
         }

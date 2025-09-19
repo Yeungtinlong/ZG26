@@ -6,137 +6,194 @@
 
 local levels = {};
 
+local mapPattern = {
+    "Map_1",
+    "Map_2",
+    "Map_3",
+    "Map_4",
+    "Map_5",
+};
+
 -- 1~10关
 local basePatterns = {
     -- MISSION 1
     {
         -- 2步兵
-        { gridIndex = 0, chaId = "cha_bubing", grade = 2 },
-        { gridIndex = 1, chaId = "cha_bubing", grade = 2 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_bubing", grade = 2 },
+            { gridIndex = 1, chaId = "cha_bubing", grade = 2 },
+        },
+        mapId = nil,
     },
     {
         -- 2步兵、1旗手
-        { gridIndex = 0, chaId = "cha_bubing", grade = 3 },
-        { gridIndex = 1, chaId = "cha_bubing", grade = 3 },
-        { gridIndex = 3, chaId = "cha_qishou", grade = 3 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_bubing", grade = 3 },
+            { gridIndex = 1, chaId = "cha_bubing", grade = 3 },
+            { gridIndex = 3, chaId = "cha_qishou", grade = 3 },
+        },
+        mapId = nil,
     },
     {
         -- 3步兵、1弓兵
-        { gridIndex = 0, chaId = "cha_bubing",   grade = 3 },
-        { gridIndex = 1, chaId = "cha_bubing",   grade = 3 },
-        { gridIndex = 2, chaId = "cha_bubing",   grade = 3 },
-        { gridIndex = 3, chaId = "cha_gongbing", grade = 3 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_bubing",   grade = 3 },
+            { gridIndex = 1, chaId = "cha_bubing",   grade = 3 },
+            { gridIndex = 2, chaId = "cha_bubing",   grade = 3 },
+            { gridIndex = 3, chaId = "cha_gongbing", grade = 3 },
+        },
+        mapId = nil,
     },
     {
         -- 2骑兵、2弓兵、1步兵
-        { gridIndex = 0, chaId = "cha_qibing",   grade = 4 },
-        { gridIndex = 1, chaId = "cha_bubing",   grade = 4 },
-        { gridIndex = 2, chaId = "cha_qibing",   grade = 4 },
-        { gridIndex = 3, chaId = "cha_gongbing", grade = 4 },
-        { gridIndex = 5, chaId = "cha_gongbing", grade = 4 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_qibing",   grade = 4 },
+            { gridIndex = 1, chaId = "cha_bubing",   grade = 4 },
+            { gridIndex = 2, chaId = "cha_qibing",   grade = 4 },
+            { gridIndex = 3, chaId = "cha_gongbing", grade = 4 },
+            { gridIndex = 5, chaId = "cha_gongbing", grade = 4 },
+        },
+        mapId = nil,
     },
     -- MISSION 5
     {
         -- 吕布、4骑兵、1鼓手
-        { gridIndex = 0, chaId = "cha_qibing", grade = 5 },
-        { gridIndex = 1, chaId = "cha_lvbu",   grade = 10 },
-        { gridIndex = 2, chaId = "cha_qibing", grade = 5 },
-        { gridIndex = 3, chaId = "cha_qibing", grade = 5 },
-        { gridIndex = 4, chaId = "cha_gushou", grade = 5 },
-        { gridIndex = 5, chaId = "cha_qibing", grade = 5 },
+        grids = {
+            --{ gridIndex = 0, chaId = "cha_qibing", grade = 5 },
+            { gridIndex = 0, chaId = "cha_lvbu", grade = 10 },
+            --{ gridIndex = 2, chaId = "cha_qibing", grade = 5 },
+            --{ gridIndex = 3, chaId = "cha_qibing", grade = 5 },
+            --{ gridIndex = 4, chaId = "cha_gushou", grade = 5 },
+            --{ gridIndex = 5, chaId = "cha_qibing", grade = 5 },
+        },
+        mapId = "Map_hulaoguan",
     },
     {
         -- 2骑兵、2弓兵、1步兵
-        { gridIndex = 0, chaId = "cha_qibing",   grade = 6 },
-        { gridIndex = 1, chaId = "cha_bubing",   grade = 6 },
-        { gridIndex = 2, chaId = "cha_qibing",   grade = 6 },
-        { gridIndex = 3, chaId = "cha_gongbing", grade = 6 },
-        { gridIndex = 5, chaId = "cha_gongbing", grade = 6 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_qibing",   grade = 6 },
+            { gridIndex = 1, chaId = "cha_bubing",   grade = 6 },
+            { gridIndex = 2, chaId = "cha_qibing",   grade = 6 },
+            { gridIndex = 3, chaId = "cha_gongbing", grade = 6 },
+            { gridIndex = 5, chaId = "cha_gongbing", grade = 6 },
+        },
+        mapId = nil,
     },
     {
         -- 3水兵、3护卫
-        { gridIndex = 0, chaId = "cha_shuibing", grade = 7 },
-        { gridIndex = 1, chaId = "cha_shuibing", grade = 7 },
-        { gridIndex = 2, chaId = "cha_shuibing", grade = 7 },
-        { gridIndex = 3, chaId = "cha_huwei",    grade = 7 },
-        { gridIndex = 4, chaId = "cha_huwei",    grade = 7 },
-        { gridIndex = 5, chaId = "cha_huwei",    grade = 7 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_huwei",    grade = 7 },
+            { gridIndex = 1, chaId = "cha_huwei",    grade = 7 },
+            { gridIndex = 2, chaId = "cha_huwei",    grade = 7 },
+            { gridIndex = 3, chaId = "cha_shuibing", grade = 7 },
+            { gridIndex = 4, chaId = "cha_shuibing", grade = 7 },
+            { gridIndex = 5, chaId = "cha_shuibing", grade = 7 },
+        },
+        mapId = nil,
     },
+    -- MISSION 8
     {
-        -- 6水兵
-        { gridIndex = 0, chaId = "cha_shuibing", grade = 8 },
-        { gridIndex = 1, chaId = "cha_shuibing", grade = 8 },
-        { gridIndex = 2, chaId = "cha_shuibing", grade = 8 },
-        { gridIndex = 3, chaId = "cha_shuibing", grade = 8 },
-        { gridIndex = 4, chaId = "cha_shuibing", grade = 8 },
-        { gridIndex = 5, chaId = "cha_shuibing", grade = 8 },
+        -- 1夏侯惇
+        grids = {
+            { gridIndex = 0, chaId = "cha_qibing",    grade = 8 },
+            { gridIndex = 1, chaId = "cha_qibing",    grade = 8 },
+            { gridIndex = 2, chaId = "cha_qibing",    grade = 8 },
+            { gridIndex = 3, chaId = "cha_qibing",    grade = 8 },
+            { gridIndex = 4, chaId = "cha_xiahoudun", grade = 10 },
+            { gridIndex = 5, chaId = "cha_qibing",    grade = 8 },
+        },
+        mapId = nil,
     },
     {
         -- 3水兵、2弓兵、1鼓手
-        { gridIndex = 0, chaId = "cha_shuibing", grade = 9 },
-        { gridIndex = 1, chaId = "cha_shuibing", grade = 9 },
-        { gridIndex = 2, chaId = "cha_shuibing", grade = 9 },
-        { gridIndex = 3, chaId = "cha_gongbing", grade = 9 },
-        { gridIndex = 4, chaId = "cha_gongbing", grade = 9 },
-        { gridIndex = 5, chaId = "cha_gushou",   grade = 9 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_shuibing", grade = 9 },
+            { gridIndex = 1, chaId = "cha_shuibing", grade = 9 },
+            { gridIndex = 2, chaId = "cha_shuibing", grade = 9 },
+            { gridIndex = 3, chaId = "cha_gongbing", grade = 9 },
+            { gridIndex = 4, chaId = "cha_gongbing", grade = 9 },
+            { gridIndex = 5, chaId = "cha_gushou",   grade = 9 },
+        },
+        mapId = nil,
     },
     -- MISSION 10
     {
         -- 孙权、周瑜、3水兵、1鼓手
-        { gridIndex = 0, chaId = "cha_shuibing", grade = 10 },
-        { gridIndex = 1, chaId = "cha_shuibing", grade = 10 },
-        { gridIndex = 2, chaId = "cha_shuibing", grade = 10 },
-        { gridIndex = 3, chaId = "cha_zhouyu",   grade = 5 },
-        { gridIndex = 4, chaId = "cha_sunquan",  grade = 5 },
-        { gridIndex = 5, chaId = "cha_gushou",   grade = 10 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_shuibing", grade = 10 },
+            { gridIndex = 1, chaId = "cha_shuibing", grade = 10 },
+            { gridIndex = 2, chaId = "cha_shuibing", grade = 10 },
+            { gridIndex = 3, chaId = "cha_shuibing", grade = 10 },
+            { gridIndex = 4, chaId = "cha_shuibing", grade = 10 },
+            { gridIndex = 5, chaId = "cha_shuibing", grade = 10 },
+            { gridIndex = 6, chaId = "cha_zhouyu",   grade = 3 },
+            { gridIndex = 7, chaId = "cha_sunquan",  grade = 3 },
+            { gridIndex = 8, chaId = "cha_gushou",   grade = 10 },
+        },
+        mapId = nil,
     },
 };
 
 local patterns = {
     {
         -- 3步兵、2弓兵、1旗手
-        { gridIndex = 0, chaId = "cha_bubing",   grade = 1 },
-        { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
-        { gridIndex = 2, chaId = "cha_bubing",   grade = 1 },
-        { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
-        { gridIndex = 4, chaId = "cha_qishou",   grade = 1 },
-        { gridIndex = 5, chaId = "cha_gongbing", grade = 1 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_bubing",   grade = 1 },
+            { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
+            { gridIndex = 2, chaId = "cha_bubing",   grade = 1 },
+            { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
+            { gridIndex = 4, chaId = "cha_qishou",   grade = 1 },
+            { gridIndex = 5, chaId = "cha_gongbing", grade = 1 },
+        },
+        mapId = nil,
     },
     {
         -- 2骑兵、1步兵，1弓兵、1旗手、1鼓手
-        { gridIndex = 0, chaId = "cha_qibing",   grade = 1 },
-        { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
-        { gridIndex = 2, chaId = "cha_qibing",   grade = 1 },
-        { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
-        { gridIndex = 4, chaId = "cha_qishou",   grade = 1 },
-        { gridIndex = 5, chaId = "cha_gushou",   grade = 1 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_qibing",   grade = 1 },
+            { gridIndex = 1, chaId = "cha_bubing",   grade = 1 },
+            { gridIndex = 2, chaId = "cha_qibing",   grade = 1 },
+            { gridIndex = 3, chaId = "cha_gongbing", grade = 1 },
+            { gridIndex = 4, chaId = "cha_qishou",   grade = 1 },
+            { gridIndex = 5, chaId = "cha_gushou",   grade = 1 },
+        },
+        mapId = nil,
     },
     {
         -- 3护卫、1骑兵、1弓兵、1旗手
-        { gridIndex = 0, chaId = "cha_huwei",    grade = 1 },
-        { gridIndex = 1, chaId = "cha_huwei",    grade = 1 },
-        { gridIndex = 2, chaId = "cha_huwei",    grade = 1 },
-        { gridIndex = 3, chaId = "cha_qibing",   grade = 1 },
-        { gridIndex = 4, chaId = "cha_gongbing", grade = 1 },
-        { gridIndex = 5, chaId = "cha_qishou",   grade = 1 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_huwei",    grade = 1 },
+            { gridIndex = 1, chaId = "cha_huwei",    grade = 1 },
+            { gridIndex = 2, chaId = "cha_huwei",    grade = 1 },
+            { gridIndex = 3, chaId = "cha_qibing",   grade = 1 },
+            { gridIndex = 4, chaId = "cha_gongbing", grade = 1 },
+            { gridIndex = 5, chaId = "cha_qishou",   grade = 1 },
+        },
+        mapId = nil,
     },
     {
         -- 6水兵
-        { gridIndex = 0, chaId = "cha_shuibing", grade = 1 },
-        { gridIndex = 1, chaId = "cha_shuibing", grade = 1 },
-        { gridIndex = 2, chaId = "cha_shuibing", grade = 1 },
-        { gridIndex = 3, chaId = "cha_shuibing", grade = 1 },
-        { gridIndex = 4, chaId = "cha_shuibing", grade = 1 },
-        { gridIndex = 5, chaId = "cha_shuibing", grade = 1 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_shuibing", grade = 1 },
+            { gridIndex = 1, chaId = "cha_shuibing", grade = 1 },
+            { gridIndex = 2, chaId = "cha_shuibing", grade = 1 },
+            { gridIndex = 3, chaId = "cha_shuibing", grade = 1 },
+            { gridIndex = 4, chaId = "cha_shuibing", grade = 1 },
+            { gridIndex = 5, chaId = "cha_shuibing", grade = 1 },
+        },
+        mapId = nil,
     },
     {
         -- 3护卫、1骑兵、1弓兵、1鼓手
-        { gridIndex = 0, chaId = "cha_huwei",    grade = 1 },
-        { gridIndex = 1, chaId = "cha_huwei",    grade = 1 },
-        { gridIndex = 2, chaId = "cha_huwei",    grade = 1 },
-        { gridIndex = 3, chaId = "cha_qibing",   grade = 1 },
-        { gridIndex = 4, chaId = "cha_gongbing", grade = 1 },
-        { gridIndex = 5, chaId = "cha_gushou",   grade = 1 },
+        grids = {
+            { gridIndex = 0, chaId = "cha_huwei",    grade = 1 },
+            { gridIndex = 1, chaId = "cha_huwei",    grade = 1 },
+            { gridIndex = 2, chaId = "cha_huwei",    grade = 1 },
+            { gridIndex = 3, chaId = "cha_qibing",   grade = 1 },
+            { gridIndex = 4, chaId = "cha_gongbing", grade = 1 },
+            { gridIndex = 5, chaId = "cha_gushou",   grade = 1 },
+        },
+        mapId = nil,
     },
 };
 -- 关卡数据处理
@@ -150,13 +207,17 @@ for idx = 1, 10 do
             { id = "item_currency_coin", count = 100 * idx }
         },
         gridInfos = {},
+        mapId = gridInfoPattern.mapId,
     };
+    if (level.mapId == nil) then
+        level.mapId = mapPattern[(idx - 1) % #mapPattern + 1];
+    end
 
-    for i = 1, #gridInfoPattern do
+    for i = 1, #gridInfoPattern.grids do
         level.gridInfos[i] = {
-            gridIndex = gridInfoPattern[i].gridIndex,
-            chaId = gridInfoPattern[i].chaId,
-            grade = gridInfoPattern[i].grade,
+            gridIndex = gridInfoPattern.grids[i].gridIndex,
+            chaId = gridInfoPattern.grids[i].chaId,
+            grade = gridInfoPattern.grids[i].grade,
         };
     end
     levels[idx] = level;
@@ -172,13 +233,17 @@ for idx = 11, 100 do
             { id = "item_currency_coin", count = 100 * idx }
         },
         gridInfos = {},
+        mapId = gridInfoPattern.mapId,
     };
+    if (level.mapId == nil) then
+        level.mapId = mapPattern[(idx - 1) % #mapPattern + 1];
+    end
 
-    for i = 1, #gridInfoPattern do
+    for i = 1, #gridInfoPattern.grids do
         level.gridInfos[i] = {
-            gridIndex = gridInfoPattern[i].gridIndex,
-            chaId = gridInfoPattern[i].chaId,
-            grade = idx
+            gridIndex = gridInfoPattern.grids[i].gridIndex,
+            chaId = gridInfoPattern.grids[i].chaId,
+            grade = idx,
         };
     end
     levels[idx] = level;

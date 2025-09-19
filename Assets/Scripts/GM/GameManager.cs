@@ -101,7 +101,8 @@ namespace TheGame.GM
             _damage.Set(_sceneVariants);
             _turn.Set(_sceneVariants, TurnManager_OnGameOver);
 
-            CreateMap(levelModel.id);
+            CreateMap(levelModel.mapId);
+            _camera.Set(_sceneVariants.map.Size.y / 2f);
         }
 
         private void TurnManager_OnGameOver(GameResult gameResult)
@@ -206,12 +207,11 @@ namespace TheGame.GM
             _character.RemoveCharacter(character);
         }
 
-        private void CreateMap(int levelId)
+        private void CreateMap(string mapId)
         {
             _sceneVariants.map =
                 Instantiate(
-                        ResLoader.LoadAsset<GameObject>(
-                            $"{PathHelper.GetPrefabPath($"Maps/Map_{(levelId - 1) % 4 + 1}")}"))
+                        ResLoader.LoadAsset<GameObject>(PathHelper.GetPrefabPath($"Maps/{mapId}")))
                     .GetComponent<Map>();
             _sceneVariants.map.Set();
         }
@@ -220,11 +220,28 @@ namespace TheGame.GM
         {
             List<MapGrid> playerSideGrids = FindObjectsByType<MapGrid>(FindObjectsSortMode.None)
                 .Where(g => g.Side == 0)
-                .OrderBy(m => m.name)
                 .ToList();
-            if (playerSideGrids.Where(g => !g.IsReadyGrid)
-                .All(g => g.Character == null))
+
+            // 未上阵角色
+            if (playerSideGrids.Where(g => !g.IsReadyGrid).All(g => g.Character == null))
+            {
+                UIManager.Instance.OpenUI<MessagePopupUI>().Set("敌军大呼：无人敢战？\n——请上阵至少1个角色", 1f);
                 return false;
+            }
+
+            // 上阵角色>7
+            if (playerSideGrids.Count(g => !g.IsReadyGrid && g.Character != null) > 7)
+            {
+                UIManager.Instance.OpenUI<MessagePopupUI>().Set("敌军大惊：以众暴寡？\n——上阵角色不能大于7个", 1f);
+                return false;
+            }
+            
+            // 上阵角色>7
+            if (playerSideGrids.Count(g => !g.IsReadyGrid && g.Character != null &&  LuaToCsBridge.CharacterTable[g.Character.id].CharacterType == CharacterType.Support) > 1)
+            {
+                UIManager.Instance.OpenUI<MessagePopupUI>().Set("我军疑惑：听谁号令？\n——不能上阵多于1个主公", 1f);
+                return false;
+            }
 
             _gameState = GameControlState.InGame;
 

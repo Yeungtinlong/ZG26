@@ -34,12 +34,14 @@ namespace TheGame.GM
 
         public static void Init()
         {
-            _moveSpeedDelegate = LuaManager.LuaEnv.Global.GetInPath<MoveSpeedDelegate>("Game.Designer.Formula.GetMoveSpeed");
-            _skillSpeedDelegate = LuaManager.LuaEnv.Global.GetInPath<SkillSpeedDelegate>("Game.Designer.Formula.GetSkillSpeed");
+            _moveSpeedDelegate =
+                LuaManager.LuaEnv.Global.GetInPath<MoveSpeedDelegate>("Game.Designer.Formula.GetMoveSpeed");
+            _skillSpeedDelegate =
+                LuaManager.LuaEnv.Global.GetInPath<SkillSpeedDelegate>("Game.Designer.Formula.GetSkillSpeed");
             _damageDelegate = LuaManager.LuaEnv.Global.GetInPath<DamageDelegate>("Game.Designer.Formula.GetDamage");
             _rangeDelegate = LuaManager.LuaEnv.Global.GetInPath<RangeDelegate>("Game.Designer.Formula.GetRange");
         }
-        
+
         public static int GetGradeProp(int baseValue, int plus, int times, int grade)
         {
             return (baseValue + (grade - 1) * plus) * (1 + (grade - 1) * times);
@@ -104,7 +106,9 @@ namespace TheGame.GM
 
         public static SightEffect CreateSightEffect(string effectName, Vector3 position)
         {
-            SightEffect sightEffect = Object.Instantiate(ResLoader.LoadAsset<GameObject>($"{PathHelper.GetPrefabPath($"Effects/{effectName}")}"), position, Quaternion.identity).GetComponent<SightEffect>();
+            SightEffect sightEffect = Object
+                .Instantiate(ResLoader.LoadAsset<GameObject>($"{PathHelper.GetPrefabPath($"Effects/{effectName}")}"),
+                    position, Quaternion.identity).GetComponent<SightEffect>();
             sightEffect.gameObject.AddComponent<UnitRemover>().SetDuration(sightEffect.duration);
             return sightEffect;
         }
@@ -114,7 +118,8 @@ namespace TheGame.GM
             CreateSightEffect("PopMessageText", position).GetComponent<PopMessageText>().Set(text, scale, color);
         }
 
-        public static GameObject GetNearestTarget(GameObject finder, int side, bool includeFoe, bool includeAlly, float radius)
+        public static GameObject GetNearestTarget(GameObject finder, int side, bool includeFoe, bool includeAlly,
+            float radius)
         {
             List<CharacterState> characters = game.SceneVariants.characters;
             float minSqrDistance = float.MaxValue;
@@ -156,12 +161,14 @@ namespace TheGame.GM
             GameRuntimeData.Instance.GetCharacter(chaId);
         }
 
-        public static List<CharacterState> GetAllTargets(GameObject finder, int side, bool includeFoe, bool includeAlly, float radius)
+        public static List<CharacterState> GetAllTargets(GameObject finder, int side, bool includeFoe, bool includeAlly,
+            float radius)
         {
             return GetTargetsInRange(finder.transform.position, side, includeFoe, includeAlly, radius);
         }
 
-        public static List<CharacterState> GetTargetsInRange(Vector3 center, int side, bool includeFoe, bool includeAlly, float radius)
+        public static List<CharacterState> GetTargetsInRange(Vector3 center, int side, bool includeFoe,
+            bool includeAlly, float radius)
         {
             List<CharacterState> characters = game.SceneVariants.characters;
             List<CharacterState> targets = new List<CharacterState>();
@@ -187,7 +194,8 @@ namespace TheGame.GM
             return (Vector2)game.Camera.MainCamera.ScreenToWorldPoint(input.InputState.MousePosition);
         }
 
-        public static CharacterState RandomGetCharacterOfType(CharacterType characterType, int side, bool includeFoe, bool includeAlly)
+        public static CharacterState RandomGetCharacterOfType(CharacterType characterType, int side, bool includeFoe,
+            bool includeAlly)
         {
             return game.SceneVariants.characters.Where(c =>
                 (c != null && !c.IsDead)
@@ -197,7 +205,7 @@ namespace TheGame.GM
                 c.Grid.Type == characterType
             ).RandomPickOne();
         }
-        
+
         public static CharacterState RandomGetCharacter(int side, bool includeFoe, bool includeAlly)
         {
             return game.SceneVariants.characters.Where(c =>
@@ -207,7 +215,8 @@ namespace TheGame.GM
             ).RandomPickOne();
         }
 
-        public static List<CharacterState> RandomGetCharacters(int side, bool includeFoe, bool includeAlly, int maxCount)
+        public static List<CharacterState> RandomGetCharacters(int side, bool includeFoe, bool includeAlly,
+            int maxCount)
         {
             return game.SceneVariants.characters.Where(c =>
                 (c != null && !c.IsDead)
@@ -216,7 +225,51 @@ namespace TheGame.GM
             ).ToList().RandomPick(maxCount);
         }
 
-        public static List<CharacterState> RandomGetCharactersOfType(CharacterType characterType, int count, int side, bool includeFoe, bool includeAlly)
+        public static CharacterState GetFoeRowFirst(int xOrigin, int yOrigin, int side)
+        {
+            Vector2Int origin = new Vector2Int(xOrigin, yOrigin);
+            MapGrid[,] mapGrids = game.SceneVariants.map.Grids;
+            int dir = -(side * 2 - 1);
+
+            for (int yDepth = 0; yDepth < mapGrids.GetLength(1); yDepth++)
+            {
+                for (int x = origin.x + dir; x < mapGrids.GetLength(0) && x >= 0; x += dir)
+                {
+                    // yOffset要小于xOffset，因为是行优先，行找不到才去找列
+                    for (int yOffset = 0; yOffset <= yDepth; yOffset++)
+                    {
+                        // 先按+y方向搜索
+                        if (origin.y + yOffset < mapGrids.GetLength(1))
+                        {
+                            MapGrid mapGrid = mapGrids[x, origin.y + yOffset];
+                            if (mapGrid != null)
+                            {
+                                CharacterState cs = mapGrid.Character;
+                                if (cs != null && !cs.IsDead && cs.side != side)
+                                    return mapGrid.Character;
+                            }
+                        }
+
+                        // 再按-y方向搜索
+                        if (origin.y - yOffset >= 0)
+                        {
+                            MapGrid mapGrid = mapGrids[x, origin.y - yOffset];
+                            if (mapGrid != null)
+                            {
+                                CharacterState cs = mapGrid.Character;
+                                if (cs != null && !cs.IsDead && cs.side != side)
+                                    return mapGrid.Character;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public static List<CharacterState> RandomGetCharactersOfType(CharacterType characterType, int count, int side,
+            bool includeFoe, bool includeAlly)
         {
             return game.SceneVariants.characters.Where(c =>
                 (c != null && !c.IsDead)
@@ -230,7 +283,8 @@ namespace TheGame.GM
         public static CharacterState MeleeFindSingleFoe(CharacterState caster)
         {
             CharacterState target = null;
-            var enemies = game.SceneVariants.characters.Where(c => c != null && !c.IsDead && c.side != caster.side).ToList();
+            var enemies = game.SceneVariants.characters.Where(c => c != null && !c.IsDead && c.side != caster.side)
+                .ToList();
             // 选出坦克
             var tanks = enemies.Where(e => e.Grid.Type == CharacterType.Tank).ToList();
             if (tanks.Count > 0)

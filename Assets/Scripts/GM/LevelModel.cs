@@ -9,5 +9,6 @@ namespace TheGame.GM
         public string name;
         public List<ItemStack> rewards;
         public List<MapGridInfo> gridInfos;
+        public string mapId;
     }
 }

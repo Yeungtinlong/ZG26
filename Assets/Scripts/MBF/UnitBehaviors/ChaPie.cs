@@ -14,6 +14,7 @@ namespace MBF.UnitBehaviors
         [SerializeField] private Slider _speedSlider;
         [SerializeField] private Slider _shieldSlider;
 
+        [SerializeField] private TMP_Text _hpText;
         [SerializeField] private TMP_Text _speedText;
         private CharacterState _cs;
 
@@ -52,6 +53,7 @@ namespace MBF.UnitBehaviors
             
             _nameText.text = LuaToCsBridge.CharacterTable[_cs.id].Name;
             _gradeText.text = $"LV {_cs.grade}";
+            _hpText.text = $"{_cs.resource.hp}/{_cs.Prop.hp}";
             _speedText.text = $"{_cs.resource.speed}/{_cs.Prop.speed}";
         }
 

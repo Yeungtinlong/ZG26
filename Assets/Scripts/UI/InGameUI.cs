@@ -68,8 +68,6 @@ namespace TheGame.UI
         {
             if (GameLuaInterface.game.StartGame())
                 _readyPanel.SetActive(false);
-            else
-                UIManager.Instance.OpenUI<MessagePopupUI>().Set("请上阵至少一个角色", 1f);
         }
 
         private void ExitGame_OnClick()
