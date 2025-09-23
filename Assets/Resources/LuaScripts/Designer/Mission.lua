@@ -25,7 +25,7 @@ local missions = {
         description = "击败黄巾残兵！",
         icon = "Roles/ui_cha_liubei",
         canComplete = function()
-            return GameRuntimeData.Instance.SelectedLevel > 1;
+            return GameRuntimeData.Instance.PassedLevel >= 1;
         end,
         showRewards = { ItemStack("item_currency_coin", 100) },
         onClaim = TimelineNode(0, GetItems, { ItemStack("item_currency_coin", 100) })
@@ -36,7 +36,7 @@ local missions = {
         description = "吕布镇守虎牢关，务必将其击败！",
         icon = "Roles/ui_cha_lvbu",
         canComplete = function()
-            return GameRuntimeData.Instance.SelectedLevel > 5;
+            return GameRuntimeData.Instance.PassedLevel >= 5;
         end,
         showRewards = { ItemStack("item_cha_lvbu", 1) },
         onClaim = TimelineNode(0, GetRoles, { "cha_lvbu" })
@@ -47,7 +47,7 @@ local missions = {
         description = "击败敌军先锋夏侯惇！",
         icon = "Roles/ui_cha_xiahoudun",
         canComplete = function()
-            return GameRuntimeData.Instance.SelectedLevel > 8;
+            return GameRuntimeData.Instance.PassedLevel >= 8;
         end,
         showRewards = { ItemStack("item_currency_coin", 1000) },
         onClaim = TimelineNode(0, GetItems, { ItemStack("item_currency_coin", 1000) })
@@ -58,7 +58,7 @@ local missions = {
         description = "孙吴领兵来犯，教训他们！",
         icon = "Roles/ui_cha_sunquan",
         canComplete = function()
-            return GameRuntimeData.Instance.SelectedLevel > 10;
+            return GameRuntimeData.Instance.PassedLevel >= 10;
         end,
         showRewards = { ItemStack("item_cha_sunquan", 1), ItemStack("item_cha_zhouyu", 1) },
         onClaim = TimelineNode(0, GetRoles, { "cha_sunquan", "cha_zhouyu" })
@@ -69,7 +69,7 @@ local missions = {
         description = "",
         icon = "Roles/ui_cha_liubei",
         canComplete = function()
-            return GameRuntimeData.Instance.SelectedLevel > 20;
+            return GameRuntimeData.Instance.PassedLevel >= 20;
         end,
         showRewards = { ItemStack("item_currency_coin", 1000) },
         onClaim = TimelineNode(0, GetItems, { ItemStack("item_currency_coin", 1000) })
@@ -80,7 +80,7 @@ local missions = {
         description = "",
         icon = "Roles/ui_cha_liubei",
         canComplete = function()
-            return GameRuntimeData.Instance.SelectedLevel > 30;
+            return GameRuntimeData.Instance.PassedLevel >= 30;
         end,
         showRewards = { ItemStack("item_currency_coin", 2000) },
         onClaim = TimelineNode(0, GetItems, { ItemStack("item_currency_coin", 2000) })
@@ -91,7 +91,7 @@ local missions = {
         description = "",
         icon = "Roles/ui_cha_liubei",
         canComplete = function()
-            return GameRuntimeData.Instance.SelectedLevel > 50;
+            return GameRuntimeData.Instance.PassedLevel >= 50;
         end,
         showRewards = { ItemStack("item_currency_coin", 3000) },
         onClaim = TimelineNode(0, GetItems, { ItemStack("item_currency_coin", 3000) })
@@ -102,7 +102,7 @@ local missions = {
         description = "大业既成！",
         icon = "Roles/ui_cha_liubei",
         canComplete = function()
-            return GameRuntimeData.Instance.SelectedLevel > 99;
+            return GameRuntimeData.Instance.PassedLevel >= 99;
         end,
         showRewards = { ItemStack("item_currency_coin", 10000) },
         onClaim = TimelineNode(0, GetItems, { ItemStack("item_currency_coin", 10000) })

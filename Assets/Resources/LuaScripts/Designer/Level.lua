@@ -18,6 +18,7 @@ local mapPattern = {
 local basePatterns = {
     -- MISSION 1
     {
+        name = "桃园梦始",
         -- 2步兵
         grids = {
             { gridIndex = 0, chaId = "cha_bubing", grade = 2 },
@@ -26,6 +27,7 @@ local basePatterns = {
         mapId = nil,
     },
     {
+        name = "牛刀小试",
         -- 2步兵、1旗手
         grids = {
             { gridIndex = 0, chaId = "cha_bubing", grade = 3 },
@@ -35,6 +37,7 @@ local basePatterns = {
         mapId = nil,
     },
     {
+        name = "牛刀小试",
         -- 3步兵、1弓兵
         grids = {
             { gridIndex = 0, chaId = "cha_bubing",   grade = 3 },
@@ -45,6 +48,7 @@ local basePatterns = {
         mapId = nil,
     },
     {
+        name = "汜水关之战",
         -- 2骑兵、2弓兵、1步兵
         grids = {
             { gridIndex = 0, chaId = "cha_qibing",   grade = 4 },
@@ -58,9 +62,10 @@ local basePatterns = {
     -- MISSION 5
     {
         -- 吕布、4骑兵、1鼓手
+        name = "虎牢关之战",
         grids = {
             --{ gridIndex = 0, chaId = "cha_qibing", grade = 5 },
-            { gridIndex = 0, chaId = "cha_lvbu", grade = 10 },
+            { gridIndex = 0, chaId = "cha_lvbu", grade = 14 },
             --{ gridIndex = 2, chaId = "cha_qibing", grade = 5 },
             --{ gridIndex = 3, chaId = "cha_qibing", grade = 5 },
             --{ gridIndex = 4, chaId = "cha_gushou", grade = 5 },
@@ -69,6 +74,7 @@ local basePatterns = {
         mapId = "Map_hulaoguan",
     },
     {
+        name = "群雄割据",
         -- 2骑兵、2弓兵、1步兵
         grids = {
             { gridIndex = 0, chaId = "cha_qibing",   grade = 6 },
@@ -80,6 +86,7 @@ local basePatterns = {
         mapId = nil,
     },
     {
+        name = "群雄割据",
         -- 3水兵、3护卫
         grids = {
             { gridIndex = 0, chaId = "cha_huwei",    grade = 7 },
@@ -94,6 +101,7 @@ local basePatterns = {
     -- MISSION 8
     {
         -- 1夏侯惇
+        name = "博望坡之战",
         grids = {
             { gridIndex = 0, chaId = "cha_qibing",    grade = 8 },
             { gridIndex = 1, chaId = "cha_qibing",    grade = 8 },
@@ -118,6 +126,7 @@ local basePatterns = {
     },
     -- MISSION 10
     {
+        name = "孙吴来犯",
         -- 孙权、周瑜、3水兵、1鼓手
         grids = {
             { gridIndex = 0, chaId = "cha_shuibing", grade = 10 },
@@ -202,7 +211,6 @@ for idx = 1, 10 do
     local gridInfoPattern = basePatterns[(idx - 1) % #basePatterns + 1];
     local level = {
         id = id,
-        name = "Level_" .. tostring(id),
         rewards = {
             { id = "item_currency_coin", count = 100 * idx }
         },
@@ -211,6 +219,11 @@ for idx = 1, 10 do
     };
     if (level.mapId == nil) then
         level.mapId = mapPattern[(idx - 1) % #mapPattern + 1];
+    end
+    if (gridInfoPattern.name == nil) then
+        level.name = "征战之路" .. tostring(id);
+    else
+        level.name = gridInfoPattern.name;
     end
 
     for i = 1, #gridInfoPattern.grids do
@@ -228,7 +241,6 @@ for idx = 11, 100 do
     local gridInfoPattern = patterns[(idx - 1) % #patterns + 1];
     local level = {
         id = id,
-        name = "Level_" .. tostring(id),
         rewards = {
             { id = "item_currency_coin", count = 100 * idx }
         },
@@ -237,6 +249,11 @@ for idx = 11, 100 do
     };
     if (level.mapId == nil) then
         level.mapId = mapPattern[(idx - 1) % #mapPattern + 1];
+    end
+    if (gridInfoPattern.name == nil) then
+        level.name = "征战之路" .. tostring(id);
+    else
+        level.name = gridInfoPattern.name;
     end
 
     for i = 1, #gridInfoPattern.grids do

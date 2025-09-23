@@ -10,18 +10,21 @@ namespace TheGame
     {
         private async void Start()
         {
+            Application.targetFrameRate = 60;
+            QualitySettings.vSyncCount = 0;
+            
             await ResLoader.Init();
-            
+
             LuaManager.Init();
-            
+
             LuaToCsBridge.LoadLuaConfigs();
-            
-            if(!GameRuntimeData.SaveExists())
+
+            if (!GameRuntimeData.SaveExists())
                 GameRuntimeData.NewGame();
             else
                 GameRuntimeData.LoadGame();
-            
-            
+
+
             await ResLoader.LoadSceneAsync("PersistentResources", LoadSceneMode.Additive, false);
             await TheGameSceneManager.Instance.ChangeScene("MainMenu");
         }

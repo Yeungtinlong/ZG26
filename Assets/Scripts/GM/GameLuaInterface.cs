@@ -231,35 +231,35 @@ namespace TheGame.GM
             MapGrid[,] mapGrids = game.SceneVariants.map.Grids;
             int dir = -(side * 2 - 1);
 
-            for (int yDepth = 0; yDepth < mapGrids.GetLength(1); yDepth++)
+            int mapWidth = mapGrids.GetLength(0);
+            int mapHeight = mapGrids.GetLength(1);
+            
+            // yOffset要小于xOffset，因为是行优先，行找不到才去找列
+            for (int yOffset = 0; yOffset <= Mathf.Max(yOrigin, mapHeight - yOrigin) ; yOffset++)
             {
-                for (int x = origin.x + dir; x < mapGrids.GetLength(0) && x >= 0; x += dir)
+                for (int x = origin.x + dir; x < mapWidth && x >= 0; x += dir)
                 {
-                    // yOffset要小于xOffset，因为是行优先，行找不到才去找列
-                    for (int yOffset = 0; yOffset <= yDepth; yOffset++)
+                    // 先按+y方向搜索
+                    if (origin.y + yOffset < mapHeight)
                     {
-                        // 先按+y方向搜索
-                        if (origin.y + yOffset < mapGrids.GetLength(1))
+                        MapGrid mapGrid = mapGrids[x, origin.y + yOffset];
+                        if (mapGrid != null)
                         {
-                            MapGrid mapGrid = mapGrids[x, origin.y + yOffset];
-                            if (mapGrid != null)
-                            {
-                                CharacterState cs = mapGrid.Character;
-                                if (cs != null && !cs.IsDead && cs.side != side)
-                                    return mapGrid.Character;
-                            }
+                            CharacterState cs = mapGrid.Character;
+                            if (cs != null && !cs.IsDead && cs.side != side)
+                                return mapGrid.Character;
                         }
+                    }
 
-                        // 再按-y方向搜索
-                        if (origin.y - yOffset >= 0)
+                    // 再按-y方向搜索
+                    if (origin.y - yOffset >= 0)
+                    {
+                        MapGrid mapGrid = mapGrids[x, origin.y - yOffset];
+                        if (mapGrid != null)
                         {
-                            MapGrid mapGrid = mapGrids[x, origin.y - yOffset];
-                            if (mapGrid != null)
-                            {
-                                CharacterState cs = mapGrid.Character;
-                                if (cs != null && !cs.IsDead && cs.side != side)
-                                    return mapGrid.Character;
-                            }
+                            CharacterState cs = mapGrid.Character;
+                            if (cs != null && !cs.IsDead && cs.side != side)
+                                return mapGrid.Character;
                         }
                     }
                 }

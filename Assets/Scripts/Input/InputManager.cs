@@ -1,5 +1,6 @@
 using TheGame.GM;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace TheGame.InputSystem
 {
@@ -9,29 +10,59 @@ namespace TheGame.InputSystem
         /// 按下
         /// </summary>
         public bool WasPressedThisFrame;
-        
+
         /// <summary>
         /// 按着
         /// </summary>
         public bool WasPerformedThisFrame;
-        
+
         /// <summary>
         /// 抬起
         /// </summary>
         public bool WasReleasedThisFrame;
-        
+
         public Vector2 MousePosition;
     }
 
     public class InputManager : MonoBehaviour
     {
+        [SerializeField] private PlayerInput _playerInput;
         public static InputManager Instance { get; private set; }
         public InputState InputState;
         private InputStateMachine _inputStateMachine;
 
+        private InputAction _pressAction;
+        private InputAction _releaseAction;
+        private InputAction _moveAction;
+
         private void Awake()
         {
             Instance = this;
+        }
+
+        private void OnEnable()
+        {
+            EnableInputs();
+        }
+
+        private void OnDisable()
+        {
+            DisableInputs();
+        }
+
+        private void EnableInputs()
+        {
+            _pressAction = _playerInput.actions.FindAction("Press");
+            _releaseAction = _playerInput.actions.FindAction("Release");
+            _moveAction = _playerInput.actions.FindAction("Move");
+            _playerInput.ActivateInput();
+            _playerInput.actions.Enable();
+        }
+
+        private void DisableInputs()
+        {
+            _playerInput.actions.Disable();
+            _playerInput.DeactivateInput();
         }
 
         public void Set(GameManager thisGame)
@@ -45,25 +76,27 @@ namespace TheGame.InputSystem
             HandleInputs();
         }
 
-        private void FixedUpdate()
-        {
-        }
-
         private void GetInputs()
         {
-            InputState.WasPerformedThisFrame = Input.GetMouseButton(0);
-            if (Input.GetMouseButtonDown(0))
+            if (_pressAction.triggered)
+            {
                 InputState.WasPressedThisFrame = true;
-            if (Input.GetMouseButtonUp(0))
+                InputState.WasPerformedThisFrame = true;
+            }
+
+            if (_releaseAction.triggered)
+            {
                 InputState.WasReleasedThisFrame = true;
-            
-            InputState.MousePosition = Input.mousePosition;
+                InputState.WasPerformedThisFrame = false;
+            }
+
+            InputState.MousePosition = _moveAction.ReadValue<Vector2>();
         }
 
         private void HandleInputs()
         {
             _inputStateMachine.TickLogic(ref InputState);
-            
+
             InputState.WasPressedThisFrame = false;
             InputState.WasReleasedThisFrame = false;
         }

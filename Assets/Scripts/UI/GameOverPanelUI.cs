@@ -52,17 +52,23 @@ namespace TheGame.UI
 
         private void NextButton_OnClick()
         {
+            GameRuntimeData.Instance.SelectedLevel = GameRuntimeData.Instance.PassedLevel + 1;
             TheGameSceneManager.Instance.ChangeScene("Gameplay");
         }
 
         public void Set(GameResult gameResult, int level)
         {
-            _winPart.SetActive(gameResult == GameResult.Win);
+            _winPart.SetActive(gameResult is GameResult.Win or GameResult.NewWin);
             _losePart.SetActive(gameResult == GameResult.Lose);
             
-            if (gameResult == GameResult.Win)
+            if (gameResult is GameResult.NewWin && GameRuntimeData.Instance.SelectedLevel == GameRuntimeData.Instance.PassedLevel)
             {
+                _rewardsInspector.gameObject.SetActive(true);
                 _rewardsInspector.Set(LuaToCsBridge.LevelTable[level].rewards);
+            }
+            else
+            {
+                _rewardsInspector.gameObject.SetActive(false);
             }
         }
         

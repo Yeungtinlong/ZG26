@@ -12,6 +12,7 @@ namespace TheGame.GM
         Gaming,
         Win,
         Lose,
+        NewWin,
     }
 
     public class TurnManager : MonoBehaviour
@@ -21,22 +22,27 @@ namespace TheGame.GM
         private const float k_TurnBreak = 0.5f;
 
         private int _currentTurn = 0;
+        public int CurrentTurn => _currentTurn;
 
         private SceneVariants _sceneVariants;
         private IEnumerator _turnCycle;
         private Action<GameResult> _onGameOver;
+        private Action<TurnManager> _onTurnChanged;
 
         private GameResult _gameResult;
 
-        public void Set(SceneVariants sceneVariants, Action<GameResult> onGameOver)
+        public void Set(SceneVariants sceneVariants, Action<TurnManager> onTurnChanged, Action<GameResult> onGameOver)
         {
             _sceneVariants = sceneVariants;
             _onGameOver = onGameOver;
+            _onTurnChanged = onTurnChanged;
         }
 
         public void StartCycle()
         {
             _gameResult = GameResult.Gaming;
+            _currentTurn = 1;
+            _onTurnChanged?.Invoke(this);
             StartCoroutine(TurnCycle());
         }
 
@@ -44,12 +50,13 @@ namespace TheGame.GM
         {
             while (!CheckGameOver(out _gameResult))
             {
-                _currentTurn++;
+                _onTurnChanged?.Invoke(this);
                 yield return new WaitForSeconds(k_TurnBreak);
                 yield return ActionCycle();
                 yield return new WaitForSeconds(k_TurnBreak);
 
                 _sceneVariants.characters.ForEach(cs => cs.ModifyRes(ChaResType.Speed, cs.Prop.speed));
+                _currentTurn++;
             }
 
             _onGameOver?.Invoke(_gameResult);

@@ -8,7 +8,7 @@ namespace TheGame.UI
 {
     public class InGameUI : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _levelText;
+        [SerializeField] private TMP_Text _turnText;
         [SerializeField] private GameObject _readyPanel;
         [SerializeField] private Button _startGameButton;
         [SerializeField] private Button _exitButton;
@@ -17,7 +17,7 @@ namespace TheGame.UI
         private void OnEnable()
         {
             SubscribeToEvents();
-            SetLevelText();
+            SetDefaultTurnText();
         }
 
         private void OnDisable()
@@ -30,6 +30,7 @@ namespace TheGame.UI
             _startGameButton.onClick.AddListener(StartGame_OnClick);
             _exitButton.onClick.AddListener(ExitGame_OnClick);
             _pauseButton.onClick.AddListener(PauseButton_OnClick);
+            GameManager.OnTurnChanged += GameManager_OnTurnChanged;
         }
 
         private void UnsubscribeFromEvents()
@@ -37,6 +38,12 @@ namespace TheGame.UI
             _startGameButton.onClick.RemoveListener(StartGame_OnClick);
             _exitButton.onClick.RemoveListener(ExitGame_OnClick);
             _pauseButton.onClick.RemoveListener(PauseButton_OnClick);
+            GameManager.OnTurnChanged -= GameManager_OnTurnChanged;
+        }
+
+        private void GameManager_OnTurnChanged(int turnId)
+        {
+            SetTurnText();
         }
 
         private void PauseButton_OnClick()
@@ -58,10 +65,17 @@ namespace TheGame.UI
             GameLuaInterface.game.SetPause(true);
         }
 
-        private void SetLevelText()
+        private void SetDefaultTurnText()
         {
-            _levelText.gameObject.SetActive(true);
-            _levelText.text = $"LEVEL: {GameRuntimeData.Instance.SelectedLevel}";
+            _turnText.gameObject.SetActive(true);
+            _turnText.text = $"部署中";
+        }
+        
+        private void SetTurnText()
+        {
+            _turnText.gameObject.SetActive(true);
+            int currentTurn = GameLuaInterface.game.Turn.CurrentTurn;
+            _turnText.text = $"回合\\n{currentTurn - 1} - <size=64>{currentTurn}</size> - {currentTurn + 1}";
         }
 
         private void StartGame_OnClick()

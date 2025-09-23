@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
-using TheGame.ResourceManagement;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace TheGame.UI
 {
@@ -11,8 +9,6 @@ namespace TheGame.UI
     {
         private List<INavigationMenu> _navigationMenus;
         private List<NavigationMenuSelectorUI> _navigationMenuSelectors;
-
-        [SerializeField] private Button _startGameButton;
 
         private void Awake()
         {
@@ -33,7 +29,6 @@ namespace TheGame.UI
 
         private void SubscribeToEvents()
         {
-            _startGameButton.onClick.AddListener(StartGame_OnClick);
             foreach (var selector in _navigationMenuSelectors)
             {
                 selector.Set(NavigationMenuSelector_OnClick);
@@ -42,12 +37,6 @@ namespace TheGame.UI
 
         private void UnsubscribeFromEvents()
         {
-            _startGameButton.onClick.RemoveListener(StartGame_OnClick);
-        }
-
-        private void StartGame_OnClick()
-        {
-            TheGameSceneManager.Instance.ChangeScene("Gameplay");
         }
 
         private void NavigationMenuSelector_OnClick(NavigationMenuSelectorUI currentSelector)
@@ -82,7 +71,7 @@ namespace TheGame.UI
 
         private void SetDefaultMenu()
         {
-            Set(NavigationMenuType.Role);
+            Set(NavigationMenuType.Level);
         }
     }
 }

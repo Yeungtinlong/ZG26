@@ -290,10 +290,10 @@ namespace MBF
         {
             if (damage > 0)
             {
+                _unitViewController.ShowHitEffect();
                 int damageAfterShp = damage - _resource.shp;
                 if (damageAfterShp > 0)
                 {
-                    _unitViewController.ShowHitEffect();
                     if (damage >= _resource.hp)
                     {
                         SetResource(new ChaRes(0, _resource.speed, 0));

@@ -43,6 +43,7 @@ namespace TheGame.GM
 
         // 运行时数据
         public int SelectedLevel { get; set; }
+        public int PassedLevel { get; set; }
 
         public string MainActor;
         public readonly List<string> SelectedCharacters = new List<string>();
@@ -98,6 +99,7 @@ namespace TheGame.GM
 
             // 默认存档
             gameRuntimeData.SelectedLevel = 1;
+            gameRuntimeData.PassedLevel = 0;
 
             // TODO: 测试，获取所有角色
             foreach (var (chaId, config) in LuaToCsBridge.CharacterTable)

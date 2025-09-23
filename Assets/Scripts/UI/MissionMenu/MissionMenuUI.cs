@@ -1,19 +1,22 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheGame.GM;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TheGame.UI
 {
-    public class MissionMenuUI : MonoBehaviour, INavigationMenu
+    public class MissionMenuUI : MonoBehaviour
     {
         [SerializeField] private Transform _container;
         [SerializeField] private MissionElementUI _missionElementPrefab;
         private readonly List<MissionElementUI> _missionElements = new List<MissionElementUI>();
 
-        public NavigationMenuType Type => NavigationMenuType.Mission;
-
+        [SerializeField] private Button _closeButton;
+        private Action<MissionMenuUI> _onClose;
+        
         private void OnEnable()
         {
             SubscribeToEvents();
@@ -27,10 +30,17 @@ namespace TheGame.UI
 
         private void SubscribeToEvents()
         {
+            _closeButton.onClick.AddListener(Close_OnClick);
         }
 
         private void UnsubscribeFromEvents()
         {
+            _closeButton.onClick.RemoveListener(Close_OnClick);
+        }
+
+        private void Close_OnClick()
+        {
+            _onClose?.Invoke(this);
         }
 
         private void RefreshUI()
@@ -74,8 +84,9 @@ namespace TheGame.UI
             RefreshUI();
         }
 
-        public void Set()
+        public void Set(Action<MissionMenuUI> onClose)
         {
+            _onClose = onClose;
         }
     }
 }

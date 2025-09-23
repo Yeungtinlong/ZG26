@@ -59,6 +59,7 @@ namespace TheGame.GM
 
         public event Action<DropInfo> OnDropCreated;
         public static event Action<GameResult, int> OnGameOver;
+        public static event Action<int> OnTurnChanged;
 
         /// <summary>
         /// Gameplay资产发生变化
@@ -99,10 +100,15 @@ namespace TheGame.GM
             _aoe.Set(_sceneVariants);
             _character.Set(_sceneVariants);
             _damage.Set(_sceneVariants);
-            _turn.Set(_sceneVariants, TurnManager_OnGameOver);
+            _turn.Set(_sceneVariants, TurnManager_OnTurnChanged, TurnManager_OnGameOver);
 
             CreateMap(levelModel.mapId);
             _camera.Set(_sceneVariants.map.Size.y / 2f);
+        }
+
+        private void TurnManager_OnTurnChanged(TurnManager turnManager)
+        {
+            OnTurnChanged?.Invoke(turnManager.CurrentTurn);
         }
 
         private void TurnManager_OnGameOver(GameResult gameResult)
@@ -119,13 +125,20 @@ namespace TheGame.GM
             if (gameResult == GameResult.Win)
             {
                 _gameState = GameControlState.GameOver;
-                GameRuntimeData.Instance.SelectedLevel++;
-                GameRuntimeData.Instance.SelectedLevel = Mathf.Min(GameRuntimeData.Instance.SelectedLevel,
-                    LuaToCsBridge.LevelTable.Count);
+
+                LevelModel levelModel = LuaToCsBridge.LevelTable[GameRuntimeData.Instance.SelectedLevel];
+                if (GameRuntimeData.Instance.SelectedLevel > GameRuntimeData.Instance.PassedLevel)
+                {
+                    gameResult = GameResult.NewWin;
+                    levelModel.rewards?.ForEach(r => GameRuntimeData.Instance.GetItem(r.id, r.count));
+                }
+
+                GameRuntimeData.Instance.PassedLevel = Mathf.Max(GameRuntimeData.Instance.SelectedLevel,
+                    GameRuntimeData.Instance.PassedLevel);
                 GameRuntimeData.SaveGame();
 
                 SetPause(true);
-                LevelModel levelModel = LuaToCsBridge.LevelTable[GameRuntimeData.Instance.SelectedLevel];
+
                 // TODO: 游戏结束用时间唤起UI
                 // UIManager.Instance.OpenUI<GameOverPanelUI>().Set(
                 //     levelConfig,
@@ -142,8 +155,6 @@ namespace TheGame.GM
                 //         GameState.GotoGameScene();
                 //     }
                 // );
-
-                levelModel.rewards?.ForEach(r => GameRuntimeData.Instance.GetItem(r.id, r.count));
             }
             else if (gameResult == GameResult.Lose)
             {
@@ -235,9 +246,11 @@ namespace TheGame.GM
                 UIManager.Instance.OpenUI<MessagePopupUI>().Set("敌军大惊：以众暴寡？\n——上阵角色不能大于7个", 1f);
                 return false;
             }
-            
+
             // 上阵角色>7
-            if (playerSideGrids.Count(g => !g.IsReadyGrid && g.Character != null &&  LuaToCsBridge.CharacterTable[g.Character.id].CharacterType == CharacterType.Support) > 1)
+            if (playerSideGrids.Count(g =>
+                    !g.IsReadyGrid && g.Character != null &&
+                    LuaToCsBridge.CharacterTable[g.Character.id].CharacterType == CharacterType.Support) > 1)
             {
                 UIManager.Instance.OpenUI<MessagePopupUI>().Set("我军疑惑：听谁号令？\n——不能上阵多于1个主公", 1f);
                 return false;

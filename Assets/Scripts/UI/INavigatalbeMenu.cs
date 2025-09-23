@@ -2,6 +2,7 @@ namespace TheGame.UI
 {
     public enum NavigationMenuType
     {
+        Level = 0,
         Role,
         Daily,
         Shop,
