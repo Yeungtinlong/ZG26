@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TheGame.GM;
 using TheGame.ResourceManagement;
 using TMPro;
@@ -8,6 +9,7 @@ namespace TheGame.UI
 {
     public class InGameUI : MonoBehaviour
     {
+        [SerializeField] private Transform _turnBar;
         [SerializeField] private TMP_Text _turnText;
         [SerializeField] private GameObject _readyPanel;
         [SerializeField] private Button _startGameButton;
@@ -68,14 +70,16 @@ namespace TheGame.UI
         private void SetDefaultTurnText()
         {
             _turnText.gameObject.SetActive(true);
-            _turnText.text = $"部署中";
+            _turnText.text = $"部署阶段";
         }
-        
+
         private void SetTurnText()
         {
             _turnText.gameObject.SetActive(true);
             int currentTurn = GameLuaInterface.game.Turn.CurrentTurn;
-            _turnText.text = $"回合\\n{currentTurn - 1} - <size=64>{currentTurn}</size> - {currentTurn + 1}";
+            _turnText.text = $"{currentTurn - 1} - <size=64>{currentTurn}</size> - {currentTurn + 1}";
+            _turnBar.DOKill();
+            _turnBar.DOScale(Vector3.one * 1.2f, 0.2f).SetLoops(2, LoopType.Yoyo);
         }
 
         private void StartGame_OnClick()

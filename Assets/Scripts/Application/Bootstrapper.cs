@@ -12,6 +12,7 @@ namespace TheGame
         {
             Application.targetFrameRate = 60;
             QualitySettings.vSyncCount = 0;
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
             
             await ResLoader.Init();
 

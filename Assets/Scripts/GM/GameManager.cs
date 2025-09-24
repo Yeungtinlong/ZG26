@@ -40,8 +40,6 @@ namespace TheGame.GM
         private TurnManager _turn;
         public TurnManager Turn => _turn;
 
-        private ReadyArea _readyArea;
-
         private GameControlState _gameState = GameControlState.None;
 
         private readonly Dictionary<string, int> _gameAssets = new Dictionary<string, int>();
@@ -88,7 +86,6 @@ namespace TheGame.GM
             _character = GetComponent<CharacterManager>();
             _camera = GetComponentInChildren<CameraManager>();
             _turn = GetComponent<TurnManager>();
-            _readyArea = GetComponentInChildren<ReadyArea>();
         }
 
         public void Set()
@@ -103,7 +100,7 @@ namespace TheGame.GM
             _turn.Set(_sceneVariants, TurnManager_OnTurnChanged, TurnManager_OnGameOver);
 
             CreateMap(levelModel.mapId);
-            _camera.Set(_sceneVariants.map.Size.y / 2f);
+            _camera.Set(8.5f);
         }
 
         private void TurnManager_OnTurnChanged(TurnManager turnManager)
@@ -290,21 +287,21 @@ namespace TheGame.GM
             List<ChaInstance> chaInstances = GameRuntimeData.Instance.ChaInstances.Values.Where(c => c.owned).ToList();
             for (int i = 0; i < chaInstances.Count; i++)
             {
-                AddCharacterToGrid(CreateCharacter(chaInstances[i].id, 0, chaInstances[i].grade), _readyArea.Grids[i]);
+                AddCharacterToGrid(CreateCharacter(chaInstances[i].id, 0, chaInstances[i].grade), _sceneVariants.map.ReadyArea.Grids[i]);
             }
         }
 
         private void CloseReadyArea()
         {
-            for (int i = 0; i < _readyArea.Grids.Count; i++)
+            for (int i = 0; i < _sceneVariants.map.ReadyArea.Grids.Count; i++)
             {
-                if (_readyArea.Grids[i].Character != null)
+                if (_sceneVariants.map.ReadyArea.Grids[i].Character != null)
                 {
-                    RemoveCharacter(_readyArea.Grids[i].Character);
+                    RemoveCharacter(_sceneVariants.map.ReadyArea.Grids[i].Character);
                 }
             }
 
-            _readyArea.gameObject.SetActive(false);
+            _sceneVariants.map.ReadyArea.gameObject.SetActive(false);
         }
 
         private void SpawnEnemies()

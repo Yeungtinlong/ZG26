@@ -13,8 +13,12 @@ namespace TheGame.GM
         private MapGrid[,] _grids;
         public MapGrid[,] Grids => _grids;
 
+        private ReadyArea _readyArea;
+        public ReadyArea ReadyArea => _readyArea;
+        
         public void Set()
         {
+            _readyArea = GetComponentInChildren<ReadyArea>();
             _groundSpriteRenderer = transform.Find("Ground").GetComponent<SpriteRenderer>();
             Vector2 sizeSprite = _groundSpriteRenderer.sprite.rect.size / _groundSpriteRenderer.sprite.pixelsPerUnit;
             Vector2 sizeTiling = _groundSpriteRenderer.size;

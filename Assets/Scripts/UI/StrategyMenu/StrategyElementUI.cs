@@ -1,4 +1,5 @@
 using System;
+using TheGame.ResourceManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,6 +50,7 @@ namespace TheGame.UI
             _nameText.text = name;
             _descriptionText.text = description;
             _selectedObject.SetActive(selected);
+            _iconImage.LoadAsyncForget(PathHelper.GetSpritePath($"Icons/ui_icon_{id}"));
             _onClick = onClick;
         }
     }

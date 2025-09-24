@@ -11,13 +11,13 @@ local strategy = {
     strategy_speed = {
         id = "strategy_speed",
         name = "神速",
-        description = [[「兵贵神速，疾如雷电」全军速度提升50点]],
+        description = [[「兵贵神速，疾如雷电」全军初始速度提升100点]],
         effect = TimelineNode(0,
             function(timelineObj, args)
                 local allCs = GameLuaInterface.GetAllCharacters();
                 for idx, cs in pairs(allCs) do
                     if (cs.side == 0) then
-                        cs:SetResource(ChaResType.Speed, cs.Prop.speed + 50);
+                        cs:SetResource(ChaResType.Speed, cs.Prop.speed + 100);
                     end
                 end
             end, {}),

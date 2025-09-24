@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using MBF;
@@ -19,8 +20,20 @@ namespace TheGame.UI
 
         [SerializeField] private MissionMenuUI _missionMenu;
         [SerializeField] private Button _missionButton;
+        
+        [SerializeField] private List<RawImage> _bgRawImage;
+        [SerializeField] private float _scrollSpeed;
 
         public NavigationMenuType Type => NavigationMenuType.Level;
+
+        private void Update()
+        {
+            float offset = _bgRawImage[0].uvRect.x + _scrollSpeed * Time.deltaTime % 1;
+            for (int i = 0; i < _bgRawImage.Count; i++)
+            {
+                _bgRawImage[i].uvRect = new Rect(offset, 0f, 1f, 1f);
+            }
+        }
 
         public void Set()
         {
@@ -31,7 +44,7 @@ namespace TheGame.UI
 
         private void RefreshRoles()
         {
-            MapGrid[] mapGrids = _readyArea.GetComponentsInChildren<MapGrid>();
+            MapGrid[] mapGrids = _readyArea.GetComponentsInChildren<MapGrid>(true);
             ChaInstance[] ownedRoles = GameRuntimeData.Instance.ChaInstances.Values.Where(cha => cha.owned).ToArray();
             for (int i = 0; i < mapGrids.Length; i++)
             {
@@ -40,7 +53,7 @@ namespace TheGame.UI
                     mapGrids[i].gameObject.SetActive(false);
                     continue;
                 }
-
+                mapGrids[i].gameObject.SetActive(true);
                 ChaInstance chaInstance = ownedRoles[i];
 
                 if (mapGrids[i].Character != null)

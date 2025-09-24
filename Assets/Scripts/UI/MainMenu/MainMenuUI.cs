@@ -10,6 +10,8 @@ namespace TheGame.UI
         private List<INavigationMenu> _navigationMenus;
         private List<NavigationMenuSelectorUI> _navigationMenuSelectors;
 
+        private NavigationMenuType _navigationMenuType;
+
         private void Awake()
         {
             _navigationMenus = GetComponentsInChildren<INavigationMenu>(true).ToList();
@@ -18,25 +20,7 @@ namespace TheGame.UI
 
         private void OnEnable()
         {
-            SubscribeToEvents();
             SetDefaultMenu();
-        }
-
-        private void OnDisable()
-        {
-            UnsubscribeFromEvents();
-        }
-
-        private void SubscribeToEvents()
-        {
-            foreach (var selector in _navigationMenuSelectors)
-            {
-                selector.Set(NavigationMenuSelector_OnClick);
-            }
-        }
-
-        private void UnsubscribeFromEvents()
-        {
         }
 
         private void NavigationMenuSelector_OnClick(NavigationMenuSelectorUI currentSelector)
@@ -46,9 +30,10 @@ namespace TheGame.UI
 
         private void Set(NavigationMenuType navigationMenuType)
         {
+            _navigationMenuType = navigationMenuType;
             foreach (var menu in _navigationMenus)
             {
-                if (navigationMenuType == menu.Type)
+                if (_navigationMenuType == menu.Type)
                 {
                     (menu as Component)?.gameObject.SetActive(true);
                     menu.Set();
@@ -61,12 +46,17 @@ namespace TheGame.UI
 
             foreach (var selector in _navigationMenuSelectors)
             {
-                selector.DOKill();
-                selector.transform.DOLocalMoveY(selector.NavigationMenuType == navigationMenuType ? 40f : 0f, 0.2f);
-                selector.transform.DOScale(selector.NavigationMenuType == navigationMenuType
-                    ? Vector3.one * 1.2f
-                    : Vector3.one, 0.2f);
+                selector.Set(selector.NavigationMenuType == _navigationMenuType, NavigationMenuSelector_OnClick);
             }
+            
+            // foreach (var selector in _navigationMenuSelectors)
+            // {
+            //     selector.DOKill();
+            //     selector.transform.DOLocalMoveY(selector.NavigationMenuType == _navigationMenuType ? 40f : 0f, 0.2f);
+            //     selector.transform.DOScale(selector.NavigationMenuType == _navigationMenuType
+            //         ? Vector3.one * 1.2f
+            //         : Vector3.one, 0.2f);
+            // }
         }
 
         private void SetDefaultMenu()

@@ -27,14 +27,13 @@ namespace TheGame.InputSystem
     public class InputManager : MonoBehaviour
     {
         [SerializeField] private PlayerInput _playerInput;
-        public static InputManager Instance { get; private set; }
-        public InputState InputState;
-        private InputStateMachine _inputStateMachine;
-
         private InputAction _pressAction;
         private InputAction _releaseAction;
         private InputAction _moveAction;
-
+        public static InputManager Instance { get; private set; }
+        public InputState InputState;
+        private InputStateMachine _inputStateMachine;
+        
         private void Awake()
         {
             Instance = this;
@@ -52,17 +51,17 @@ namespace TheGame.InputSystem
 
         private void EnableInputs()
         {
-            _pressAction = _playerInput.actions.FindAction("Press");
-            _releaseAction = _playerInput.actions.FindAction("Release");
-            _moveAction = _playerInput.actions.FindAction("Move");
-            _playerInput.ActivateInput();
-            _playerInput.actions.Enable();
+            _pressAction = _playerInput.actions["Press"];
+            _releaseAction = _playerInput.actions["Release"];
+            _moveAction = _playerInput.actions["Move"];
+            // _playerInput.ActivateInput();
+            // _playerInput.actions.Enable();
         }
 
         private void DisableInputs()
         {
-            _playerInput.actions.Disable();
-            _playerInput.DeactivateInput();
+            // _playerInput.actions.Disable();
+            // _playerInput.DeactivateInput();
         }
 
         public void Set(GameManager thisGame)
@@ -95,7 +94,7 @@ namespace TheGame.InputSystem
 
         private void HandleInputs()
         {
-            _inputStateMachine.TickLogic(ref InputState);
+            _inputStateMachine?.TickLogic(ref InputState);
 
             InputState.WasPressedThisFrame = false;
             InputState.WasReleasedThisFrame = false;

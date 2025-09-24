@@ -71,7 +71,7 @@ function timelineEvent.A(timelineObj, args)
     local bl = args[0];
     bl.caster = timelineObj.caster;
     bl.side = cs.side;
-    bl.launchPos = cs.transform.position;
+    bl.launchPos = cs.transform.position + Vector3(0, 0.3, 0);
     bl.propWhileCast = cs.Prop;
     local target = GetAliveMainTarget(timelineObj);
     if (target == nil) then

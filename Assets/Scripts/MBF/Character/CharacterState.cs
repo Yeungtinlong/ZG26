@@ -182,29 +182,7 @@ namespace MBF
             _resource = res;
             OnResourceChanged?.Invoke(this);
         }
-
-        public void ModifyRes(ChaResType type, int delta)
-        {
-            SetResource(type, GetResource(type) + delta);
-        }
-
-        public int GetResource(ChaResType type)
-        {
-            switch (type)
-            {
-                case ChaResType.Health:
-                {
-                    return _resource.hp;
-                }
-                case ChaResType.Speed:
-                {
-                    return _resource.speed;
-                }
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
-            }
-        }
-
+        
         public void SetResource(ChaResType type, int value)
         {
             switch (type)
@@ -231,6 +209,28 @@ namespace MBF
             OnResourceChanged?.Invoke(this);
         }
 
+        public void ModifyRes(ChaResType type, int delta)
+        {
+            SetResource(type, GetResource(type) + delta);
+        }
+
+        public int GetResource(ChaResType type)
+        {
+            switch (type)
+            {
+                case ChaResType.Health:
+                {
+                    return _resource.hp;
+                }
+                case ChaResType.Speed:
+                {
+                    return _resource.speed;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+        }
+        
         public void UpgradeSkills()
         {
             for (int i = 0; i < skills.Count; i++)

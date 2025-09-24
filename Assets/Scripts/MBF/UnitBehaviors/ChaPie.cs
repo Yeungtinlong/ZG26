@@ -1,3 +1,4 @@
+using TheGame;
 using TheGame.GM;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace MBF.UnitBehaviors
 
         [SerializeField] private TMP_Text _hpText;
         [SerializeField] private TMP_Text _speedText;
+        
         private CharacterState _cs;
 
         private void Awake()
@@ -50,7 +52,8 @@ namespace MBF.UnitBehaviors
             _hpSlider.value = (float)_cs.resource.hp / _cs.Prop.hp;
             _speedSlider.value = (float)_cs.resource.speed / _cs.Prop.speed;
             _shieldSlider.value = (float)_cs.resource.shp / _cs.Prop.hp;
-            
+
+            LCharacterConfig chaConfig = LuaToCsBridge.CharacterTable[_cs.id];
             _nameText.text = LuaToCsBridge.CharacterTable[_cs.id].Name;
             _gradeText.text = $"LV {_cs.grade}";
             _hpText.text = $"{_cs.resource.hp}/{_cs.Prop.hp}";

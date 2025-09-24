@@ -122,7 +122,7 @@ local basePatterns = {
             { gridIndex = 4, chaId = "cha_gongbing", grade = 9 },
             { gridIndex = 5, chaId = "cha_gushou",   grade = 9 },
         },
-        mapId = nil,
+        mapId = "Map_6",
     },
     -- MISSION 10
     {
@@ -139,7 +139,7 @@ local basePatterns = {
             { gridIndex = 7, chaId = "cha_sunquan",  grade = 3 },
             { gridIndex = 8, chaId = "cha_gushou",   grade = 10 },
         },
-        mapId = nil,
+        mapId = "Map_5",
     },
 };
 
@@ -221,7 +221,7 @@ for idx = 1, 10 do
         level.mapId = mapPattern[(idx - 1) % #mapPattern + 1];
     end
     if (gridInfoPattern.name == nil) then
-        level.name = "征战之路" .. tostring(id);
+        level.name = "征战之路";
     else
         level.name = gridInfoPattern.name;
     end
@@ -251,7 +251,7 @@ for idx = 11, 100 do
         level.mapId = mapPattern[(idx - 1) % #mapPattern + 1];
     end
     if (gridInfoPattern.name == nil) then
-        level.name = "征战之路" .. tostring(id);
+        level.name = "征战之路";
     else
         level.name = gridInfoPattern.name;
     end

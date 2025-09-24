@@ -11,6 +11,7 @@ namespace TheGame.UI
 {
     public class RoleDetailUI : MonoBehaviour
     {
+        [SerializeField] private Image _chaTypeImage;
         [SerializeField] private TMP_Text _roleNameText;
         [SerializeField] private TMP_Text _roleGradeText;
         [SerializeField] private TMP_Text _roleTypeText;
@@ -59,7 +60,7 @@ namespace TheGame.UI
             _roleNameText.color = _rarityColors[roleConfig.Rarity];
             ChaInstance chaInstance = GameRuntimeData.Instance.ChaInstances[roleConfig.Id];
             _roleGradeText.text = $"Lv.{chaInstance.grade}";
-            _roleTypeText.text = $"定位：{_typeTexts[roleConfig.CharacterType]}";
+            _roleTypeText.text = $"类型：{_typeTexts[roleConfig.CharacterType]}";
             _rarityText.text =
                 $"稀有度: {roleConfig.Rarity switch { Rarity.Normal => "N", Rarity.Rare => "R", Rarity.SuperRare => "SR", Rarity.Legendary => "SSR", Rarity.Mythic => "SSS", _ => throw new ArgumentOutOfRangeException() }}";
             _rarityText.color = _rarityColors[roleConfig.Rarity];
@@ -147,6 +148,8 @@ namespace TheGame.UI
 
             _propertiesText.text =
                 $"生命：{finalProps.hp}\n攻击：{finalProps.atk}\n速度：{finalProps.speed}\n";
+            
+            _chaTypeImage.LoadAsyncForget(PathHelper.GetSpritePath($"Icons/ui_icon_{chaConfig.CharacterType.ToString().ToLower()}"));
         }
     }
 }
