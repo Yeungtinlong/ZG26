@@ -5,13 +5,12 @@ using MBF.UnitBehaviors;
 using UnityEngine;
 using TheGame;
 using TheGame.GM;
+using TheGame.ResourceManagement;
 
 namespace MBF
 {
     public class CharacterState : MonoBehaviour, IBeAttacked
     {
-        public const int MAX_GRADE = 10;
-
         public string id;
 
         public string[] tags;
@@ -166,23 +165,23 @@ namespace MBF
             // skillObj.cooldown = Mathf.RoundToInt(skillObj.model.cooldown / skillSpd);
         }
 
-        public void Upgrade()
-        {
-            grade++;
-            LCharacterConfig cfg = LuaToCsBridge.CharacterTable[id];
-            baseProp = DesignerFormula.GetGradeProp(cfg.BaseProp, cfg.PropGrowth[0], cfg.PropGrowth[1], grade);
-            UpgradeSkills();
-            RecheckProps();
-            SetResource(new ChaRes(_prop.hp, _resource.speed, 0));
-            OnResourceChanged?.Invoke(this);
-        }
+        // public void Upgrade()
+        // {
+        //     grade++;
+        //     LCharacterConfig cfg = LuaToCsBridge.CharacterTable[id];
+        //     baseProp = DesignerFormula.GetGradeProp(cfg.BaseProp, cfg.PropGrowth[0], cfg.PropGrowth[1], grade);
+        //     UpgradeSkills();
+        //     RecheckProps();
+        //     SetResource(new ChaRes(_prop.hp, _resource.speed, 0));
+        //     OnResourceChanged?.Invoke(this);
+        // }
 
         public void SetResource(ChaRes res)
         {
             _resource = res;
             OnResourceChanged?.Invoke(this);
         }
-        
+
         public void SetResource(ChaResType type, int value)
         {
             switch (type)
@@ -230,14 +229,14 @@ namespace MBF
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
-        
-        public void UpgradeSkills()
-        {
-            for (int i = 0; i < skills.Count; i++)
-            {
-                skills[i].grade++;
-            }
-        }
+
+        // public void UpgradeSkills()
+        // {
+        //     for (int i = 0; i < skills.Count; i++)
+        //     {
+        //         skills[i].grade++;
+        //     }
+        // }
 
         public void LogicTick()
         {
@@ -308,6 +307,7 @@ namespace MBF
                     SetResource(ChaResType.Shield, _resource.shp - damage);
                     return;
                 }
+
                 SetResource(ChaResType.Shield, 0);
                 SetResource(ChaResType.Health, Mathf.Min(_resource.hp - damageAfterShp, _prop.hp));
             }
@@ -333,18 +333,22 @@ namespace MBF
             IsDead = true;
             // _unitAnim.Play("die");
             // gameObject.AddComponent<UnitRemover>().SetDuration(2f);
-            // GameObject dieEffect = Instantiate(ResLoader.LoadAsset<GameObject>($"Prefabs/Characters/{_unitViewController.View.name}_Die"));
+            GameObject dieEffect =
+                Instantiate(ResLoader.LoadAsset<GameObject>($"Prefabs/Effects/{_unitViewController.View.name}_Die"));
+            dieEffect.transform.position = transform.position;
+            dieEffect.GetComponent<Animator>().Play("die");
+            dieEffect.GetComponent<SpriteRenderer>().flipX = side != 0;
             // if (dieEffect == null)
             //     return;
             //
-            // dieEffect.AddComponent<UnitRemover>().SetDuration(dieEffect.GetComponent<SightEffect>().duration);
+            dieEffect.AddComponent<UnitRemover>().SetDuration(dieEffect.GetComponent<SightEffect>().duration);
         }
 
-        public void OrderMove(Vector3 moveOrder)
-        {
-            _moveOrder.x = moveOrder.x;
-            _moveOrder.y = moveOrder.y;
-        }
+        // public void OrderMove(Vector3 moveOrder)
+        // {
+        //     _moveOrder.x = moveOrder.x;
+        //     _moveOrder.y = moveOrder.y;
+        // }
 
         public void SetFace(Vector3 dir)
         {

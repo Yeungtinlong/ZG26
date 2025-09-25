@@ -1115,6 +1115,11 @@ namespace XLua
 			    return new TheGame.GM.MissionCanComplete(__Gen_Delegate_Imp20);
 			}
 		
+		    if (type == typeof(TheGame.GM.StrategyUnlockCondition))
+			{
+			    return new TheGame.GM.StrategyUnlockCondition(__Gen_Delegate_Imp20);
+			}
+		
 		    if (type == typeof(Tutorial.CSCallLua.FDelegate))
 			{
 			    return new Tutorial.CSCallLua.FDelegate(__Gen_Delegate_Imp21);

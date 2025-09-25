@@ -22,7 +22,6 @@ namespace TheGame.GM
         public static Dictionary<string, RoleDefaultEquipModel> DefaultEquipTable;
         public static Dictionary<string, StrategyModel> StrategyTable;
         public static Dictionary<string, MissionModel> MissionTable;
-        public static string StoryText;
 
         private static void Print(string msg)
         {
@@ -34,9 +33,6 @@ namespace TheGame.GM
         {
             _luaEnv = LuaManager.LuaEnv;
             _luaEnv.DoString("Game.InitLuaTables();");
-
-            StoryText = _luaEnv.Global.GetInPath<string>("Game.Designer.Story");
-            Print($"[LuaConfigToCsInit] StoryText {StoryText.Length} success");
 
             CharacterTable = _luaEnv.Global.GetInPath<List<LCharacterConfig>>("Game.Designer.Character")
                 .ToDictionary(k => k.Id, v => v);
@@ -72,10 +68,12 @@ namespace TheGame.GM
                 .ToDictionary(k => k.chaId, v => v);
             Print($"[LuaConfigToCsInit] DefaultEquipTable {DefaultEquipTable.Count} success");
 
-            StrategyTable = _luaEnv.Global.GetInPath<Dictionary<string, StrategyModel>>("Game.Designer.Strategy");
+            StrategyTable = _luaEnv.Global.GetInPath<List<StrategyModel>>("Game.Designer.Strategy")
+                .ToDictionary(k => k.id, v => v);
             Print($"[LuaConfigToCsInit] StrategyTable {StrategyTable.Count} success");
 
-            MissionTable = _luaEnv.Global.GetInPath<List<MissionModel>>("Game.Designer.Mission").ToDictionary(k => k.id, v => v);
+            MissionTable = _luaEnv.Global.GetInPath<List<MissionModel>>("Game.Designer.Mission")
+                .ToDictionary(k => k.id, v => v);
             Print($"[LuaConfigToCsInit] MissionTable {MissionTable.Count} success");
 
             DesignerFormula.Init();

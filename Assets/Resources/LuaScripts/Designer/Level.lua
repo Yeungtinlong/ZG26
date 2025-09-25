@@ -92,9 +92,9 @@ local basePatterns = {
             { gridIndex = 0, chaId = "cha_huwei",    grade = 7 },
             { gridIndex = 1, chaId = "cha_huwei",    grade = 7 },
             { gridIndex = 2, chaId = "cha_huwei",    grade = 7 },
-            { gridIndex = 3, chaId = "cha_shuibing", grade = 7 },
-            { gridIndex = 4, chaId = "cha_shuibing", grade = 7 },
-            { gridIndex = 5, chaId = "cha_shuibing", grade = 7 },
+            { gridIndex = 3, chaId = "cha_qibing", grade = 7 },
+            { gridIndex = 4, chaId = "cha_qibing", grade = 7 },
+            { gridIndex = 5, chaId = "cha_qibing", grade = 7 },
         },
         mapId = nil,
     },
@@ -114,19 +114,22 @@ local basePatterns = {
     },
     {
         -- 3水兵、2弓兵、1鼓手
+        name = "水兵操练",
         grids = {
             { gridIndex = 0, chaId = "cha_shuibing", grade = 9 },
             { gridIndex = 1, chaId = "cha_shuibing", grade = 9 },
             { gridIndex = 2, chaId = "cha_shuibing", grade = 9 },
-            { gridIndex = 3, chaId = "cha_gongbing", grade = 9 },
+            { gridIndex = 3, chaId = "cha_shuibing", grade = 9 },
             { gridIndex = 4, chaId = "cha_gongbing", grade = 9 },
             { gridIndex = 5, chaId = "cha_gushou",   grade = 9 },
+            { gridIndex = 6, chaId = "cha_zhouyu",   grade = 3 },
+            { gridIndex = 7, chaId = "cha_gongbing", grade = 9 },
         },
         mapId = "Map_6",
     },
     -- MISSION 10
     {
-        name = "孙吴来犯",
+        name = "孙刘联盟",
         -- 孙权、周瑜、3水兵、1鼓手
         grids = {
             { gridIndex = 0, chaId = "cha_shuibing", grade = 10 },

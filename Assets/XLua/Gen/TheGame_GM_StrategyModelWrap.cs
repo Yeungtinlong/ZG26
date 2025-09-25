@@ -21,18 +21,22 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(TheGame.GM.StrategyModel);
-			Utils.BeginObjectRegister(type, L, translator, 0, 0, 4, 4);
+			Utils.BeginObjectRegister(type, L, translator, 0, 0, 6, 6);
 			
 			
 			
 			Utils.RegisterFunc(L, Utils.GETTER_IDX, "id", _g_get_id);
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "name", _g_get_name);
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "description", _g_get_description);
+            Utils.RegisterFunc(L, Utils.GETTER_IDX, "unlockCondition", _g_get_unlockCondition);
+            Utils.RegisterFunc(L, Utils.GETTER_IDX, "unlockDescription", _g_get_unlockDescription);
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "effect", _g_get_effect);
             
 			Utils.RegisterFunc(L, Utils.SETTER_IDX, "id", _s_set_id);
             Utils.RegisterFunc(L, Utils.SETTER_IDX, "name", _s_set_name);
             Utils.RegisterFunc(L, Utils.SETTER_IDX, "description", _s_set_description);
+            Utils.RegisterFunc(L, Utils.SETTER_IDX, "unlockCondition", _s_set_unlockCondition);
+            Utils.RegisterFunc(L, Utils.SETTER_IDX, "unlockDescription", _s_set_unlockDescription);
             Utils.RegisterFunc(L, Utils.SETTER_IDX, "effect", _s_set_effect);
             
 			
@@ -123,6 +127,34 @@ namespace XLua.CSObjectWrap
         }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_unlockCondition(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+                TheGame.GM.StrategyModel gen_to_be_invoked;translator.Get(L, 1, out gen_to_be_invoked);
+                translator.Push(L, gen_to_be_invoked.unlockCondition);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_unlockDescription(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+                TheGame.GM.StrategyModel gen_to_be_invoked;translator.Get(L, 1, out gen_to_be_invoked);
+                LuaAPI.lua_pushstring(L, gen_to_be_invoked.unlockDescription);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            return 1;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _g_get_effect(RealStatePtr L)
         {
 		    try {
@@ -180,6 +212,40 @@ namespace XLua.CSObjectWrap
 			
                 TheGame.GM.StrategyModel gen_to_be_invoked;translator.Get(L, 1, out gen_to_be_invoked);
                 gen_to_be_invoked.description = LuaAPI.lua_tostring(L, 2);
+            
+                translator.Update(L, 1, gen_to_be_invoked);
+            
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_unlockCondition(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+                TheGame.GM.StrategyModel gen_to_be_invoked;translator.Get(L, 1, out gen_to_be_invoked);
+                gen_to_be_invoked.unlockCondition = translator.GetDelegate<TheGame.GM.StrategyUnlockCondition>(L, 2);
+            
+                translator.Update(L, 1, gen_to_be_invoked);
+            
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_unlockDescription(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+                TheGame.GM.StrategyModel gen_to_be_invoked;translator.Get(L, 1, out gen_to_be_invoked);
+                gen_to_be_invoked.unlockDescription = LuaAPI.lua_tostring(L, 2);
             
                 translator.Update(L, 1, gen_to_be_invoked);
             

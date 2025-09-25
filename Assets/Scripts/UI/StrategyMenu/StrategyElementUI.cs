@@ -13,6 +13,9 @@ namespace TheGame.UI
         [SerializeField] private Image _iconImage;
         [SerializeField] private Button _selectButton;
         [SerializeField] private GameObject _selectedObject;
+        
+        [SerializeField] private GameObject _lockedObject;
+        [SerializeField] private TMP_Text _lockedText;
 
         private Action<StrategyElementUI> _onClick;
 
@@ -44,11 +47,13 @@ namespace TheGame.UI
             _onClick?.Invoke(this);
         }
 
-        public void Set(string id, string name, string description, bool selected, Action<StrategyElementUI> onClick)
+        public void Set(string id, string strategyName, string description, bool selected, bool locked, string lockedText, Action<StrategyElementUI> onClick)
         {
             Id = id;
-            _nameText.text = name;
+            _nameText.text = strategyName;
             _descriptionText.text = description;
+            _lockedText.text = lockedText;
+            _lockedObject.SetActive(locked);
             _selectedObject.SetActive(selected);
             _iconImage.LoadAsyncForget(PathHelper.GetSpritePath($"Icons/ui_icon_{id}"));
             _onClick = onClick;

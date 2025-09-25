@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8287843684715218288
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923939631933202453, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493614625044519503, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8228571
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493614625044519503, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0285715
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493614625044519503, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 01b25e0ce3a694861b3ec5378af4f927, type: 3}
+    - target: {fileID: 2493614625044519503, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693965535524805728, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 63b992a3ae5b64e039947934b75e7267, type: 2}
+    - target: {fileID: 5829950722309191163, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      propertyPath: m_Name
+      value: "\u5E9E\u7EDF_CharacterView_DIe"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5829950722309191163, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2363730593949192324}
+  m_SourcePrefab: {fileID: 100100000, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+--- !u!1 &2588567721418371211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5829950722309191163, guid: 90c1f1b3cdc714a0e837546b34bed781, type: 3}
+  m_PrefabInstance: {fileID: 8287843684715218288}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2363730593949192324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2588567721418371211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df0e634e71944298aebcae53b89feff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MBF.SightEffect
+  duration: 2

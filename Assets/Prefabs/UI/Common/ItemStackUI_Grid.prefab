@@ -66,8 +66,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c17b4188bd0de4e80ae791ce3414b71e, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 10bbb77e5453c9a4fbc380d06e2e5087, type: 3}
+  m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
@@ -147,11 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 733e482f6313436f8a2a31d4de529d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bgImage: {fileID: 0}
   _spriteImage: {fileID: 1562858640904427330}
-  _selectedObject: {fileID: 0}
   _valueText: {fileID: 2596904510291067287}
-  _clickable: {fileID: 0}
 --- !u!1 &4200791661015073560
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,14 +217,14 @@ MonoBehaviour:
   m_text: 9999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 35dfd38995713f446943450805d15fd9, type: 2}
-  m_sharedMaterial: {fileID: 2922994945992152272, guid: 35dfd38995713f446943450805d15fd9, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 24840effde7af974887747bf7cd205ef, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278471832
-  m_fontColor: {r: 0.59607846, g: 0.29803923, b: 0.015686275, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

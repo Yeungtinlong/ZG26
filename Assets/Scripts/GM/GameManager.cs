@@ -233,7 +233,7 @@ namespace TheGame.GM
             // 未上阵角色
             if (playerSideGrids.Where(g => !g.IsReadyGrid).All(g => g.Character == null))
             {
-                UIManager.Instance.OpenUI<MessagePopupUI>().Set("敌军大呼：无人敢战？\n——请上阵至少1个角色", 1f);
+                UIManager.Instance.OpenUI<MessagePopupUI>().Set("敌军大呼：无人敢战？\n——请拖拽角色上场", 1f);
                 return false;
             }
 

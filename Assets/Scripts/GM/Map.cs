@@ -15,7 +15,7 @@ namespace TheGame.GM
 
         private ReadyArea _readyArea;
         public ReadyArea ReadyArea => _readyArea;
-        
+
         public void Set()
         {
             _readyArea = GetComponentInChildren<ReadyArea>();
@@ -24,7 +24,7 @@ namespace TheGame.GM
             Vector2 sizeTiling = _groundSpriteRenderer.size;
             _size = Vector2.Max(sizeSprite, sizeTiling);
 
-            var allGrids = GetComponentsInChildren<MapGrid>().ToList();
+            var allGrids = GetComponentsInChildren<MapGrid>().Where(g => !g.IsReadyGrid).ToList();
 
             int minX = int.MaxValue;
             int minY = int.MaxValue;

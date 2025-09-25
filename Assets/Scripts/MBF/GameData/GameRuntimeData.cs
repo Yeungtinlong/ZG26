@@ -124,7 +124,7 @@ namespace TheGame.GM
             // foreach (var (eId, eModel) in LuaToCsBridge.EquipmentTable)
             //     instance.GetItem(eId, 1);
             gameRuntimeData.GetItem("item_currency_coin", 500);
-
+            gameRuntimeData.SelectedStrategy = "strategy_common";
             _instance = gameRuntimeData;
         }
 

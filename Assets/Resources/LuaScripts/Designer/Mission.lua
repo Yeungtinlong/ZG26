@@ -54,8 +54,8 @@ local missions = {
     },
     {
         id = "mission_sunquan",
-        name = "击败孙权",
-        description = "孙吴领兵来犯，教训他们！",
+        name = "孙刘联盟",
+        description = "欲要结盟，先得孙权的认可！",
         icon = "Roles/ui_cha_sunquan",
         canComplete = function()
             return GameRuntimeData.Instance.PassedLevel >= 10;

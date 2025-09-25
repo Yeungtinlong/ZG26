@@ -299,5 +299,10 @@ namespace TheGame.GM
         {
             return game.SceneVariants.characters;
         }
+
+        public static List<ChaInstance> GetAllChaInstances()
+        {
+            return GameRuntimeData.Instance.ChaInstances.Values.ToList();
+        }
     }
 }

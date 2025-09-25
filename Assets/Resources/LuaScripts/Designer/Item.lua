@@ -24,7 +24,7 @@ local item = {
     -- Equipment 1 --
     { "item_equipment_七星刀", "七星刀", ItemType.Equipment, "" },
     { "item_equipment_古锭刀", "古锭刀", ItemType.Equipment, "" },
-    { "item_equipment_传国玉玺", "传国玉玺", ItemType.Equipment, "" },
+    { "item_equipment_帅印", "帅印", ItemType.Equipment, "" },
     { "item_equipment_炎龙战盔", "炎龙战盔", ItemType.Equipment, "" },
     { "item_equipment_炎龙战袍", "炎龙战袍", ItemType.Equipment, "" },
     { "item_equipment_白羽扇", "白羽扇", ItemType.Equipment, "" },

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TheGame.GM;
 using TheGame.ResourceManagement;
 using TMPro;
@@ -12,7 +13,7 @@ namespace TheGame.UI
         [SerializeField] private TMP_Text _titleText;
         [SerializeField] private Image _iconImage;
         [SerializeField] private TMP_Text _descriptionText;
-        [SerializeField] private TMP_Text _priceText;
+        [SerializeField] private ItemStacksInspectorUI _priceInspector;
         [SerializeField] private Button _button;
         [SerializeField] private GameObject _invalidObj;
 
@@ -54,7 +55,7 @@ namespace TheGame.UI
             _titleText.text = productConfig.Name;
             _iconImage.LoadAsyncForget(PathHelper.GetSpritePath(productConfig.Icon));
             _descriptionText.text = productConfig.Description;
-            _priceText.text = $"售价：{productConfig.Price.count}";
+            _priceInspector.Set(new List<ItemStack> { productConfig.Price });
 
             _invalidObj.SetActive(GameRuntimeData.Instance.CheckProductValid(ProductId));
         }

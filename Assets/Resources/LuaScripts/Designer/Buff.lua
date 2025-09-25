@@ -9,11 +9,6 @@ local ChaControlState = CS.MBF.ChaControlState;
 
 local buff = {};
 
---public string id;
---public string[] tags;
---public ChaProp[] propMod;
---public ChaControlState stateMod;
-
 buff.buff_stun = {
     id = "buff_stun",
     tags = {},
