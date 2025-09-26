@@ -293,7 +293,7 @@ namespace MBF
                 int damageAfterShp = damage - _resource.shp;
                 if (damageAfterShp > 0)
                 {
-                    if (damage >= _resource.hp)
+                    if (damageAfterShp >= _resource.hp)
                     {
                         SetResource(new ChaRes(0, _resource.speed, 0));
                         Kill();
